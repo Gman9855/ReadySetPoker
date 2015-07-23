@@ -17,6 +17,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
+        let currentUser = PFUser.currentUser()
+        let storyboardName = currentUser != nil ? "LoggedInState" : "LoggedOutState"
+        let initialStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
+        
+        let viewController = initialStoryboard.instantiateInitialViewController() as! UIViewController
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
+        
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
         Parse.enableLocalDatastore()
@@ -28,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // [Optional] Track statistics around application opens.
         PFAnalytics.trackAppOpenedWithLaunchOptions(launchOptions)
-
+        
         // ...
         return true
     }
