@@ -90,11 +90,11 @@
 				8B8423CE1B6069A200B69539 /* QuartzCore.framework in Frameworks */,
 				8B8423CC1B60699400B69539 /* CoreLocation.framework in Frameworks */,
 				8B8423CA1B60698C00B69539 /* CoreGraphics.framework in Frameworks */,
+				8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				8B8423DD1B60918E00B69539 /* FBSDKCoreKit.framework in Frameworks */,
 				8B8423C81B60697800B69539 /* CFNetwork.framework in Frameworks */,
 				8B8423C61B60697100B69539 /* AudioToolbox.framework in Frameworks */,
 				8B8423C41B60690A00B69539 /* Parse.framework in Frameworks */,
-				8B8423E11B6091F500B69539 /* ParseFacebookUtils.framework in Frameworks */,
 				8B8423C31B60690A00B69539 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -164,7 +164,7 @@
 		8B8423D91B60914C00B69539 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				8B8423E01B6091F500B69539 /* ParseFacebookUtils.framework */,
+				8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */,
 				8B8423DA1B60918E00B69539 /* FBSDKCoreKit.framework */,
 				8B8423DB1B60918E00B69539 /* FBSDKLoginKit.framework */,
 				8B8423DC1B60918E00B69539 /* FBSDKShareKit.framework */,
