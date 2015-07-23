@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A11B60682500B69539 /* AppDelegate.swift */; };
 		8B8423A41B60682500B69539 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* ViewController.swift */; };
-		8B8423A71B60682500B69539 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A51B60682500B69539 /* Main.storyboard */; };
+		8B8423A71B60682500B69539 /* LoggedOutState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A51B60682500B69539 /* LoggedOutState.storyboard */; };
 		8B8423A91B60682500B69539 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A81B60682500B69539 /* Images.xcassets */; };
 		8B8423AC1B60682500B69539 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423AA1B60682500B69539 /* LaunchScreen.xib */; };
 		8B8423C31B60690A00B69539 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423C11B60690A00B69539 /* Bolts.framework */; };
@@ -48,7 +48,7 @@
 		8B84239C1B60682500B69539 /* ReadySetPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadySetPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8423A11B60682500B69539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B8423A31B60682500B69539 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		8B8423A61B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		8B8423A61B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoggedOutState.storyboard; sourceTree = "<group>"; };
 		8B8423A81B60682500B69539 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8B8423AB1B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		8B8423B11B60682500B69539 /* ReadySetPokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadySetPokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -134,7 +134,8 @@
 			children = (
 				8B8423A11B60682500B69539 /* AppDelegate.swift */,
 				8B8423A31B60682500B69539 /* ViewController.swift */,
-				8B8423A51B60682500B69539 /* Main.storyboard */,
+				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
+				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
 				8B8423A81B60682500B69539 /* Images.xcassets */,
 				8B8423AA1B60682500B69539 /* LaunchScreen.xib */,
 				8B8423B51B60682500B69539 /* Supporting Files */,
@@ -266,8 +267,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B8423F01B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg in Resources */,
+				8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */,
 				8B8423EA1B60960A00B69539 /* Info.plist in Resources */,
-				8B8423A71B60682500B69539 /* Main.storyboard in Resources */,
+				8B8423A71B60682500B69539 /* LoggedOutState.storyboard in Resources */,
 				8B8423AC1B60682500B69539 /* LaunchScreen.xib in Resources */,
 				8B8423A91B60682500B69539 /* Images.xcassets in Resources */,
 				8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */,
@@ -312,12 +314,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8B8423A51B60682500B69539 /* Main.storyboard */ = {
+		8B8423A51B60682500B69539 /* LoggedOutState.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				8B8423A61B60682500B69539 /* Base */,
 			);
-			name = Main.storyboard;
+			name = LoggedOutState.storyboard;
 			sourceTree = "<group>";
 		};
 		8B8423AA1B60682500B69539 /* LaunchScreen.xib */ = {
