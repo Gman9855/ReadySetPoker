@@ -7,3 +7,10 @@
 //
 
 import Foundation
+
+class Event {
+    var title: String!
+    var date: NSDate!
+    var time: String!
+    var location: String!
+}
