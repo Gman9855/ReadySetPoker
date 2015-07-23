@@ -18,10 +18,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>FacebookAppID</key>
-	<string>1611395789136661</string>
-	<key>FacebookDisplayName</key>
-	<string>ReadySetPoker</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -33,5 +29,11 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1611395789136661</string>
+	<key>FacebookDisplayName</key>
+	<string>ReadySetPoker</string>
+	<key>UIMainStoryboardFile</key>
+	<string>Main</string>
 </dict>
 </plist>
