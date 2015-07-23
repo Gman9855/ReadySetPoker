@@ -31,6 +31,7 @@
 		8B8423EA1B60960A00B69539 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423E81B60960A00B69539 /* Info.plist */; };
 		8B8423EC1B60966700B69539 /* ReadySetPokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */; };
 		8B8423EE1B6097AA00B69539 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423ED1B6097AA00B69539 /* Default-568h@2x.png */; };
+		8B8423F01B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423EF1B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		8B8423E91B60960A00B69539 /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadySetPokerTests.swift; sourceTree = "<group>"; };
 		8B8423ED1B6097AA00B69539 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8B8423EF1B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11783577_10206956998784427_1744337690_o.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +155,7 @@
 			children = (
 				8B8423E81B60960A00B69539 /* Info.plist */,
 				8B8423E91B60960A00B69539 /* ReadySetPoker-Bridging-Header.h */,
+				8B8423EF1B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg */,
 			);
 			name = "Supporting Files";
 			path = ReadySetPokerTests;
@@ -262,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B8423F01B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg in Resources */,
 				8B8423EA1B60960A00B69539 /* Info.plist in Resources */,
 				8B8423A71B60682500B69539 /* Main.storyboard in Resources */,
 				8B8423AC1B60682500B69539 /* LaunchScreen.xib in Resources */,
