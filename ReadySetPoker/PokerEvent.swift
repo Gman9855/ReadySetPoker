@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PokerEvent.swift
 //  ReadySetPoker
 //
 //  Created by Gershy Lev on 7/23/15.

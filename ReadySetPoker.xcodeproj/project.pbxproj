@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A11B60682500B69539 /* AppDelegate.swift */; };
-		8B8423A41B60682500B69539 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* ViewController.swift */; };
+		8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* LoginViewController.swift */; };
 		8B8423A71B60682500B69539 /* LoggedOutState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A51B60682500B69539 /* LoggedOutState.storyboard */; };
 		8B8423A91B60682500B69539 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A81B60682500B69539 /* Images.xcassets */; };
 		8B8423AC1B60682500B69539 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423AA1B60682500B69539 /* LaunchScreen.xib */; };
@@ -33,6 +33,9 @@
 		8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */; };
 		8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423F71B6142EC00B69539 /* Default-568h@2x.png */; };
 		8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */; };
+		8B8423FE1B61601F00B69539 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423FD1B61601F00B69539 /* Event.swift */; };
+		8B8424011B61658100B69539 /* PokerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424001B61658100B69539 /* PokerEvent.swift */; };
+		8B8424031B616CF800B69539 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +51,7 @@
 /* Begin PBXFileReference section */
 		8B84239C1B60682500B69539 /* ReadySetPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadySetPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8423A11B60682500B69539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8B8423A31B60682500B69539 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8B8423A31B60682500B69539 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		8B8423A61B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoggedOutState.storyboard; sourceTree = "<group>"; };
 		8B8423A81B60682500B69539 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8B8423AB1B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -75,6 +78,9 @@
 		8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
 		8B8423F71B6142EC00B69539 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoggedInState.storyboard; sourceTree = "<group>"; };
+		8B8423FD1B61601F00B69539 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8B8424001B61658100B69539 /* PokerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerEvent.swift; sourceTree = "<group>"; };
+		8B8424021B616CF800B69539 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,8 +140,10 @@
 		8B84239E1B60682500B69539 /* ReadySetPoker */ = {
 			isa = PBXGroup;
 			children = (
+				8B8423FF1B61602D00B69539 /* Model */,
 				8B8423A11B60682500B69539 /* AppDelegate.swift */,
-				8B8423A31B60682500B69539 /* ViewController.swift */,
+				8B8423A31B60682500B69539 /* LoginViewController.swift */,
+				8B8424021B616CF800B69539 /* ViewController.swift */,
 				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
 				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
 				8B8423A81B60682500B69539 /* Images.xcassets */,
@@ -186,6 +194,15 @@
 			);
 			name = Frameworks;
 			path = ReadySetPoker.xcodeproj;
+			sourceTree = "<group>";
+		};
+		8B8423FF1B61602D00B69539 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423FD1B61601F00B69539 /* Event.swift */,
+				8B8424001B61658100B69539 /* PokerEvent.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -292,7 +309,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8423A41B60682500B69539 /* ViewController.swift in Sources */,
+				8B8424031B616CF800B69539 /* ViewController.swift in Sources */,
+				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
+				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
+				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
 				8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
