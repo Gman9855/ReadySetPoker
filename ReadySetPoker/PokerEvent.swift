@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class PokerEvent: Event {
+    var gameVariant: String!
+    var gameFormat: GameFormat!
+    var cashGameBuyInMinimum: String!
+    var cashGameBuyInMaximum: String!
+    var tournamentBuyIn: String!
+    
+    enum GameFormat {
+        case cash
+        case tournament
+    }
+}
