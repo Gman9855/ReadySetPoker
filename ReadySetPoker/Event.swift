@@ -10,12 +10,21 @@ import Foundation
 import Parse
 import Bolts
 
-class Event {
-    var title: String!
-    var description: String!
-    var date: NSDate!
-    var location: String!
-    var host: PFUser!
-    var comments: NSArray!
-    var attendees: NSArray!
+class Event : PFObject {
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    @NSManaged var title: String
+    @NSManaged var eventDescription: String
+    @NSManaged var date: NSDate
+    @NSManaged var location: String
+    @NSManaged var host: PFUser
+    @NSManaged var comments: NSArray
+    @NSManaged var attendees: NSArray
 }
