@@ -11,9 +11,9 @@ import Foundation
 class PokerEvent: Event {
     var gameVariant: String!
     var gameFormat: GameFormat!
-    var cashGameBuyInMinimum: String!
-    var cashGameBuyInMaximum: String!
-    var tournamentBuyIn: String!
+    var cashGameBuyInMinimum: NSInteger!
+    var cashGameBuyInMaximum: NSInteger!
+    var tournamentBuyIn: NSInteger!
     
     enum GameFormat {
         case cash

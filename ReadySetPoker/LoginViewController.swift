@@ -23,7 +23,6 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-
     @IBAction func loginWithFacebookButtonTapped(sender: UIButton) {
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "email", "user_friends"]) {
             (user: PFUser?, error: NSError?) -> Void in
