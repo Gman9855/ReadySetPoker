@@ -36,6 +36,8 @@
 		8B8423FE1B61601F00B69539 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423FD1B61601F00B69539 /* Event.swift */; };
 		8B8424011B61658100B69539 /* PokerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424001B61658100B69539 /* PokerEvent.swift */; };
 		8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* EventListViewController.swift */; };
+		8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */; };
+		8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +83,8 @@
 		8B8423FD1B61601F00B69539 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8B8424001B61658100B69539 /* PokerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerEvent.swift; sourceTree = "<group>"; };
 		8B8424021B616CF800B69539 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +101,7 @@
 				8B8423D01B6069B100B69539 /* Security.framework in Frameworks */,
 				8B8423CE1B6069A200B69539 /* QuartzCore.framework in Frameworks */,
 				8B8423CC1B60699400B69539 /* CoreLocation.framework in Frameworks */,
+				8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */,
 				8B8423CA1B60698C00B69539 /* CoreGraphics.framework in Frameworks */,
 				8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */,
 				8B8423DD1B60918E00B69539 /* FBSDKCoreKit.framework in Frameworks */,
@@ -144,6 +149,7 @@
 				8B8423A11B60682500B69539 /* AppDelegate.swift */,
 				8B8423A31B60682500B69539 /* LoginViewController.swift */,
 				8B8424021B616CF800B69539 /* EventListViewController.swift */,
+				8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */,
 				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
 				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
 				8B8423A81B60682500B69539 /* Images.xcassets */,
@@ -175,6 +181,7 @@
 		8B8423D91B60914C00B69539 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */,
 				8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */,
 				8B8423DA1B60918E00B69539 /* FBSDKCoreKit.framework */,
 				8B8423DB1B60918E00B69539 /* FBSDKLoginKit.framework */,
@@ -309,6 +316,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */,
 				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
 				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
