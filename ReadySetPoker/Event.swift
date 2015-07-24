@@ -8,18 +8,8 @@
 
 import Foundation
 import Parse
-import Bolts
 
 class Event : PFObject {
-    override class func initialize() {
-        struct Static {
-            static var onceToken : dispatch_once_t = 0;
-        }
-        dispatch_once(&Static.onceToken) {
-            self.registerSubclass()
-        }
-    }
-    
     @NSManaged var title: String
     @NSManaged var eventDescription: String
     @NSManaged var date: NSDate
