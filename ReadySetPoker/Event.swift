@@ -12,8 +12,10 @@ import Bolts
 
 class Event {
     var title: String!
+    var description: String!
     var date: NSDate!
-    var time: String!
     var location: String!
     var host: PFUser!
+    var comments: NSArray!
+    var attendees: NSArray!
 }
