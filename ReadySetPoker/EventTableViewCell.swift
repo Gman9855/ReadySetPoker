@@ -6,8 +6,12 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import Foundation
+import ParseUI
 
 class EventTableViewCell: PFTableViewCell {
-
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var date: UILabel!
+    @IBOutlet weak var gameVariant: UILabel!
+    @IBOutlet weak var location: UILabel!
 }
