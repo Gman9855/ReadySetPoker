@@ -35,7 +35,7 @@
 		8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */; };
 		8B8423FE1B61601F00B69539 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423FD1B61601F00B69539 /* Event.swift */; };
 		8B8424011B61658100B69539 /* PokerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424001B61658100B69539 /* PokerEvent.swift */; };
-		8B8424031B616CF800B69539 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* ViewController.swift */; };
+		8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* EventListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,7 +80,7 @@
 		8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoggedInState.storyboard; sourceTree = "<group>"; };
 		8B8423FD1B61601F00B69539 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8B8424001B61658100B69539 /* PokerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerEvent.swift; sourceTree = "<group>"; };
-		8B8424021B616CF800B69539 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8B8424021B616CF800B69539 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,7 +143,7 @@
 				8B8423FF1B61602D00B69539 /* Model */,
 				8B8423A11B60682500B69539 /* AppDelegate.swift */,
 				8B8423A31B60682500B69539 /* LoginViewController.swift */,
-				8B8424021B616CF800B69539 /* ViewController.swift */,
+				8B8424021B616CF800B69539 /* EventListViewController.swift */,
 				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
 				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
 				8B8423A81B60682500B69539 /* Images.xcassets */,
@@ -309,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B8424031B616CF800B69539 /* ViewController.swift in Sources */,
+				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
 				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
 				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
@@ -526,6 +526,7 @@
 				8B8423BD1B60682500B69539 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B8423BE1B60682500B69539 /* Build configuration list for PBXNativeTarget "ReadySetPokerTests" */ = {
 			isa = XCConfigurationList;
@@ -534,6 +535,7 @@
 				8B8423C01B60682500B69539 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
