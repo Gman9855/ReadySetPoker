@@ -7,13 +7,28 @@
 //
 
 import Foundation
+import Parse
+import Bolts
 
-class PokerEvent: Event {
-    var gameVariant: String!
-    var gameFormat: GameFormat!
-    var cashGameBuyInMinimum: NSInteger!
-    var cashGameBuyInMaximum: NSInteger!
-    var tournamentBuyIn: NSInteger!
+class PokerEvent: Event, PFSubclassing {
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    static func parseClassName() -> String {
+        return "PokerEvent"
+    }
+    
+    @NSManaged var gameVariant: String
+//    @NSManaged var gameFormat: GameFormat
+    @NSManaged var cashGameBuyInMinimum: NSInteger
+    @NSManaged var cashGameBuyInMaximum: NSInteger
+    @NSManaged var tournamentBuyIn: NSInteger
     
     enum GameFormat {
         case cash
