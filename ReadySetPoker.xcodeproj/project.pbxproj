@@ -188,6 +188,7 @@
 		8B8423B51B60682500B69539 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				8B6F31D91B6AA0FC00CD9C8B /* placeholder.jpg */,
 				8B6F31D81B6A9D6D00CD9C8B /* ReadySetPoker-Bridging-Header.h */,
 				8B8423E81B60960A00B69539 /* Info.plist */,
 				8B8423EF1B609EB600B69539 /* 11783577_10206956998784427_1744337690_o.jpg */,
@@ -329,6 +330,7 @@
 				8B8423EA1B60960A00B69539 /* Info.plist in Resources */,
 				8B8423A71B60682500B69539 /* LoggedOutState.storyboard in Resources */,
 				8B8423AC1B60682500B69539 /* LaunchScreen.xib in Resources */,
+				8B6F31DA1B6AA0FC00CD9C8B /* placeholder.jpg in Resources */,
 				8B8423A91B60682500B69539 /* Images.xcassets in Resources */,
 				8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */,
 			);
