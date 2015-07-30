@@ -43,8 +43,8 @@ class EventListViewController: PFQueryTableViewController {
         if let title = object?.objectForKey("title") as? String {
             cell.title.text = title
         }
-        if let gameVariant = object?.objectForKey("gameVariant") as? String {
-            cell.gameVariant.text = gameVariant
+        if let gameType = object?.objectForKey("gameType") as? String {
+            cell.gameType.text = gameType
         }
         
         // Date for cell subtitle
