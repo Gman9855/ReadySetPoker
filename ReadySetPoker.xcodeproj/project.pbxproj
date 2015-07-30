@@ -38,6 +38,7 @@
 		8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* EventListViewController.swift */; };
 		8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */; };
 		8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */; };
+		8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		8B8424021B616CF800B69539 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
 		8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
 		8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 				8B8423A11B60682500B69539 /* AppDelegate.swift */,
 				8B8423A31B60682500B69539 /* LoginViewController.swift */,
 				8B8424021B616CF800B69539 /* EventListViewController.swift */,
+				8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */,
 				8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */,
 				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
 				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
@@ -320,6 +323,7 @@
 				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
 				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
+				8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */,
 				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
 				8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */,
 			);
