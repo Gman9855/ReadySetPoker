@@ -8,7 +8,6 @@
 
 import Foundation
 import Parse
-import Bolts
 
 class PokerEvent: Event, PFSubclassing {
     override class func initialize() {

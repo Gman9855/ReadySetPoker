@@ -5,7 +5,7 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>4451CF62-CE68-478D-A678-8B4908D4AE2F</string>
+	<string>8D68C3A6-CC53-4378-8D09-456EF9C35389</string>
 	<key>IDESourceControlProjectName</key>
 	<string>ReadySetPoker</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
@@ -14,11 +14,11 @@
 		<string>https://github.com/Gman9855/ReadySetPoker.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>ReadySetPoker.xcodeproj</string>
+	<string>ReadySetPoker.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>269F972C80566E3D9CCFBFFF96B5CAFD28BBDE5D</key>
-		<string>../..</string>
+		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/Gman9855/ReadySetPoker.git</string>
