@@ -215,12 +215,82 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Upcoming Games" id="fTP-eZ-SCQ">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VqX-TE-O4z"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="VqX-TE-O4z">
+                            <connections>
+                                <action selector="plusButtonTapped:" destination="Sbt-6K-EK8" id="NbI-JF-976"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WGO-zY-L1E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2851.5" y="447.75"/>
+        </scene>
+        <!--Invite Friends-->
+        <scene sceneID="vWx-Jl-CZp">
+            <objects>
+                <tableViewController id="hMI-X7-baL" customClass="InviteFriendsViewController" customModule="ReadySetPoker" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="79" sectionHeaderHeight="22" sectionFooterHeight="22" id="drQ-ap-M1a">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FriendCell" rowHeight="79" id="sO4-ky-PPt" customClass="InviteFriendsTableViewCell" customModule="ReadySetPoker" customModuleProvider="target">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sO4-ky-PPt" id="pq5-f3-xkI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aht-Ew-gma">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="21" y="8" width="62" height="62"/>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friend Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgG-4y-QsV">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="110" y="29" width="180" height="20"/>
+                                            </variation>
+                                        </label>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="aht-Ew-gma"/>
+                                            <exclude reference="qgG-4y-QsV"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="aht-Ew-gma"/>
+                                            <include reference="qgG-4y-QsV"/>
+                                        </mask>
+                                    </variation>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="name" destination="qgG-4y-QsV" id="vPt-6X-6Gx"/>
+                                    <outlet property="profilePicture" destination="aht-Ew-gma" id="ZqG-Va-3Rf"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="hMI-X7-baL" id="ox5-T1-AgS"/>
+                            <outlet property="delegate" destination="hMI-X7-baL" id="NEs-JA-jrv"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Invite Friends" id="Ao8-FW-Qz6">
+                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="N5O-1V-Mhb">
+                            <connections>
+                                <action selector="dismissButtonTapped:" destination="hMI-X7-baL" id="3Gz-A8-T33"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7hv-Nh-8K6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4620" y="13.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="2AW-11-q3e">
@@ -238,7 +308,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="go4-QV-i3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3898.5" y="459.75"/>
+            <point key="canvasLocation" x="4063.5" y="1193.25"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cfA-Ic-PE8">
@@ -276,6 +346,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rcS-Yo-djq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1102.5" y="447.75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Yv5-VL-qnz">
+            <objects>
+                <navigationController storyboardIdentifier="inviteFriendsVC" automaticallyAdjustsScrollViewInsets="NO" id="IWL-K7-obV" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jeV-n4-Vxk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="hMI-X7-baL" kind="relationship" relationship="rootViewController" id="xEp-KA-g9j"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XDh-CT-oPh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3702" y="13.5"/>
         </scene>
     </scenes>
 </document>
