@@ -7,3 +7,16 @@
 //
 
 import Foundation
+
+class FacebookFriend {
+    var name: String!
+    var userID: String!
+    var profilePictureURL: NSURL?
+    
+    
+    init(name: String, userID: String, profilePictureURL: NSURL?) {
+        self.name = name
+        self.userID = userID
+        self.profilePictureURL = profilePictureURL
+    }
+}

@@ -167,6 +167,7 @@
 				8B8423A31B60682500B69539 /* LoginViewController.swift */,
 				8B8424021B616CF800B69539 /* EventListViewController.swift */,
 				8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */,
+				8BEDA2E31B69A84700BCA918 /* InviteFriendsTableViewCell.swift */,
 				8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */,
 				8B8423A51B60682500B69539 /* LoggedOutState.storyboard */,
 				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
@@ -229,6 +230,7 @@
 			children = (
 				8B8423FD1B61601F00B69539 /* Event.swift */,
 				8B8424001B61658100B69539 /* PokerEvent.swift */,
+				8BEDA2E11B69A44400BCA918 /* FacebookFriend.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -399,10 +401,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */,
+				8BEDA2E21B69A44400BCA918 /* FacebookFriend.swift in Sources */,
 				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
 				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
 				8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */,
+				8BEDA2E41B69A84700BCA918 /* InviteFriendsTableViewCell.swift in Sources */,
 				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
 				8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */,
 			);

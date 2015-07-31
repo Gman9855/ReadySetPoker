@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class InviteFriendsTableViewCell: UITableViewCell {
-
+    
+    @IBOutlet weak var name: UILabel!
+    @IBOutlet weak var profilePicture: UIImageView!
 }
