@@ -8,6 +8,8 @@
 
 import UIKit
 import SDWebImage
+import Parse
+import MBProgressHUD
 
 class InviteFriendsViewController: UITableViewController {
     
