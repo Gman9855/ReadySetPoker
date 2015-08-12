@@ -12,6 +12,11 @@ import ParseUI
 class EventTableViewCell: PFTableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
-    @IBOutlet weak var gameType: UILabel!
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var gameVariant: UIButton!
+    @IBOutlet weak var gameType: UIButton!
+    @IBOutlet weak var cashGameBlinds: UIButton!
+    @IBOutlet weak var buyinAmount: UIButton!
     @IBOutlet weak var location: UILabel!
+    @IBOutlet weak var invitationStatus: UIButton!
 }
