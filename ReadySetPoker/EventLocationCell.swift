@@ -6,8 +6,10 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class EventLocationCell: UITableViewCell {
 
+    @IBOutlet weak var streetAddress: UILabel!
+    @IBOutlet weak var cityState: UILabel!
 }

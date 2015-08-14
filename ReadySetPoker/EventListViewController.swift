@@ -13,6 +13,9 @@ import Bolts
 
 class EventListViewController: PFQueryTableViewController {
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
     }
@@ -24,13 +27,31 @@ class EventListViewController: PFQueryTableViewController {
         self.parseClassName = "PokerEvent"
     
         self.pullToRefreshEnabled = true
-        self.paginationEnabled = true
+        self.paginationEnabled = false
     }
     
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
         return PFQuery(className: "PokerEvent")
     }
+    
+//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+//        return 20
+//    }
+//    
+//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return 1
+//    }
+//    
+//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//        return 10
+//    }
+//    
+//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let headerView = UIView()
+//        headerView.backgroundColor = UIColor.clearColor()
+//        return headerView
+//    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         

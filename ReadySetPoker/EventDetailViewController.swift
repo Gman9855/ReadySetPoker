@@ -17,7 +17,6 @@ class EventDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Event Details"
-        self.tableView.estimatedRowHeight = 50.0
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

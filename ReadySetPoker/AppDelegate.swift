@@ -9,12 +9,12 @@
 import UIKit
 import Parse
 import Bolts
+import FBSDKLoginKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         let userNotificationTypes = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let currentUser = PFUser.currentUser()
+//        let storyboardName = "LoggedOutState"
         let storyboardName = currentUser != nil ? "LoggedInState" : "LoggedOutState"
         let initialStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         

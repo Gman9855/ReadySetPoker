@@ -9,13 +9,14 @@
 import UIKit
 import Parse
 import Bolts
+import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-     
-        // Do any additional setup after loading the view, typically from a nib.
+        var imageView = UIImageView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,11 +30,27 @@ class LoginViewController: UIViewController {
             if let user = user {
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
-                } else {
-                    println("User logged in through Facebook!")
+
+                    let request = FBSDKGraphRequest(graphPath: "\(FBSDKAccessToken.currentAccessToken().userID)", parameters: nil, HTTPMethod: "GET")
+                    request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
+                        let resultDict = result as! [String: String]
+                        user["facebookID"] = resultDict["id"]
+                        user["fullName"] = resultDict["name"]
+                        user.saveInBackground()
+                    })
                 }
+                FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
+                
+                let installation = PFInstallation.currentInstallation()
+                installation["user"] = PFUser.currentUser()
+                installation.saveInBackground()
+                
+                let loggedInStoryboard = UIStoryboard(name: "LoggedInState", bundle: nil)
+                let viewController = loggedInStoryboard.instantiateInitialViewController() as! UITabBarController
+                self.presentViewController(viewController, animated: true, completion: nil)
             } else {
                 println("Uh oh. The user cancelled the Facebook login.")
+                print(error)
             }
         }
     }

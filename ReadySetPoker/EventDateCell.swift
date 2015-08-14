@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 
 class EventDateCell: UITableViewCell {
 
+    @IBOutlet weak var dateLabel: UILabel!
 }
