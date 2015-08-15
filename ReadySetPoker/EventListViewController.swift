@@ -91,6 +91,14 @@ class EventListViewController: PFQueryTableViewController {
 //            detailScene.currentObject = objects[row] as? PFObject
         }
     }
+    
+    
+    @IBAction func plusButtonTapped(sender: UIBarButtonItem) {
+        let inviteFriendsVC = storyboard?.instantiateViewControllerWithIdentifier("inviteFriendsVC") as! UINavigationController
+        presentViewController(inviteFriendsVC, animated: true, completion: nil)
+    }
+    
+    
 //    @IBAction func createButtonTapped(sender: UIBarButtonItem) {
 //        
 //    }
