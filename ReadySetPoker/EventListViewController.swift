@@ -56,16 +56,19 @@ class EventListViewController: PFQueryTableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
-        if cell == nil {
-            cell = EventTableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "Cell")
-        }
+        
+        cell.eventImage.image = UIImage(named: "me.jpg")
+        cell.gameType.setTitle("Cash Game", forState: UIControlState.Normal)
+        cell.gameVariant.setTitle("Pot-Limit Omaha", forState: UIControlState.Normal)
         
         // Extract values from the PFObject to display in the table cell
         if let title = object?.objectForKey("title") as? String {
             cell.title.text = title
         }
+        
         if let gameType = object?.objectForKey("gameType") as? String {
-            cell.gameType.text = gameType
+            cell.gameType.setTitle(gameType, forState: UIControlState.Normal)
+            print("GameType: \(gameType)")
         }
         
         // Date for cell subtitle
