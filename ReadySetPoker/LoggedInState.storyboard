@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dzM-qk-Nxu">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="dzM-qk-Nxu">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
@@ -180,6 +180,7 @@
                                                     </variation>
                                                     <connections>
                                                         <action selector="rsvpButtonTapped:" destination="cCm-di-OGb" eventType="touchUpInside" id="0PC-Cb-k5z"/>
+                                                        <action selector="rsvpButtonTapped:" destination="OEp-41-q4S" eventType="touchUpInside" id="BTT-OK-IhH"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -227,6 +228,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="guestsLabel" destination="oiY-HG-6vL" id="Dei-VB-LAA"/>
+                        <outlet property="segmentedControl" destination="rVy-YQ-mhO" id="qoc-AV-EdR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3rW-jA-neG" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -247,28 +249,22 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="guP-jA-ifv" id="uZN-CU-043">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gershy's poker game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Vm-weU">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="August 1, 2015 at 07:30 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wca-ug-1fW">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="10L-WT-ED2">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="10L-WT-ED2">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="100" id="F0Z-TJ-Sah">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                                                <constraint firstAttribute="width" constant="60" id="F0Z-TJ-Sah">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="60"/>
                                                 </constraint>
-                                                <constraint firstAttribute="height" constant="100" id="Stp-sN-UI7">
-                                                    <variation key="heightClass=regular-widthClass=compact" constant="70"/>
+                                                <constraint firstAttribute="height" constant="60" id="Stp-sN-UI7">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="60"/>
                                                 </constraint>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="30"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                             <variation key="default">
                                                 <mask key="constraints">
                                                     <exclude reference="F0Z-TJ-Sah"/>
@@ -282,15 +278,9 @@
                                                 </mask>
                                             </variation>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Jose, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlu-ZW-oAl">
-                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUA-dJ-WV1">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <color key="backgroundColor" red="1" green="0.47673651319999999" blue="0.093829845329999995" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="1" green="0.7231264921962286" blue="0.061697826062327432" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="greaterThanOrEqual" id="7Cj-5A-ICO"/>
                                                 <constraint firstAttribute="height" constant="30" id="eRZ-DL-bIh">
@@ -298,7 +288,7 @@
                                                 </constraint>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <inset key="contentEdgeInsets" minX="7" minY="0.0" maxX="7" maxY="0.0"/>
+                                            <inset key="contentEdgeInsets" minX="3" minY="0.0" maxX="3" maxY="0.0"/>
                                             <state key="normal" title="Pending invite">
                                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -316,6 +306,37 @@
                                                 </mask>
                                             </variation>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gershy's poker game" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l6V-Vm-weU">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="August 1, 2015 at 07:30 PM" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wca-ug-1fW">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Jose, CA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hlu-ZW-oAl">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="199" id="4WS-Mf-fxQ"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="4WS-Mf-fxQ"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="4WS-Mf-fxQ"/>
+                                                </mask>
+                                            </variation>
+                                        </label>
                                         <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e1L-aB-D0k">
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -441,7 +462,10 @@
                                         </constraint>
                                         <constraint firstItem="WRx-0a-E6Y" firstAttribute="top" secondItem="wca-ug-1fW" secondAttribute="bottom" constant="4" id="N5K-50-qqA"/>
                                         <constraint firstItem="e1L-aB-D0k" firstAttribute="leading" secondItem="wca-ug-1fW" secondAttribute="leading" id="NX5-Nt-Qvr"/>
-                                        <constraint firstItem="DUA-dJ-WV1" firstAttribute="trailing" secondItem="uZN-CU-043" secondAttribute="trailing" constant="-4" id="RqL-pj-Vua"/>
+                                        <constraint firstItem="DUA-dJ-WV1" firstAttribute="leading" relation="lessThanOrEqual" secondItem="Hlu-ZW-oAl" secondAttribute="trailing" constant="125" id="Q23-LL-Jdd">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="135"/>
+                                        </constraint>
+                                        <constraint firstItem="DUA-dJ-WV1" firstAttribute="trailing" secondItem="uZN-CU-043" secondAttribute="trailing" constant="-7" id="RqL-pj-Vua"/>
                                         <constraint firstItem="wca-ug-1fW" firstAttribute="top" secondItem="l6V-Vm-weU" secondAttribute="bottom" constant="2" id="Sr9-XX-dja"/>
                                         <constraint firstItem="DUA-dJ-WV1" firstAttribute="bottom" secondItem="uZN-CU-043" secondAttribute="bottomMargin" id="WdC-2l-edA"/>
                                         <constraint firstItem="cwn-g4-v9u" firstAttribute="top" secondItem="WRx-0a-E6Y" secondAttribute="bottom" constant="5" id="Y7D-ad-F5E"/>
@@ -462,11 +486,11 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
+                                            <exclude reference="10L-WT-ED2"/>
+                                            <exclude reference="DUA-dJ-WV1"/>
                                             <exclude reference="l6V-Vm-weU"/>
                                             <exclude reference="wca-ug-1fW"/>
-                                            <exclude reference="10L-WT-ED2"/>
                                             <exclude reference="Hlu-ZW-oAl"/>
-                                            <exclude reference="DUA-dJ-WV1"/>
                                             <exclude reference="e1L-aB-D0k"/>
                                             <exclude reference="3kz-cz-ch3"/>
                                             <exclude reference="cwn-g4-v9u"/>
@@ -481,6 +505,7 @@
                                             <exclude reference="Sr9-XX-dja"/>
                                             <exclude reference="1KG-bC-F8E"/>
                                             <exclude reference="f3k-Zh-fxa"/>
+                                            <exclude reference="Q23-LL-Jdd"/>
                                             <exclude reference="RqL-pj-Vua"/>
                                             <exclude reference="WdC-2l-edA"/>
                                             <exclude reference="N5K-50-qqA"/>
@@ -496,11 +521,11 @@
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
+                                            <include reference="10L-WT-ED2"/>
+                                            <include reference="DUA-dJ-WV1"/>
                                             <include reference="l6V-Vm-weU"/>
                                             <include reference="wca-ug-1fW"/>
-                                            <include reference="10L-WT-ED2"/>
                                             <include reference="Hlu-ZW-oAl"/>
-                                            <include reference="DUA-dJ-WV1"/>
                                             <include reference="e1L-aB-D0k"/>
                                             <include reference="3kz-cz-ch3"/>
                                             <include reference="cwn-g4-v9u"/>
@@ -515,6 +540,7 @@
                                             <include reference="Sr9-XX-dja"/>
                                             <include reference="1KG-bC-F8E"/>
                                             <include reference="f3k-Zh-fxa"/>
+                                            <include reference="Q23-LL-Jdd"/>
                                             <include reference="RqL-pj-Vua"/>
                                             <include reference="WdC-2l-edA"/>
                                             <include reference="N5K-50-qqA"/>
@@ -570,7 +596,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventTitleCell" rowHeight="54" id="jNW-Wg-eZe" customClass="EventTitleCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventTitleCell" rowHeight="54" id="jNW-Wg-eZe" customClass="EventTitleCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jNW-Wg-eZe" id="9Mn-ft-Shw">
@@ -628,7 +654,7 @@
                                     <outlet property="title" destination="ZYa-8V-FBL" id="5gu-xT-Td8"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventDateCell" rowHeight="44" id="MwY-1I-eji" customClass="EventDateCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventDateCell" rowHeight="44" id="MwY-1I-eji" customClass="EventDateCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MwY-1I-eji" id="7Td-qP-xI6">
@@ -714,7 +740,7 @@
                                     <outlet property="dateLabel" destination="wqc-PK-atb" id="c5T-df-GEv"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventLocationCell" rowHeight="64" id="5Qr-Oc-k2i" customClass="EventLocationCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventLocationCell" rowHeight="64" id="5Qr-Oc-k2i" customClass="EventLocationCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Qr-Oc-k2i" id="Aic-vT-hnq">
@@ -827,11 +853,11 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="cityState" destination="yDZ-Ik-gKY" id="qAZ-rl-dzF"/>
+                                    <outlet property="cityStateZip" destination="yDZ-Ik-gKY" id="B5U-rz-cH4"/>
                                     <outlet property="streetAddress" destination="pB4-bo-UnK" id="IoB-Ru-168"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventCommentsCell" rowHeight="44" id="XyV-GR-af6" customClass="EventCommentsCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventCommentsCell" rowHeight="44" id="XyV-GR-af6" customClass="EventCommentsCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XyV-GR-af6" id="lLC-62-rcK">
@@ -914,7 +940,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventDetailsCell" rowHeight="44" id="P4R-bg-Oig" customClass="EventDetailsCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventMoreDetailsCell" rowHeight="44" id="P4R-bg-Oig" customClass="EventMoreDetailsCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="P4R-bg-Oig" id="HWJ-1T-WPM">
@@ -967,7 +993,7 @@
                                     </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventRSVPCell" rowHeight="64" id="h74-Yv-CCe" customClass="EventRSVPCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventRSVPCell" rowHeight="64" id="h74-Yv-CCe" customClass="EventRSVPCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="h74-Yv-CCe" id="s6D-bz-IHP">
@@ -980,7 +1006,7 @@
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="384" id="xAT-fL-3Vi"/>
                                                 <constraint firstAttribute="height" constant="48" id="yUd-k7-7Df"/>
                                             </constraints>
-                                            <state key="normal" title="RSVP">
+                                            <state key="normal" title="RSVP - 8 spots left">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -1033,6 +1059,9 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="rsvpButton" destination="FJ6-LU-FdC" id="d7O-WT-wEq"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>
@@ -1072,7 +1101,7 @@
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="110" y="29" width="229" height="20"/>
+                                                <rect key="frame" x="110" y="29" width="260" height="20"/>
                                             </variation>
                                         </label>
                                     </subviews>
@@ -1101,7 +1130,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Invite Friends" id="Ao8-FW-Qz6">
-                        <barButtonItem key="leftBarButtonItem" title="Dismiss" id="N5O-1V-Mhb">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="N5O-1V-Mhb">
                             <connections>
                                 <action selector="dismissButtonTapped:" destination="hMI-X7-baL" id="3Gz-A8-T33"/>
                             </connections>
@@ -1123,7 +1152,6 @@
         <!--Navigation Controller-->
         <scene sceneID="2AW-11-q3e">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="go4-QV-i3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="rsvpVC" automaticallyAdjustsScrollViewInsets="NO" id="cF1-US-B2p" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="6CH-Bc-KTj">
@@ -1135,6 +1163,7 @@
                         <segue destination="OEp-41-q4S" kind="relationship" relationship="rootViewController" id="yoF-2y-vBD"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="go4-QV-i3b" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2733" y="1172.25"/>
         </scene>
