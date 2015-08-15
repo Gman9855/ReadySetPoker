@@ -8,8 +8,12 @@
 
 import UIKit
 
-class EventLocationCell: UITableViewCell {
-
+class EventLocationCell: EventDetailsCell {
     @IBOutlet weak var streetAddress: UILabel!
-    @IBOutlet weak var cityState: UILabel!
+    @IBOutlet weak var cityStateZip: UILabel!
+    
+    override func configureWithPokerEvent(event: PokerEvent) {
+        self.streetAddress.text = event.streetAddress
+        self.cityStateZip.text = event.city + ", " + event.state + " " + event.zipCode
+    }
 }

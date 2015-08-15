@@ -8,7 +8,10 @@
 
 import UIKit
 
-class EventDateCell: UITableViewCell {
-
+class EventDateCell: EventDetailsCell {
     @IBOutlet weak var dateLabel: UILabel!
+    
+    override func configureWithPokerEvent(event: PokerEvent) {
+        
+    }
 }

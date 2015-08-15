@@ -1,5 +1,5 @@
 //
-//  EventCommentsCell.swift
+//  EventMoreDetailsCell.swift
 //  ReadySetPoker
 //
 //  Created by Gershy Lev on 8/12/15.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EventCommentsCell: EventDetailsCell {
+class EventMoreDetailsCell: EventDetailsCell {
     override func configureWithPokerEvent(event: PokerEvent) {
         
     }

@@ -12,7 +12,7 @@ import ParseUI
 import Bolts
 
 class EventListViewController: PFQueryTableViewController {
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }

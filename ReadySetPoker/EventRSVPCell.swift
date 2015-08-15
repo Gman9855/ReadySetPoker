@@ -8,6 +8,9 @@
 
 import UIKit
 
-class EventRSVPCell: UITableViewCell {
-
+class EventRSVPCell: EventDetailsCell {
+    @IBOutlet weak var rsvpButton: UIButton!
+    override func configureWithPokerEvent(event: PokerEvent) {
+        
+    }
 }
