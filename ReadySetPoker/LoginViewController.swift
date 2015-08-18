@@ -31,12 +31,19 @@ class LoginViewController: UIViewController {
                 if user.isNew {
                     println("User signed up and logged in through Facebook!")
 
-                    let request = FBSDKGraphRequest(graphPath: "\(FBSDKAccessToken.currentAccessToken().userID)", parameters: nil, HTTPMethod: "GET")
+                    let request = FBSDKGraphRequest(graphPath: "\(FBSDKAccessToken.currentAccessToken().userID)", parameters: ["fields":"id,name,picture.width(200).height(200)"], HTTPMethod: "GET")
                     request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
-                        let resultDict = result as! [String: String]
-                        user["facebookID"] = resultDict["id"]
-                        user["fullName"] = resultDict["name"]
-                        user.saveInBackground()
+                        if (result != nil) {
+                            let resultDict = result as! NSDictionary
+                            user["facebookID"] = resultDict["id"]
+                            user["fullName"] = resultDict["name"]
+                            user["fbProfilePictureURL"] = resultDict.valueForKeyPath("picture.data.url")
+                            user.saveInBackground()
+                        } else {
+                            // show error to user
+                            print(error)
+                        }
+                        
                     })
                 }
                 FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
