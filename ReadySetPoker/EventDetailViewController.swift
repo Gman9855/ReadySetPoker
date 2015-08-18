@@ -22,12 +22,9 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let (height, cellType) = cellData[indexPath.row]
         let cellReuseIdentifier = reflect(cellType).summary
-        var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as? UITableViewCell
-        if let cell = cell {
-            return cell
-        }
-        
-        return cellType(style: UITableViewCellStyle.Default, reuseIdentifier: cellReuseIdentifier)
+        var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as? EventDetailsCell
+        cell?.configureWithPokerEvent(pokerEvent)
+        return cell!
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

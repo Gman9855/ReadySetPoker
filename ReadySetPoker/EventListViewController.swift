@@ -11,11 +11,12 @@ import Parse
 import ParseUI
 import Bolts
 
-class EventListViewController: PFQueryTableViewController {
+class EventListViewController: PFQueryTableViewController, EventCreationViewControllerDelegate {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(animated: Bool) {
+        self.loadObjects()
     }
+    
     override init(style: UITableViewStyle, className: String!) {
         super.init(style: style, className: className)
     }
