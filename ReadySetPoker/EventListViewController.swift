@@ -90,66 +90,25 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         // Get the new view controller using [segue destinationViewController].
-//        var detailScene = segue.destinationViewController as YourDetailViewController
         
         // Pass the selected object to the destination view controller.
         if let indexPath = self.tableView.indexPathForSelectedRow() {
-            let row = Int(indexPath.row)
-//            detailScene.currentObject = objects[row] as? PFObject
+            let eventDetailVC = segue.destinationViewController as! EventDetailViewController
+            let pokerEvent = objectAtIndexPath(indexPath) as! PokerEvent
+            eventDetailVC.pokerEvent = pokerEvent
         }
     }
     
-    
     @IBAction func plusButtonTapped(sender: UIBarButtonItem) {
-        let inviteFriendsVC = storyboard?.instantiateViewControllerWithIdentifier("inviteFriendsVC") as! UINavigationController
-        presentViewController(inviteFriendsVC, animated: true, completion: nil)
+        let eventCreationNavController = storyboard?.instantiateViewControllerWithIdentifier("eventCreationNavController") as! UINavigationController
+        let eventCreationVC = eventCreationNavController.topViewController as! EventCreationViewController
+        eventCreationVC.delegate = self
+        presentViewController(eventCreationNavController, animated: true, completion: nil)
     }
     
-    
-//    @IBAction func createButtonTapped(sender: UIBarButtonItem) {
-//        
-//    }
-//    
-    @IBAction func savePokerEvent(sender: UIButton) {
-//        var pEvent = PokerEvent()
-//        pEvent.title = "Gershy's poker game"
-//        pEvent.eventDescription = "This is going to be an awesome game.  I haven't played poker in a while!"
-//        pEvent.host = PFUser.currentUser()!
-//        pEvent.gameVariant = "No Limit Texas Hold'Em"
-//        pEvent.location = "San Jose, CA"
-//        pEvent.saveInBackgroundWithBlock { (didSave: Bool, error: NSError?) -> Void in
-//            if didSave {
-//                print("Saved event")
-//            } else {
-//                print(error)
-//            }
-//        }
+    func eventCreationViewControllerDidCreateEvent(event: PokerEvent) {
+        let eventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
+        eventDetailVC.pokerEvent = event
+        navigationController?.pushViewController(eventDetailVC, animated: true)
     }
-//
-//    @IBAction func deleteAllPokerEvents(sender: UIButton) {
-//        var query = PFQuery(className: "PokerEvent")
-//        query.findObjectsInBackgroundWithBlock { (objects: [AnyObject]?, error: NSError?) -> Void in
-//            if objects?.count != nil {
-//                PFObject.deleteAllInBackground(objects, block: { (success: Bool, error: NSError?) -> Void in
-//                    if success {
-//                        print("Deleted all poker events")
-//                    } else {
-//                        print(error)
-//                    }
-//                })
-//            }
-//        }
-//    }
-//    
-//    @IBAction func getAllPokerEvents(sender: UIButton) {
-//        var query = PFQuery(className: "PokerEvent")
-//        query.findObjectsInBackgroundWithBlock { (pokerEvents: [AnyObject]?, error: NSError?) -> Void in
-//            if pokerEvents != nil {
-//                print("There are \(pokerEvents!.count) poker events")
-//                print("The events are: \(pokerEvents!)")
-//            } else {
-//                print(error)
-//            }
-//        }
-//    }
 }
