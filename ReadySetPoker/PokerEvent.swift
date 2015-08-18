@@ -24,14 +24,14 @@ class PokerEvent: Event, PFSubclassing {
     }
     
     @NSManaged var gameType: String
-    @NSManaged var gameFormat: NSNumber
+    @NSManaged var gameFormat: String
     @NSManaged var cashGameBuyInMinimum: NSInteger
     @NSManaged var cashGameBuyInMaximum: NSInteger
     @NSManaged var tournamentBuyIn: NSInteger
     
-    enum GameFormat: Int {
-        case cash
-        case tournament
+    @objc enum GameFormat: Int {
+        case Cash
+        case Tournament
     }
     
     

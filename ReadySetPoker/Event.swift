@@ -16,17 +16,23 @@ class Event : PFObject {
     @NSManaged var location: CLLocationCoordinate2D
     @NSManaged var address: String
     @NSManaged var streetAddress: String
-    @NSManaged var city: String
-    @NSManaged var state: String
+    @NSManaged var cityName: String
+    @NSManaged var stateName: String
     @NSManaged var zipCode: String
     @NSManaged var host: PFUser
+    @NSManaged var hostProfilePictureURL: String
     @NSManaged var comments: NSArray
-    @NSManaged var attendees: NSArray
+    @NSManaged var invitedGuests: [PFUser]
+    @NSManaged var attendingGuests: [PFUser]
+    
+    
+    
+    
     @NSManaged var guestsJoining: Int
     
-    enum eventStatus: String {
-        case PendingInvite = "Pending Invite",
-             Going = "Going",
-             NotGoing = "Not going"
-    }
+//    enum eventStatus: String {
+//        case PendingInvite = "Pending Invite",
+//             Going = "Going",
+//             NotGoing = "Not going"
+//    }
 }

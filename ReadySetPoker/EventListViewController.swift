@@ -32,7 +32,9 @@ class EventListViewController: PFQueryTableViewController {
     
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
-        return PFQuery(className: "PokerEvent")
+        var query = PFQuery(className: "PokerEvent")
+        query.orderByDescending("date")
+        return query
     }
     
 //    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -57,10 +59,11 @@ class EventListViewController: PFQueryTableViewController {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
         
-        cell.eventImage.image = UIImage(named: "me.jpg")
-        cell.gameType.setTitle("Cash Game", forState: UIControlState.Normal)
-        cell.gameVariant.setTitle("Pot-Limit Omaha", forState: UIControlState.Normal)
-        
+        if let hostProfilePicURL = object?.objectForKey("hostProfilePictureURL") as? String {
+            cell.eventImage.sd_setImageWithURL(NSURL(string: hostProfilePicURL), placeholderImage: UIImage(named: "placeholder.jpg"))
+        } else {
+            cell.eventImage.image = UIImage(named: "me.jpg")
+        }
         // Extract values from the PFObject to display in the table cell
         if let title = object?.objectForKey("title") as? String {
             cell.title.text = title
@@ -68,7 +71,10 @@ class EventListViewController: PFQueryTableViewController {
         
         if let gameType = object?.objectForKey("gameType") as? String {
             cell.gameType.setTitle(gameType, forState: UIControlState.Normal)
-            print("GameType: \(gameType)")
+        }
+        
+        if let gameFormat = object?.objectForKey("gameFormat") as? String {
+            cell.gameFormat.setTitle(gameFormat, forState: UIControlState.Normal)
         }
         
         // Date for cell subtitle

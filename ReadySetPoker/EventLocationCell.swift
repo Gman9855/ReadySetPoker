@@ -14,6 +14,6 @@ class EventLocationCell: EventDetailsCell {
     
     override func configureWithPokerEvent(event: PokerEvent) {
         self.streetAddress.text = event.streetAddress
-        self.cityStateZip.text = event.city + ", " + event.state + " " + event.zipCode
+        self.cityStateZip.text = event.cityName + ", " + event.stateName + " " + event.zipCode
     }
 }

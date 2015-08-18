@@ -9,7 +9,4 @@
 import UIKit
 
 class EventMoreDetailsCell: EventDetailsCell {
-    override func configureWithPokerEvent(event: PokerEvent) {
-        
-    }
 }
