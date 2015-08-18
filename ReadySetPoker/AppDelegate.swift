@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
+        PokerEvent.registerSubclass()
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
         Parse.enableLocalDatastore()
@@ -36,6 +37,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         let currentUser = PFUser.currentUser()
+        if let fullName = currentUser!["fullName"] as? String {
+            print("Signed in as \(fullName)")
+        }
 //        let storyboardName = "LoggedOutState"
         let storyboardName = currentUser != nil ? "LoggedInState" : "LoggedOutState"
         let initialStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
@@ -85,4 +89,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         PFPush.handlePush(userInfo)
     }
 }
-

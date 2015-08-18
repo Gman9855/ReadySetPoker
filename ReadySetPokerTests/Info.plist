@@ -4,10 +4,12 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>ReadySetPokerTests</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.readysetpoker.ReadySetPoker</string>
+	<string>com.readysetpoker.ReadySetPokerTests</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -18,10 +20,6 @@
 	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
-	<key>FacebookAppID</key>
-	<string>1611395789136661</string>
-	<key>FacebookDisplayName</key>
-	<string>ReadySetPoker</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -33,5 +31,9 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>FacebookAppID</key>
+	<string>1611395789136661</string>
+	<key>FacebookDisplayName</key>
+	<string>ReadySetPokerTests</string>
 </dict>
 </plist>

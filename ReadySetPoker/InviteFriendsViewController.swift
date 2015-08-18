@@ -36,7 +36,6 @@ class InviteFriendsViewController: UITableViewController {
                     self.tableView.reloadData()
                     MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
                 })
-                
             }
         })
     }
@@ -44,6 +43,7 @@ class InviteFriendsViewController: UITableViewController {
     @IBAction func dismissButtonTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
