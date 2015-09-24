@@ -9,7 +9,7 @@
 import UIKit
 
 class EventDetailsCell: UITableViewCell {
-    func configureWithPokerEvent(event: PokerEvent) {
+    func configureWithInvite(invite: Invite) {
         
     }
 }

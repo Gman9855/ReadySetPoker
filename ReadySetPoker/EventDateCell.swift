@@ -11,7 +11,7 @@ import UIKit
 class EventDateCell: EventDetailsCell {
     @IBOutlet weak var dateLabel: UILabel!
     
-    override func configureWithPokerEvent(event: PokerEvent) {
+    override func configureWithInvite(invite: Invite) {
         struct DateFormatter {
             static let formatter: NSDateFormatter = {
                 let formatter = NSDateFormatter()
@@ -21,10 +21,10 @@ class EventDateCell: EventDetailsCell {
         
         DateFormatter.formatter.dateStyle = NSDateFormatterStyle.MediumStyle
         DateFormatter.formatter.timeStyle = NSDateFormatterStyle.NoStyle
-        let dateString = DateFormatter.formatter.stringFromDate(event.date)
+        let dateString = DateFormatter.formatter.stringFromDate(invite.event.date)
         DateFormatter.formatter.dateStyle = NSDateFormatterStyle.NoStyle
         DateFormatter.formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        let timeString = DateFormatter.formatter.stringFromDate(event.date)
+        let timeString = DateFormatter.formatter.stringFromDate(invite.event.date)
         dateLabel.text = dateString + " at " + timeString
     }
 }

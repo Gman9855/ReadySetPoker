@@ -10,11 +10,18 @@ import UIKit
 import Parse
 import ParseUI
 import Bolts
+import MBProgressHUD
 
-class EventListViewController: PFQueryTableViewController, EventCreationViewControllerDelegate {
-
-    override func viewWillAppear(animated: Bool) {
-        self.loadObjects()
+class EventListViewController: PFQueryTableViewController, EventCreationViewControllerDelegate, EventDetailViewControllerDelegate {
+    
+    var invites = [Invite]()
+    var events = [PokerEvent]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        var hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        hud.labelText = "Loading"
+        tableView.tableFooterView = UIView()     // hack to remove extraneous tableview separators
     }
     
     override init(style: UITableViewStyle, className: String!) {

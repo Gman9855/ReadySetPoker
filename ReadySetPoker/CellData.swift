@@ -6,8 +6,15 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import Foundation
 
 class CellData: NSObject {
-
+    
+    var type: UITableViewCell.Type!
+    var height: CGFloat?
+    
+    init(type: UITableViewCell.Type, height: CGFloat?) {
+        self.type = type
+        self.height = height
+    }
 }

@@ -21,18 +21,8 @@ class Event : PFObject {
     @NSManaged var zipCode: String
     @NSManaged var host: PFUser
     @NSManaged var hostProfilePictureURL: String
-    @NSManaged var comments: NSArray
-    @NSManaged var invitedGuests: [PFUser]
-    @NSManaged var attendingGuests: [PFUser]
-    
-    
-    
-    
-    @NSManaged var guestsJoining: Int
-    
-//    enum eventStatus: String {
-//        case PendingInvite = "Pending Invite",
-//             Going = "Going",
-//             NotGoing = "Not going"
-//    }
+    @NSManaged var numberOfAttendees: NSInteger
+    @NSManaged var comments: PFRelation
+    @NSManaged var invites: PFRelation
+    @NSManaged var numberOfSpotsLeft: NSInteger
 }
