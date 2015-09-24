@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         PokerEvent.registerSubclass()
+        Invite.registerSubclass()
         // [Optional] Power your app with Local Datastore. For more info, go to
         // https://parse.com/docs/ios_guide#localdatastore/iOS
         Parse.enableLocalDatastore()
@@ -36,12 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        let currentUser = PFUser.currentUser()
-        if let fullName = currentUser!["fullName"] as? String {
-            print("Signed in as \(fullName)")
+        var storyboardName = "LoggedOutState"
+
+        if let currentUser = PFUser.currentUser() {
+            var fullName = currentUser["fullName"] as! String
+            println("Signed in as \(fullName)")
+            storyboardName = "LoggedInState"
         }
-//        let storyboardName = "LoggedOutState"
-        let storyboardName = currentUser != nil ? "LoggedInState" : "LoggedOutState"
+        
         let initialStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         
         let viewController = initialStoryboard.instantiateInitialViewController() as! UIViewController
@@ -87,5 +90,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
+        if UIApplication.sharedApplication().applicationState == UIApplicationState.Inactive {
+            println("inactive")
+        } else if UIApplication.sharedApplication().applicationState == UIApplicationState.Background {
+            println("background")
+        } else {
+            println("active")
+        }
+        
+        if UIApplication.sharedApplication().applicationState != UIApplicationState.Active {
+            if let eventId = userInfo["eventObjectId"] as? String {
+                var inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+                var inviteQuery = inviteRelation.query()!
+                var event = PFObject(withoutDataWithClassName: "PokerEvent", objectId: eventId)
+                inviteQuery.whereKey("event", equalTo: event)
+                inviteQuery.includeKey("event")
+                inviteQuery.findObjectsInBackgroundWithBlock({ (result: [AnyObject]?, error: NSError?) -> Void in
+                    if let result = result {
+                        let invite = result.first as! Invite
+                        let storyboard = UIStoryboard(name: "LoggedInState", bundle: nil)
+                        
+                        let rootVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
+                        if PFUser.currentUser() != nil {
+                            rootVC.selectedIndex = 0
+                            self.window!.rootViewController = rootVC
+                            let navController = rootVC.viewControllers?.first as! UINavigationController
+                            let eventListVC = navController.topViewController as! EventListViewController
+                            let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
+                            eventDetailVC.invite = invite
+                            eventListVC.navigationController?.pushViewController(eventDetailVC, animated: false)
+                        }
+                    }
+                })
+            }
+        }
     }
 }
