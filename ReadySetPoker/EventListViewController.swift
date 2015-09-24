@@ -32,79 +32,67 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         super.init(coder: aDecoder)
         
         // Configure the PFQueryTableView
-        self.parseClassName = "PokerEvent"
-    
+        self.parseClassName = "Invite"
         self.pullToRefreshEnabled = true
         self.paginationEnabled = false
+        self.loadingViewEnabled = false
     }
     
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
-        var query = PFQuery(className: "PokerEvent")
-        query.orderByDescending("date")
-        return query
+        var inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+        var inviteQuery = inviteRelation.query()!
+        inviteQuery.includeKey("event")
+        inviteQuery.orderByDescending("createdAt")
+        return inviteQuery
     }
     
-//    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        return 20
-//    }
-//    
-//    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return 1
-//    }
-//    
-//    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 10
-//    }
-//    
-//    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView()
-//        headerView.backgroundColor = UIColor.clearColor()
-//        return headerView
-//    }
+    override func objectsDidLoad(error: NSError?) {
+        super.objectsDidLoad(error)
+        MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+    }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
         var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
         
-        if let hostProfilePicURL = object?.objectForKey("hostProfilePictureURL") as? String {
-            cell.eventImage.sd_setImageWithURL(NSURL(string: hostProfilePicURL), placeholderImage: UIImage(named: "placeholder.jpg"))
-        } else {
-            cell.eventImage.image = UIImage(named: "me.jpg")
-        }
-        // Extract values from the PFObject to display in the table cell
-        if let title = object?.objectForKey("title") as? String {
-            cell.title.text = title
+        if let invite = object as? Invite {
+            UIView.setAnimationsEnabled(false)
+            var inviteStatus = invite.inviteStatus
+            if PFUser.currentUser()!.objectId! == invite.event.host.objectId! {
+                inviteStatus = "Hosting"
+            }
+            cell.inviteStatus.setTitle(inviteStatus, forState: UIControlState.Normal)
+            switch invite.inviteStatus {
+            case "Going":
+                cell.inviteStatus.backgroundColor = UIColor(red: 0.305, green: 0.713, blue: 0.417, alpha: 1.000)
+            case "Not Going":
+                cell.inviteStatus.backgroundColor = UIColor.grayColor()
+            default:
+                cell.inviteStatus.backgroundColor = UIColor(red: 1.000, green: 0.299, blue: 0.295, alpha: 1.000)
+            }
+            cell.inviteStatus.layoutIfNeeded()
+            UIView.setAnimationsEnabled(true)
+            
+            cell.title.text = invite.event.title
+            cell.eventImage.sd_setImageWithURL(NSURL(string: invite.event.hostProfilePictureURL), placeholderImage: UIImage(named: "placeholder.jpg"))
+            cell.gameType.setTitle(invite.event.gameType, forState: UIControlState.Normal)
+            cell.gameFormat.setTitle(invite.event.gameFormat, forState: UIControlState.Normal)
         }
         
-        if let gameType = object?.objectForKey("gameType") as? String {
-            cell.gameType.setTitle(gameType, forState: UIControlState.Normal)
-        }
-        
-        if let gameFormat = object?.objectForKey("gameFormat") as? String {
-            cell.gameFormat.setTitle(gameFormat, forState: UIControlState.Normal)
-        }
-        
-        // Date for cell subtitle
-//        var dateFormatter = NSDateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        let dateForText = object["date"] as! NSDate
-//        cell.date.text = dateFormatter.stringFromDate(dateForText)
         return cell
     }
     
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        
-        // Get the new view controller using [segue destinationViewController].
-        
-        // Pass the selected object to the destination view controller.
         if let indexPath = self.tableView.indexPathForSelectedRow() {
             let eventDetailVC = segue.destinationViewController as! EventDetailViewController
-            let pokerEvent = objectAtIndexPath(indexPath) as! PokerEvent
-            eventDetailVC.pokerEvent = pokerEvent
+            let invite = objectAtIndexPath(indexPath) as! Invite
+            eventDetailVC.invite = invite
+            eventDetailVC.delegate = self
         }
     }
+    
+    //MARK: Action Methods
     
     @IBAction func plusButtonTapped(sender: UIBarButtonItem) {
         let eventCreationNavController = storyboard?.instantiateViewControllerWithIdentifier("eventCreationNavController") as! UINavigationController
