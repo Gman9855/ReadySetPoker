@@ -9,7 +9,7 @@
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.readysetpoker.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>com.readysetpoker.ReadySetPoker</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -30,11 +30,13 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>22</string>
 	<key>FacebookAppID</key>
 	<string>1611395789136661</string>
 	<key>FacebookDisplayName</key>
 	<string>ReadySetPoker</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 </dict>

@@ -12,7 +12,7 @@ class EventTitleCell: EventDetailsCell {
 
     @IBOutlet weak var title: UILabel!
     
-    override func configureWithPokerEvent(event: PokerEvent) {
-        self.title.text = event.title
+    override func configureWithInvite(invite: Invite) {
+        self.title.text = invite.event.title
     }
 }

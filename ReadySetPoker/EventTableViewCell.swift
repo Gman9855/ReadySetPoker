@@ -18,7 +18,5 @@ class EventTableViewCell: PFTableViewCell {
     @IBOutlet weak var cashGameBlinds: UIButton!
     @IBOutlet weak var buyinAmount: UIButton!
     @IBOutlet weak var location: UILabel!
-    @IBOutlet weak var invitationStatus: UIButton!
-    
-    
+    @IBOutlet weak var inviteStatus: UIButton!
 }

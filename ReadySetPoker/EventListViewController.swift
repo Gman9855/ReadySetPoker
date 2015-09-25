@@ -101,9 +101,18 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         presentViewController(eventCreationNavController, animated: true, completion: nil)
     }
     
-    func eventCreationViewControllerDidCreateEvent(event: PokerEvent) {
+    //MARK: EventCreationViewControllerDelegate
+    
+    func eventCreationViewControllerDidCreateEventInvite(invite: Invite) {
         let eventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
-        eventDetailVC.pokerEvent = event
+        eventDetailVC.invite = invite
         navigationController?.pushViewController(eventDetailVC, animated: true)
+        self.loadObjects()
+    }
+    
+    //MARK: EventDetailViewControllerDelegate
+    
+    func eventDetailViewControllerDidUpdateEvent() {
+        self.loadObjects()
     }
 }
