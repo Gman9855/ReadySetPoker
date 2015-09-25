@@ -694,9 +694,11 @@
                                             <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="33" id="0JS-UT-qDb"/>
-                                                <constraint firstAttribute="width" constant="42" id="UOm-dC-3kK"/>
+                                                <constraint firstAttribute="width" constant="42" id="UOm-dC-3kK">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="33"/>
+                                                </constraint>
                                             </constraints>
-                                            <state key="normal" title="Button" image="ic_menu_my_calendar.png">
+                                            <state key="normal" title="Button" image="Calendar-50.png">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <variation key="default">
@@ -714,9 +716,13 @@
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="1Z2-da-AQ6" firstAttribute="leading" secondItem="7Td-qP-xI6" secondAttribute="leadingMargin" constant="-8" id="4Qg-hs-qiN"/>
+                                        <constraint firstItem="1Z2-da-AQ6" firstAttribute="leading" secondItem="7Td-qP-xI6" secondAttribute="leadingMargin" constant="-8" id="4Qg-hs-qiN">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
                                         <constraint firstItem="wqc-PK-atb" firstAttribute="trailing" secondItem="7Td-qP-xI6" secondAttribute="trailingMargin" id="FMF-sJ-0XS"/>
-                                        <constraint firstItem="wqc-PK-atb" firstAttribute="leading" secondItem="1Z2-da-AQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="Ubb-K6-4FI"/>
+                                        <constraint firstItem="wqc-PK-atb" firstAttribute="leading" secondItem="1Z2-da-AQ6" secondAttribute="trailing" constant="8" symbolic="YES" id="Ubb-K6-4FI">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="9"/>
+                                        </constraint>
                                         <constraint firstItem="1Z2-da-AQ6" firstAttribute="top" secondItem="7Td-qP-xI6" secondAttribute="topMargin" constant="-3" id="ZUi-i0-yDb"/>
                                         <constraint firstAttribute="centerY" secondItem="wqc-PK-atb" secondAttribute="centerY" id="wZz-oh-T9Z"/>
                                     </constraints>
@@ -783,28 +789,6 @@
                                                 </mask>
                                             </variation>
                                         </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-co-Nti">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="38" id="IRM-KN-eyt"/>
-                                                <constraint firstAttribute="height" constant="32" id="tcC-BP-NWN"/>
-                                            </constraints>
-                                            <state key="normal" title="Button" image="ic_menu_mapmode.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="IRM-KN-eyt"/>
-                                                    <exclude reference="tcC-BP-NWN"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="IRM-KN-eyt"/>
-                                                    <include reference="tcC-BP-NWN"/>
-                                                </mask>
-                                            </variation>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="San Francisco, CA 90053" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yDZ-Ik-gKY">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <constraints>
@@ -827,17 +811,51 @@
                                                 </mask>
                                             </variation>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kpD-co-Nti">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="38" id="IRM-KN-eyt">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="33"/>
+                                                </constraint>
+                                                <constraint firstAttribute="height" constant="32" id="tcC-BP-NWN">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="33"/>
+                                                </constraint>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="Map-50.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="IRM-KN-eyt"/>
+                                                    <exclude reference="tcC-BP-NWN"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="IRM-KN-eyt"/>
+                                                    <include reference="tcC-BP-NWN"/>
+                                                </mask>
+                                            </variation>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="yDZ-Ik-gKY" firstAttribute="top" secondItem="pB4-bo-UnK" secondAttribute="bottom" constant="2" id="6xP-gd-Lff"/>
-                                        <constraint firstItem="kpD-co-Nti" firstAttribute="leading" secondItem="Aic-vT-hnq" secondAttribute="leadingMargin" constant="-3" id="CTR-1w-sYN"/>
+                                        <constraint firstItem="kpD-co-Nti" firstAttribute="leading" secondItem="Aic-vT-hnq" secondAttribute="leadingMargin" constant="-3" id="CTR-1w-sYN">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
                                         <constraint firstItem="yDZ-Ik-gKY" firstAttribute="trailing" secondItem="Aic-vT-hnq" secondAttribute="trailingMargin" id="IAo-uG-lKb"/>
-                                        <constraint firstItem="yDZ-Ik-gKY" firstAttribute="leading" secondItem="kpD-co-Nti" secondAttribute="trailing" constant="8" symbolic="YES" id="VEP-yt-cFM"/>
+                                        <constraint firstItem="yDZ-Ik-gKY" firstAttribute="leading" secondItem="kpD-co-Nti" secondAttribute="trailing" constant="8" symbolic="YES" id="VEP-yt-cFM">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                                        </constraint>
                                         <constraint firstItem="pB4-bo-UnK" firstAttribute="top" secondItem="Aic-vT-hnq" secondAttribute="topMargin" constant="-1" id="jJW-D7-vzC">
                                             <variation key="heightClass=regular-widthClass=compact" constant="3"/>
                                         </constraint>
-                                        <constraint firstAttribute="centerY" secondItem="kpD-co-Nti" secondAttribute="centerY" id="rbY-ic-oHu"/>
-                                        <constraint firstItem="pB4-bo-UnK" firstAttribute="leading" secondItem="kpD-co-Nti" secondAttribute="trailing" constant="8" symbolic="YES" id="sRv-ON-2Ji"/>
+                                        <constraint firstAttribute="centerY" secondItem="kpD-co-Nti" secondAttribute="centerY" id="rbY-ic-oHu">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
+                                        <constraint firstItem="pB4-bo-UnK" firstAttribute="leading" secondItem="kpD-co-Nti" secondAttribute="trailing" constant="8" symbolic="YES" id="sRv-ON-2Ji">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                                        </constraint>
                                         <constraint firstItem="pB4-bo-UnK" firstAttribute="trailing" secondItem="Aic-vT-hnq" secondAttribute="trailingMargin" id="zlM-rG-9OW">
                                             <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
                                         </constraint>
@@ -845,8 +863,8 @@
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="pB4-bo-UnK"/>
-                                            <exclude reference="kpD-co-Nti"/>
                                             <exclude reference="yDZ-Ik-gKY"/>
+                                            <exclude reference="kpD-co-Nti"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="jJW-D7-vzC"/>
@@ -862,8 +880,8 @@
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="pB4-bo-UnK"/>
-                                            <include reference="kpD-co-Nti"/>
                                             <include reference="yDZ-Ik-gKY"/>
+                                            <include reference="kpD-co-Nti"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="jJW-D7-vzC"/>
@@ -888,28 +906,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XyV-GR-af6" id="lLC-62-rcK">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaI-lA-wPk">
-                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="43" id="cTo-sF-07f"/>
-                                                <constraint firstAttribute="width" constant="48" id="vkk-KX-Djj"/>
-                                            </constraints>
-                                            <state key="normal" title="Button" image="sym_action_chat.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="cTo-sF-07f"/>
-                                                    <exclude reference="vkk-KX-Djj"/>
-                                                </mask>
-                                            </variation>
-                                            <variation key="heightClass=regular-widthClass=compact">
-                                                <mask key="constraints">
-                                                    <include reference="cTo-sF-07f"/>
-                                                    <include reference="vkk-KX-Djj"/>
-                                                </mask>
-                                            </variation>
-                                        </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUS-3d-cgX">
                                             <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                             <constraints>
@@ -932,17 +928,49 @@
                                                 </mask>
                                             </variation>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aaI-lA-wPk">
+                                            <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="43" id="cTo-sF-07f">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="33"/>
+                                                </constraint>
+                                                <constraint firstAttribute="width" constant="48" id="vkk-KX-Djj">
+                                                    <variation key="heightClass=regular-widthClass=compact" constant="33"/>
+                                                </constraint>
+                                            </constraints>
+                                            <state key="normal" title="Button" image="Comments-50.png">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="cTo-sF-07f"/>
+                                                    <exclude reference="vkk-KX-Djj"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="cTo-sF-07f"/>
+                                                    <include reference="vkk-KX-Djj"/>
+                                                </mask>
+                                            </variation>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="YUS-3d-cgX" firstAttribute="leading" secondItem="aaI-lA-wPk" secondAttribute="trailing" constant="3" id="Bml-6x-Hrc"/>
-                                        <constraint firstItem="aaI-lA-wPk" firstAttribute="top" secondItem="lLC-62-rcK" secondAttribute="topMargin" constant="-8" id="LEQ-8a-75p"/>
-                                        <constraint firstItem="aaI-lA-wPk" firstAttribute="leading" secondItem="lLC-62-rcK" secondAttribute="leadingMargin" constant="-8" id="Xvh-xP-aMh"/>
+                                        <constraint firstItem="YUS-3d-cgX" firstAttribute="leading" secondItem="aaI-lA-wPk" secondAttribute="trailing" constant="3" id="Bml-6x-Hrc">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="10"/>
+                                        </constraint>
+                                        <constraint firstItem="aaI-lA-wPk" firstAttribute="top" secondItem="lLC-62-rcK" secondAttribute="topMargin" constant="-8" id="LEQ-8a-75p">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="-3"/>
+                                        </constraint>
+                                        <constraint firstItem="aaI-lA-wPk" firstAttribute="leading" secondItem="lLC-62-rcK" secondAttribute="leadingMargin" constant="-8" id="Xvh-xP-aMh">
+                                            <variation key="heightClass=regular-widthClass=compact" constant="0.0"/>
+                                        </constraint>
                                         <constraint firstAttribute="centerY" secondItem="YUS-3d-cgX" secondAttribute="centerY" id="zqa-wP-5AT"/>
                                     </constraints>
                                     <variation key="default">
                                         <mask key="subviews">
-                                            <exclude reference="aaI-lA-wPk"/>
                                             <exclude reference="YUS-3d-cgX"/>
+                                            <exclude reference="aaI-lA-wPk"/>
                                         </mask>
                                         <mask key="constraints">
                                             <exclude reference="Bml-6x-Hrc"/>
@@ -953,8 +981,8 @@
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
-                                            <include reference="aaI-lA-wPk"/>
                                             <include reference="YUS-3d-cgX"/>
+                                            <include reference="aaI-lA-wPk"/>
                                         </mask>
                                         <mask key="constraints">
                                             <include reference="Bml-6x-Hrc"/>
@@ -1562,9 +1590,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Calendar-50.png" width="50" height="50"/>
+        <image name="Comments-50.png" width="50" height="50"/>
+        <image name="Map-50.png" width="50" height="50"/>
         <image name="PokerInvitesIcon" width="30" height="30"/>
-        <image name="ic_menu_mapmode.png" width="48" height="48"/>
-        <image name="ic_menu_my_calendar.png" width="48" height="48"/>
-        <image name="sym_action_chat.png" width="48" height="48"/>
     </resources>
 </document>

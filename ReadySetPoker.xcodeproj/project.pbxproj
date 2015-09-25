@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279C1BB60599004CFE64 /* Comments-50.png */; };
+		8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279E1BB605A0004CFE64 /* Map-50.png */; };
+		8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4227A01BB605A9004CFE64 /* Calendar-50.png */; };
 		8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A11B60682500B69539 /* AppDelegate.swift */; };
 		8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* LoginViewController.swift */; };
 		8B8423A91B60682500B69539 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A81B60682500B69539 /* Images.xcassets */; };
@@ -78,6 +81,9 @@
 		1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.adhoc.xcconfig"; sourceTree = "<group>"; };
 		61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.debug.xcconfig"; sourceTree = "<group>"; };
 		70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadySetPoker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B42279C1BB60599004CFE64 /* Comments-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-50.png"; sourceTree = "<group>"; };
+		8B42279E1BB605A0004CFE64 /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
+		8B4227A01BB605A9004CFE64 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
 		8B6F31D81B6A9D6D00CD9C8B /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B84239C1B60682500B69539 /* ReadySetPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadySetPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8423A11B60682500B69539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -234,6 +240,9 @@
 				8B9651851B82867800E08CD6 /* ic_menu_mapmode.png */,
 				8B9651861B82867800E08CD6 /* ic_menu_my_calendar.png */,
 				8B9651891B82868200E08CD6 /* sym_action_chat.png */,
+				8B42279C1BB60599004CFE64 /* Comments-50.png */,
+				8B42279E1BB605A0004CFE64 /* Map-50.png */,
+				8B4227A01BB605A9004CFE64 /* Calendar-50.png */,
 			);
 			name = "Supporting Files";
 			path = ReadySetPokerTests;
@@ -404,12 +413,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */,
 				8B9651871B82867800E08CD6 /* ic_menu_mapmode.png in Resources */,
 				8B9651831B82866900E08CD6 /* facebook-login-2.png in Resources */,
 				8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */,
 				8B8423A91B60682500B69539 /* Images.xcassets in Resources */,
 				8B96518D1B82A78700E08CD6 /* LoggedOutState.storyboard in Resources */,
 				8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */,
+				8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */,
+				8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */,
 				8B96518A1B82868200E08CD6 /* sym_action_chat.png in Resources */,
 				8B9651841B82866900E08CD6 /* rsplogo.jpg in Resources */,
 				8B9651881B82867800E08CD6 /* ic_menu_my_calendar.png in Resources */,

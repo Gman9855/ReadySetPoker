@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EF10DCE01E1552551EAA34A8"
+               BlueprintIdentifier = "BA91389A6106CC3EB3E925DD"
                BuildableName = "Pods_ReadySetPoker.framework"
                BlueprintName = "Pods-ReadySetPoker"
                ReferencedContainer = "container:Pods.xcodeproj">
