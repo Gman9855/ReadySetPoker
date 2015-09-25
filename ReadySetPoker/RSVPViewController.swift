@@ -8,18 +8,27 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import MBProgressHUD
+import Parse
 
 protocol RSVPViewControllerDelegate {
-    func RSVPViewControllerDidRespondToRSVP(isGoing: Bool, withGuests: Int)
+    func RSVPViewControllerDidUpdateInvite(invite: Invite?)
 }
 
 class RSVPViewController: UITableViewController {
 
     @IBOutlet weak var guestsLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    var guestsJoining: Int = 0
+    var guestsJoining = 0
+    var invite: Invite!
     var delegate: RSVPViewControllerDelegate?
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if invite.event.host.objectId! == PFUser.currentUser()!.objectId {
+            segmentedControl.enabled = false
+        }
+    }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -29,7 +38,6 @@ class RSVPViewController: UITableViewController {
                 self.guestsLabel.text = selectedValue as? String
                 self.guestsJoining = selectedIndex
                 }, cancelBlock: { (picker: ActionSheetStringPicker!) -> Void in
-                print("Block picker canceled")
             }, origin: self.view)
             picker.showActionSheetPicker()
         }

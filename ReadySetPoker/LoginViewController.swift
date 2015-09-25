@@ -16,7 +16,6 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var imageView = UIImageView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -43,7 +42,6 @@ class LoginViewController: UIViewController {
                             // show error to user
                             print(error)
                         }
-                        
                     })
                 }
                 FBSDKProfile.enableUpdatesOnAccessTokenChange(true)

@@ -6,8 +6,31 @@
 //  Copyright (c) 2015 ReadySetPoker. All rights reserved.
 //
 
-import Cocoa
+import Foundation
+import Parse
 
-class Invite: PFObject {
+struct Status {
+    var PendingInvite = "Pending Invite"
+    var Going = "Going"
+    var NotGoing = "Not Going"
+}
 
+class Invite: PFObject, PFSubclassing {
+    override class func initialize() {
+        struct Static {
+            static var onceToken : dispatch_once_t = 0;
+        }
+        dispatch_once(&Static.onceToken) {
+            self.registerSubclass()
+        }
+    }
+    
+    static func parseClassName() -> String {
+        return "Invite"
+    }
+    
+    @NSManaged var event: PokerEvent
+    @NSManaged var numberOfGuests: Int
+    @NSManaged var inviteStatus: String
+    @NSManaged var invitee: PFUser
 }

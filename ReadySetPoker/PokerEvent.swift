@@ -28,6 +28,7 @@ class PokerEvent: Event, PFSubclassing {
     @NSManaged var cashGameBuyInMinimum: NSInteger
     @NSManaged var cashGameBuyInMaximum: NSInteger
     @NSManaged var tournamentBuyIn: NSInteger
+    @NSManaged var maximumSeats: NSInteger
     
     @objc enum GameFormat: Int {
         case Cash

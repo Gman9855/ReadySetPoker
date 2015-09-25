@@ -11,16 +11,31 @@ import SDWebImage
 import Parse
 import MBProgressHUD
 
+protocol InviteFriendsViewControllerDelegate {
+    func inviteFriendsViewControllerDidSelectFriendsToInvite(invitedFriends: [FacebookFriend])
+}
+
 class InviteFriendsViewController: UITableViewController {
     
     var friends = [FacebookFriend]()
     @IBOutlet weak var inviteButton: UIBarButtonItem!
+    var delegate: InviteFriendsViewControllerDelegate?
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.tableFooterView = UIView()
         inviteButton.enabled = false
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields":"id,name,picture.width(200).height(200)"])
         request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
+            if error != nil {
+                print(error)
+                //show error message to user
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+                })
+                return
+            }
             if let friendArray = result.valueForKey("data") as? NSArray {
                 for friend in friendArray {
                     if let name = friend["name"] as? String, let id = friend["id"] as? String {
@@ -45,7 +60,7 @@ class InviteFriendsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return self.friends.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -56,10 +71,7 @@ class InviteFriendsViewController: UITableViewController {
         if indexPath.row < self.friends.count {
             let fbFriend = self.friends[indexPath.row]
             cell.name.text = fbFriend.name
-            cell.profilePicture.sd_setImageWithURL(fbFriend.profilePictureURL, placeholderImage: UIImage(named: "placeholder"))
-            cell.profilePicture.layer.cornerRadius = cell.profilePicture.frame.size.height / 2;
-            cell.profilePicture.layer.masksToBounds = true;
-            cell.profilePicture.layer.borderWidth = 0
+            cell.profilePicture.sd_setImageWithURL(fbFriend.profilePictureURL, placeholderImage: UIImage(named: "placeholder.jpg"))
         }
         
         return cell
@@ -67,42 +79,29 @@ class InviteFriendsViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         var selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
-        switch selectedCell.accessoryType {
-        case .Checkmark:
-            selectedCell.accessoryType = UITableViewCellAccessoryType.None
-            selectedCell.setSelected(false, animated: false)
-            tableView.deselectRowAtIndexPath(indexPath, animated: false)
-            var indexPaths = self.tableView.indexPathsForSelectedRows()
-            if indexPaths == nil {
-                inviteButton.enabled = false
-            }
-        default:
-            selectedCell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        selectedCell.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if !inviteButton.enabled {
             inviteButton.enabled = true
+        }
+    }
+    
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        var selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+        selectedCell.accessoryType = UITableViewCellAccessoryType.None
+        var indexPaths = self.tableView.indexPathsForSelectedRows()
+        if indexPaths == nil {
+            inviteButton.enabled = false
         }
     }
     
     @IBAction func inviteButtonTapped(sender: UIBarButtonItem) {
         let indexPaths = self.tableView.indexPathsForSelectedRows() as! [NSIndexPath]
+        var selectedFriendsToInvite = [FacebookFriend]()
         for indexPath in indexPaths {
-            let invitedFriend = friends[indexPath.row]
-            
-            let friendQuery = PFUser.query()!
-            friendQuery.whereKey("facebookID", equalTo: invitedFriend.userID)
-            
-            var pushQuery = PFInstallation.query()!
-            pushQuery.whereKey("user", matchesQuery: friendQuery)
-            
-            var push = PFPush()
-            push.setQuery(pushQuery)
-            push.setMessage("You've been invited to a home game!")
-            MBProgressHUD.showHUDAddedTo(self.navigationController!.view, animated: true)
-            push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
-                print("\(success), \(error)")
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    MBProgressHUD.hideHUDForView(self.navigationController!.view, animated: true)
-                })
-            })
+            selectedFriendsToInvite.append(friends[indexPath.row])
         }
+        
+        delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
+        dismissViewControllerAnimated(true, completion: nil)
     }
 }
