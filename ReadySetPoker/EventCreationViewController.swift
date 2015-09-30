@@ -138,6 +138,10 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                     })
                 } else {
                     // did not save.  show alert to user
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        let alertView = UIAlertView(title: "Error", message: "Could not create a new home game.  Please check your connection and try again.", delegate: self, cancelButtonTitle: "Okay")
+                        alertView.show()
+                    })
                 }
             }
         })

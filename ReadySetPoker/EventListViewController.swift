@@ -79,7 +79,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
             cell.gameType.setTitle(invite.event.gameType, forState: UIControlState.Normal)
             cell.gameFormat.setTitle(invite.event.gameFormat, forState: UIControlState.Normal)
         }
-        
+    
         return cell
     }
     

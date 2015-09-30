@@ -17,24 +17,26 @@ protocol EventDetailViewControllerDelegate {
 class EventDetailViewController: UITableViewController, RSVPViewControllerDelegate {
     
     var invite: Invite!
-    var tableViewData = [AnyObject]()
-    let defaultHeight: CGFloat = UITableViewAutomaticDimension
-    let cellData: [(CGFloat?, UITableViewCell.Type)] = [(54, EventTitleCell.self), (nil, EventDateCell.self), (64, EventLocationCell.self), (nil, EventCommentsCell.self), (nil, EventMoreDetailsCell.self), (64, EventRSVPCell.self)]
     var delegate: EventDetailViewControllerDelegate?
+    private var tableViewData = [AnyObject]()
+    private let defaultHeight: CGFloat = UITableViewAutomaticDimension
+    private let cellData: [(CGFloat?, UITableViewCell.Type)] = [(54, EventTitleCell.self), (nil, EventDateCell.self), (64, EventLocationCell.self), (nil, EventCommentsCell.self), (nil, EventMoreDetailsCell.self), (64, EventRSVPCell.self)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Event Details"
-        var hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         tableView.tableFooterView = UIView()
         var inviteQuery = Invite.query()
         inviteQuery?.includeKey("event")
+        // Grab the invite from parse.  This way we always have the most updated version of the event
         inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
             self.tableViewData.append(self.arrayWithCellData())
+            MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+            self.tableView.reloadData()
             self.updatePlayerStatusesInBackgroundWithBlock { (succeeded, error) -> () in
                 if succeeded {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
                         self.tableView.reloadData()
                     })
                 }
@@ -43,8 +45,8 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     }
     
     func updatePlayerStatusesInBackgroundWithBlock(block: (succeeded: Bool, error: NSError?) -> ()) {
-        while self.tableViewData.count > 1 {    // if we have player status sections, remove all of them
-            self.tableViewData.removeLast()     // except our static section
+        while self.tableViewData.count > 1 {    // if we have player status sections, remove all
+            self.tableViewData.removeLast()     // of them except our static section
         }
         let inviteRelation = invite.event.relationForKey("invites")
         let query = inviteRelation.query()!

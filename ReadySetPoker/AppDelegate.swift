@@ -90,13 +90,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
         PFPush.handlePush(userInfo)
-        if UIApplication.sharedApplication().applicationState == UIApplicationState.Inactive {
-            println("inactive")
-        } else if UIApplication.sharedApplication().applicationState == UIApplicationState.Background {
-            println("background")
-        } else {
-            println("active")
-        }
         
         if UIApplication.sharedApplication().applicationState != UIApplicationState.Active {
             if let eventId = userInfo["eventObjectId"] as? String {
@@ -123,6 +116,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     }
                 })
             }
+        } else {
+//            let message = userInfo["alert"] as! String
+//            let alertController = UIAlertController(title: "ReadySetPoker", message: message, preferredStyle: .Alert)
+//            let dismissButton = UIAlertAction(title: "Dismiss", style: .Cancel, handler: nil)
+//            alertController.addAction(dismissButton)
+//            let viewButton = UIAlertAction(title: "View", style: .Default, handler: { (action: UIAlertAction!) -> Void in
+//                let storyboard = UIStoryboard(name: "LoggedInState", bundle: nil)
+//                let rootVC = storyboard.instantiateViewControllerWithIdentifier("tabBarController") as! UITabBarController
+//                if PFUser.currentUser() != nil {
+//                    rootVC.selectedIndex = 0
+//                    self.window!.rootViewController = rootVC
+//                    let navController = rootVC.viewControllers?.first as! UINavigationController
+//                    let eventListVC = navController.topViewController as! EventListViewController
+//                    let eventDetailVC = storyboard.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
+//                    eventDetailVC.invite = invite
+//                    eventListVC.navigationController?.pushViewController(eventDetailVC, animated: false)
+//                }
+//            })
         }
     }
 }
