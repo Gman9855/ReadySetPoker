@@ -19,7 +19,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        var hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
+        let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         hud.labelText = "Loading"
         tableView.tableFooterView = UIView()     // hack to remove extraneous tableview separators
     }

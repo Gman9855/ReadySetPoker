@@ -48,7 +48,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         while self.tableViewData.count > 1 {    // if we have player status sections, remove all
             self.tableViewData.removeLast()     // of them except our static section
         }
-        let inviteRelation = invite.event.relationForKey("invites")
+        let inviteRelation = invite.event.relationForKey("invites")    // the invites for the event
         let query = inviteRelation.query()!
         query.includeKey("invitee")
         query.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
@@ -154,7 +154,10 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         presentViewController(rsvpNavigationVC, animated: true, completion: nil)
     }
     
+    //MARK: RSVP View Controller Delegate
+    
     func RSVPViewControllerDidUpdateInvite(invite: Invite?) {
+        // We update the RSVP button status as well as the player statuses to reflect the RSVP change
         if let updatedInvite = invite {
             let indexPath = NSIndexPath(forRow: 5, inSection: 0)
             var cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventRSVPCell
@@ -178,12 +181,16 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
                 println("After fetch: \(refreshedInvite.event.numberOfSpotsLeft)")
                 self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
                     if succeeded {
-                        self.tableView.reloadData()
-                        sender.endRefreshing()
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView.reloadData()
+                            sender.endRefreshing()
+                        })
                     }
                 })
             } else {
-                sender.endRefreshing()
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    sender.endRefreshing()
+                })
             }
         })
     }

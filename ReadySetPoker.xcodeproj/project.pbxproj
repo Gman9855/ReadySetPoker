@@ -376,6 +376,7 @@
 		8B8423941B60682500B69539 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = ReadySetPoker;
 				TargetAttributes = {
