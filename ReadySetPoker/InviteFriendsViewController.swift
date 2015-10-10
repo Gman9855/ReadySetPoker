@@ -29,7 +29,7 @@ class InviteFriendsViewController: UITableViewController {
         let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields":"id,name,picture.width(200).height(200)"])
         request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
             if error != nil {
-                print(error)
+                print(error, terminator: "")
                 //show error message to user
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
@@ -78,7 +78,7 @@ class InviteFriendsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        var selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
         selectedCell.accessoryType = UITableViewCellAccessoryType.Checkmark
         if !inviteButton.enabled {
             inviteButton.enabled = true
@@ -86,16 +86,16 @@ class InviteFriendsViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        var selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
+        let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
         selectedCell.accessoryType = UITableViewCellAccessoryType.None
-        var indexPaths = self.tableView.indexPathsForSelectedRows()
+        let indexPaths = self.tableView.indexPathsForSelectedRows
         if indexPaths == nil {
             inviteButton.enabled = false
         }
     }
     
     @IBAction func inviteButtonTapped(sender: UIBarButtonItem) {
-        let indexPaths = self.tableView.indexPathsForSelectedRows() as! [NSIndexPath]
+        let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]!
         var selectedFriendsToInvite = [FacebookFriend]()
         for indexPath in indexPaths {
             selectedFriendsToInvite.append(friends[indexPath.row])

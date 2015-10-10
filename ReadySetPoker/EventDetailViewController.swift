@@ -27,7 +27,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         self.title = "Event Details"
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         tableView.tableFooterView = UIView()
-        var inviteQuery = Invite.query()
+        let inviteQuery = Invite.query()
         inviteQuery?.includeKey("event")
         // Grab the invite from parse.  This way we always have the most updated version of the event
         inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
@@ -127,16 +127,18 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let (height, cellType) = cellData[indexPath.row]
-            let cellReuseIdentifier = reflect(cellType).summary
-            var cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! EventDetailsCell
+            let (_, cellType) = cellData[indexPath.row]
+//            let cellReuseIdentifier = reflect(cellType).summary
+            
+            let cellReuseIdentifier = cellTypeToIdentifierString(cellType)
+            let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! EventDetailsCell
             cell.configureWithInvite(self.invite)
             return cell
         }
         
         let playerInvitesFromSection = self.tableViewData[indexPath.section] as! [Invite]
         let invite = playerInvitesFromSection[indexPath.row]
-        var cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell") as! InviteFriendsTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("PlayerCell") as! InviteFriendsTableViewCell
         let playerFullName = invite.invitee.objectForKey("fullName") as? String
         cell.name.text = invite.numberOfGuests > 0 ? playerFullName! + " + \(invite.numberOfGuests)" : playerFullName!
         if let profilePictureString = invite.invitee.objectForKey("fbProfilePictureURL") as? String {
@@ -160,7 +162,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         // We update the RSVP button status as well as the player statuses to reflect the RSVP change
         if let updatedInvite = invite {
             let indexPath = NSIndexPath(forRow: 5, inSection: 0)
-            var cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventRSVPCell
+            let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventRSVPCell
             cell.updateButtonTitleWithInvite(updatedInvite)
             self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
                 if succeeded {
@@ -172,13 +174,13 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     }
     
     @IBAction func didPullToRefresh(sender: UIRefreshControl) {
-        println("Before fetch: \(self.invite.event.numberOfSpotsLeft)")
+        print("Before fetch: \(self.invite.event.numberOfSpotsLeft)")
         
-        var inviteQuery = Invite.query()
+        let inviteQuery = Invite.query()
         inviteQuery?.includeKey("event")
         inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
             if let refreshedInvite = refreshedInvite as? Invite {
-                println("After fetch: \(refreshedInvite.event.numberOfSpotsLeft)")
+                print("After fetch: \(refreshedInvite.event.numberOfSpotsLeft)")
                 self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
                     if succeeded {
                         dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -193,5 +195,14 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
                 })
             }
         })
+    }
+    
+    //MARK: Helper Methods
+    
+    func cellTypeToIdentifierString(cellType: UITableViewCell.Type) -> String {
+        let cellTypeDescription = Mirror(reflecting: (cellType)).description
+        let stringComponents = cellTypeDescription.componentsSeparatedByString(" ")
+        let lastComponent = stringComponents.last!
+        return "ReadySetPoker." + lastComponent.componentsSeparatedByString(".").first!
     }
 }

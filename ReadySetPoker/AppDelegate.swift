@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        let userNotificationTypes = (UIUserNotificationType.Alert | UIUserNotificationType.Badge | UIUserNotificationType.Sound)
+        let userNotificationTypes: UIUserNotificationType = ([UIUserNotificationType.Alert, UIUserNotificationType.Badge, UIUserNotificationType.Sound])
         let settings = UIUserNotificationSettings(forTypes: userNotificationTypes, categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
@@ -40,21 +40,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var storyboardName = "LoggedOutState"
 
         if let currentUser = PFUser.currentUser() {
-            var fullName = currentUser["fullName"] as! String
-            println("Signed in as \(fullName)")
+            let fullName = currentUser["fullName"] as! String
+            print("Signed in as \(fullName)")
             storyboardName = "LoggedInState"
         }
         
         let initialStoryboard = UIStoryboard(name: storyboardName, bundle: nil)
         
-        let viewController = initialStoryboard.instantiateInitialViewController() as! UIViewController
+        let viewController = initialStoryboard.instantiateInitialViewController()!
         
         self.window?.rootViewController = viewController
         self.window?.makeKeyAndVisible()
         return true
     }
     
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         return FBSDKApplicationDelegate.sharedInstance().application(application, openURL: url, sourceApplication: sourceApplication, annotation: annotation)
     }
 
@@ -93,9 +93,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UIApplication.sharedApplication().applicationState != UIApplicationState.Active {
             if let eventId = userInfo["eventObjectId"] as? String {
-                var inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-                var inviteQuery = inviteRelation.query()!
-                var event = PFObject(withoutDataWithClassName: "PokerEvent", objectId: eventId)
+                let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+                let inviteQuery = inviteRelation.query()!
+                let event = PFObject(withoutDataWithClassName: "PokerEvent", objectId: eventId)
                 inviteQuery.whereKey("event", equalTo: event)
                 inviteQuery.includeKey("event")
                 inviteQuery.findObjectsInBackgroundWithBlock({ (result: [AnyObject]?, error: NSError?) -> Void in

@@ -19,7 +19,7 @@ class EventRSVPCell: EventDetailsCell {
     func updateButtonTitleWithInvite(invite: Invite) {
         var buttonTitle: String
         var buttonColor = UIColor()
-        var seats = invite.event.numberOfSpotsLeft == 1 ? "seat" : "seats"
+        let seats = invite.event.numberOfSpotsLeft == 1 ? "seat" : "seats"
 
         switch invite.inviteStatus {
         case "Going":

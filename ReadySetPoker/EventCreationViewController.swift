@@ -44,28 +44,28 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
 
         //map array of FacebookFriend to array of FacebookFriend userID strings
-        var facebookIDs = self.invitedFriends.map { (facebookFriend: FacebookFriend) -> String in
+        let facebookIDs = self.invitedFriends.map { (facebookFriend: FacebookFriend) -> String in
             return facebookFriend.userID
         }
-        var userQuery = PFUser.query()
+        let userQuery = PFUser.query()
         userQuery?.whereKey("facebookID", containedIn: facebookIDs)
         userQuery?.findObjectsInBackgroundWithBlock({ (result: [AnyObject]?, error: NSError?) -> Void in
             if error != nil {
-                print(error)
+                print(error, terminator: "")
                     //display error message to user
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
                 })
                 return
             }
-            var invitedFriends = result as! [PFUser]
+            let invitedFriends = result as! [PFUser]
             
             let date = NSDate()
             let formatter = NSDateFormatter()
             formatter.dateStyle = NSDateFormatterStyle.NoStyle
             formatter.timeStyle = NSDateFormatterStyle.ShortStyle
             let timeNow = formatter.stringFromDate(date)
-            var newPokerEvent = PokerEvent()
+            let newPokerEvent = PokerEvent()
             newPokerEvent.title = "New poker game at \(timeNow)"
             newPokerEvent.eventDescription = "This is going to be an awesome game.  I haven't played poker in a while!"
             newPokerEvent.host = PFUser.currentUser()!
@@ -87,9 +87,9 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
             
             newPokerEvent.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
-                    println(" Saved event ")
+                    print(" Saved event ")
                     
-                    var hostInvite = Invite()
+                    let hostInvite = Invite()
                     hostInvite.invitee = PFUser.currentUser()!
                     hostInvite.event = newPokerEvent
                     hostInvite.inviteStatus = "Going"
@@ -107,7 +107,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                     })
                     
                     for friend: PFUser in invitedFriends {
-                        var invite = Invite()
+                        let invite = Invite()
                         invite.invitee = friend
                         invite.event = newPokerEvent
                         invite.inviteStatus = "Pending"
@@ -121,19 +121,19 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                         })
                     }
                     
-                    var pushQuery = PFInstallation.query()!
+                    let pushQuery = PFInstallation.query()!
                     pushQuery.whereKey("user", containedIn: invitedFriends)
                     
-                    var push = PFPush()
+                    let push = PFPush()
                     push.setQuery(pushQuery)
                     let data = ["alert" : "You've been invited to \(newPokerEvent.title)!", "eventObjectId" : newPokerEvent.objectId!]
                     push.setData(data)
                     push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                         if success {
-                            println("Pushed notification successfully")
+                            print("Pushed notification successfully")
                         }
                         if error != nil {
-                            print("Failed to push notification")
+                            print("Failed to push notification", terminator: "")
                         }
                     })
                 } else {

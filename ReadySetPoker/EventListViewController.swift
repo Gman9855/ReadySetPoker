@@ -29,7 +29,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     }
     
     required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
+        super.init(coder: aDecoder)!
         
         // Configure the PFQueryTableView
         self.parseClassName = "Invite"
@@ -40,8 +40,8 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
-        var inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-        var inviteQuery = inviteRelation.query()!
+        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+        let inviteQuery = inviteRelation.query()!
         inviteQuery.includeKey("event")
         inviteQuery.orderByDescending("createdAt")
         return inviteQuery
@@ -54,7 +54,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
         
-        var cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
         
         if let invite = object as? Invite {
             UIView.setAnimationsEnabled(false)
@@ -84,7 +84,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let indexPath = self.tableView.indexPathForSelectedRow() {
+        if let indexPath = self.tableView.indexPathForSelectedRow {
             let eventDetailVC = segue.destinationViewController as! EventDetailViewController
             let invite = objectAtIndexPath(indexPath) as! Invite
             eventDetailVC.invite = invite

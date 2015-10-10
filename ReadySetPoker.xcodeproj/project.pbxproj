@@ -39,7 +39,6 @@
 		8B96516C1B7FEBF500E08CD6 /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */; };
 		8B96516E1B801AC700E08CD6 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */; };
 		8B9651701B80232000E08CD6 /* CreatePokerGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */; };
-		8B96517A1B8048EC00E08CD6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423E81B60960A00B69539 /* Info.plist */; };
 		8B96517E1B82863700E08CD6 /* me.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96517D1B82863700E08CD6 /* me.jpg */; };
 		8B9651801B82865600E08CD6 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96517F1B82865600E08CD6 /* placeholder.jpg */; };
 		8B9651831B82866900E08CD6 /* facebook-login-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651811B82866900E08CD6 /* facebook-login-2.png */; };
@@ -376,8 +375,9 @@
 		8B8423941B60682500B69539 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = ReadySetPoker;
 				TargetAttributes = {
 					8B84239B1B60682500B69539 = {
@@ -435,7 +435,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B96517A1B8048EC00E08CD6 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,6 +571,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -649,6 +649,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
@@ -669,6 +670,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
@@ -690,6 +692,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -708,6 +711,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadySetPoker.app/ReadySetPoker";
@@ -767,6 +771,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
 				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
@@ -784,6 +789,7 @@
 				);
 				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadySetPoker.app/ReadySetPoker";

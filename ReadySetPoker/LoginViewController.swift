@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
                 if user.isNew {
-                    println("User signed up and logged in through Facebook!")
+                    print("User signed up and logged in through Facebook!")
 
                     let request = FBSDKGraphRequest(graphPath: "\(FBSDKAccessToken.currentAccessToken().userID)", parameters: ["fields":"id,name,picture.width(200).height(200)"], HTTPMethod: "GET")
                     request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
                             user.saveInBackground()
                         } else {
                             // show error to user
-                            print(error)
+                            print(error, terminator: "")
                         }
                     })
                 }
@@ -54,8 +54,8 @@ class LoginViewController: UIViewController {
                 let viewController = loggedInStoryboard.instantiateInitialViewController() as! UITabBarController
                 self.presentViewController(viewController, animated: true, completion: nil)
             } else {
-                println("Uh oh. The user cancelled the Facebook login.")
-                print(error)
+                print("Uh oh. The user cancelled the Facebook login.")
+                print(error, terminator: "")
             }
         }
     }

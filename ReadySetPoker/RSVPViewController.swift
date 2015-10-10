@@ -34,7 +34,7 @@ class RSVPViewController: UITableViewController {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         if cell?.reuseIdentifier == "BringingGuestsCell" {
             let array = ["0 Guests", "1 Guest", "2 Guests", "3 Guests"]
-            var picker = ActionSheetStringPicker(title: nil, rows: array, initialSelection: 1, doneBlock: { (picker: ActionSheetStringPicker!, selectedIndex: Int, selectedValue: AnyObject!) -> Void in
+            let picker = ActionSheetStringPicker(title: nil, rows: array, initialSelection: 1, doneBlock: { (picker: ActionSheetStringPicker!, selectedIndex: Int, selectedValue: AnyObject!) -> Void in
                 self.guestsLabel.text = selectedValue as? String
                 self.guestsJoining = selectedIndex
                 }, cancelBlock: { (picker: ActionSheetStringPicker!) -> Void in
@@ -48,12 +48,12 @@ class RSVPViewController: UITableViewController {
     }
     
     @IBAction func rsvpButtonTapped(sender: UIButton) {
-        var segmentedControlIndex: Int = segmentedControl.selectedSegmentIndex
-        var isGoing = segmentedControlIndex == 0
+        let segmentedControlIndex: Int = segmentedControl.selectedSegmentIndex
+        let isGoing = segmentedControlIndex == 0
         if !isGoing { guestsJoining = 0 }
         var changedNumberOfGuests = false
         
-        println("Invite before had a \(invite.inviteStatus) invite status with \(invite.numberOfGuests) guests, and \(invite.event.numberOfAttendees) people going with \(invite.event.numberOfSpotsLeft) spots left")
+        print("Invite before had a \(invite.inviteStatus) invite status with \(invite.numberOfGuests) guests, and \(invite.event.numberOfAttendees) people going with \(invite.event.numberOfSpotsLeft) spots left")
         var updatedPartiesCount = 0
         var shouldSave = true
         if isGoing {
@@ -92,27 +92,26 @@ class RSVPViewController: UITableViewController {
             MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
             invite.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
-                    println("Successfully updated invite status")
-                    println("Invite now has a \(self.invite.inviteStatus) invite status with \(self.invite.numberOfGuests) guests, and \(self.invite.event.numberOfAttendees) people going with \(self.invite.event.numberOfSpotsLeft) spots left")
+                    print("Successfully updated invite status")
+                    print("Invite now has a \(self.invite.inviteStatus) invite status with \(self.invite.numberOfGuests) guests, and \(self.invite.event.numberOfAttendees) people going with \(self.invite.event.numberOfSpotsLeft) spots left")
                     
-                    var userQuery = PFUser.query()!
-                    var invites = self.invite.event.relationForKey("invites")
-                    var invitesQuery = invites.query()
+                    let invites = self.invite.event.relationForKey("invites")
+                    let invitesQuery = invites.query()
                     invitesQuery?.whereKey("inviteStatus", notEqualTo: "Not Going")
                     invitesQuery?.whereKey("invitee", notEqualTo: PFUser.currentUser()!)
                     invitesQuery?.includeKey("invitee")
                     invitesQuery?.findObjectsInBackgroundWithBlock({ (invites: [AnyObject]?, error: NSError?) -> Void in
-                        println(invites)
+                        print(invites)
                         if invites?.count > 0 {
                             let inviteResults = invites as! [Invite]
                             let invitees = inviteResults.map({ (invite: Invite) -> PFUser in
                                 return invite.invitee
                             })
                             
-                            var pushQuery = PFInstallation.query()!
+                            let pushQuery = PFInstallation.query()!
                             pushQuery.whereKey("user", containedIn: invitees)
                             
-                            var push = PFPush()
+                            let push = PFPush()
                             push.setQuery(pushQuery)
                             let currentUserName = PFUser.currentUser()!.objectForKey("fullName") as! String
                             var pushString: String
@@ -125,10 +124,10 @@ class RSVPViewController: UITableViewController {
                             push.setData(data)
                             push.sendPushInBackgroundWithBlock({ (success: Bool, error: NSError?) -> Void in
                                 if success {
-                                    println("Pushed notification successfully")
+                                    print("Pushed notification successfully")
                                 }
                                 if error != nil {
-                                    println("Failed to push notification")
+                                    print("Failed to push notification")
                                 }
                             })
                         }
@@ -136,7 +135,7 @@ class RSVPViewController: UITableViewController {
                     self.delegate?.RSVPViewControllerDidUpdateInvite(self.invite)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 } else {
-                    println(error)
+                    print(error)
                     UIAlertView(title: "Error", message: "Could not save RSVP.  Please check your connection and try again.", delegate: self, cancelButtonTitle: "Okay").show()
                     // display error alert to user
                 }
