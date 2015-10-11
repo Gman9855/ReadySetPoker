@@ -57,27 +57,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
         
         if let invite = object as? Invite {
-            UIView.setAnimationsEnabled(false)
-            var inviteStatus = invite.inviteStatus
-            if PFUser.currentUser()!.objectId! == invite.event.host.objectId! {
-                inviteStatus = "Hosting"
-            }
-            cell.inviteStatus.setTitle(inviteStatus, forState: UIControlState.Normal)
-            switch invite.inviteStatus {
-            case "Going":
-                cell.inviteStatus.backgroundColor = UIColor(red: 0.305, green: 0.713, blue: 0.417, alpha: 1.000)
-            case "Not Going":
-                cell.inviteStatus.backgroundColor = UIColor.grayColor()
-            default:
-                cell.inviteStatus.backgroundColor = UIColor(red: 1.000, green: 0.299, blue: 0.295, alpha: 1.000)
-            }
-            cell.inviteStatus.layoutIfNeeded()
-            UIView.setAnimationsEnabled(true)
-            
-            cell.title.text = invite.event.title
-            cell.eventImage.sd_setImageWithURL(NSURL(string: invite.event.hostProfilePictureURL), placeholderImage: UIImage(named: "placeholder.jpg"))
-            cell.gameType.setTitle(invite.event.gameType, forState: UIControlState.Normal)
-            cell.gameFormat.setTitle(invite.event.gameFormat, forState: UIControlState.Normal)
+            cell.configureWithInvite(invite)
         }
     
         return cell
