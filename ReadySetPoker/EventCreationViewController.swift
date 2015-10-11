@@ -58,42 +58,14 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                 })
                 return
             }
-            let invitedFriends = result as! [PFUser]
             
-            let date = NSDate()
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.NoStyle
-            formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-            let timeNow = formatter.stringFromDate(date)
-            let newPokerEvent = PokerEvent()
-            newPokerEvent.title = "New poker game at \(timeNow)"
-            newPokerEvent.eventDescription = "This is going to be an awesome game.  I haven't played poker in a while!"
-            newPokerEvent.host = PFUser.currentUser()!
-            if let profilePic = PFUser.currentUser()!.objectForKey("fbProfilePictureURL") as? String {
-                newPokerEvent.hostProfilePictureURL = profilePic
-            }
-            newPokerEvent.date = NSDate()
-            newPokerEvent.gameType = "PLO"
-            newPokerEvent.gameFormat = "Cash Game"
-            newPokerEvent.streetAddress = "1560 Southwest Expy"
-            newPokerEvent.cityName = "San Jose"
-            newPokerEvent.stateName = "CA"
-            newPokerEvent.zipCode = "95126"
-            newPokerEvent.cashGameBuyInMinimum = 40
-            newPokerEvent.cashGameBuyInMaximum = 200
-            newPokerEvent.maximumSeats = 9
-            newPokerEvent.numberOfAttendees = 1
-            newPokerEvent.numberOfSpotsLeft = 8
+            let newPokerEvent = self.pokerEventFromUserInput()
             
             newPokerEvent.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
                 if succeeded {
                     print(" Saved event ")
                     
-                    let hostInvite = Invite()
-                    hostInvite.invitee = PFUser.currentUser()!
-                    hostInvite.event = newPokerEvent
-                    hostInvite.inviteStatus = "Going"
-                    hostInvite.numberOfGuests = 0
+                    let hostInvite = self.hostInviteForCreatedEvent(newPokerEvent)
                     hostInvite.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             self.delegate?.eventCreationViewControllerDidCreateEventInvite(hostInvite)
@@ -106,12 +78,10 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                         newPokerEvent.saveInBackground()
                     })
                     
+                    let invitedFriends = result as! [PFUser]
+                    
                     for friend: PFUser in invitedFriends {
-                        let invite = Invite()
-                        invite.invitee = friend
-                        invite.event = newPokerEvent
-                        invite.inviteStatus = "Pending"
-                        invite.numberOfGuests = 0
+                        let invite = self.friendInviteForCreatedEvent(friend, createdEvent: newPokerEvent)
                         invite.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
                             PFCloud.callFunctionInBackground("addInviteToUser", withParameters: ["friendID":"\(friend.objectId!)", "inviteID":"\(invite.objectId!)"], block: { (result: AnyObject?, error: NSError?) -> Void in
                                 let eventInvitesRelation = newPokerEvent.relationForKey("invites")
@@ -147,6 +117,12 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         })
     }
     
+    //MARK: TableView Data Source/Delegate
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 2
+    }
+    
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell: UITableViewCell
         if indexPath.row == 0 {
@@ -157,7 +133,54 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         return cell
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+    //MARK: Helper Methods
+    
+    func pokerEventFromUserInput() -> PokerEvent {
+        let date = NSDate()
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.NoStyle
+        formatter.timeStyle = NSDateFormatterStyle.ShortStyle
+        let timeNow = formatter.stringFromDate(date)
+        let newPokerEvent = PokerEvent()
+        newPokerEvent.title = "New poker game at \(timeNow)"
+        newPokerEvent.eventDescription = "This is going to be an awesome game.  I haven't played poker in a while!"
+        newPokerEvent.host = PFUser.currentUser()!
+        if let profilePic = PFUser.currentUser()!.objectForKey("fbProfilePictureURL") as? String {
+            newPokerEvent.hostProfilePictureURL = profilePic
+        }
+        newPokerEvent.date = NSDate()
+        newPokerEvent.gameType = "PLO"
+        newPokerEvent.gameFormat = "Cash Game"
+        newPokerEvent.streetAddress = "1560 Southwest Expy"
+        newPokerEvent.cityName = "San Jose"
+        newPokerEvent.stateName = "CA"
+        newPokerEvent.zipCode = "95126"
+        newPokerEvent.cashGameBuyInMinimum = 40
+        newPokerEvent.cashGameBuyInMaximum = 200
+        newPokerEvent.maximumSeats = 9
+        newPokerEvent.numberOfAttendees = 1
+        newPokerEvent.numberOfSpotsLeft = 8
+        
+        return newPokerEvent
+    }
+    
+    func hostInviteForCreatedEvent(createdEvent: PokerEvent) -> Invite {
+        let hostInvite = Invite()
+        hostInvite.invitee = PFUser.currentUser()!
+        hostInvite.event = createdEvent
+        hostInvite.inviteStatus = "Going"
+        hostInvite.numberOfGuests = 0
+        
+        return hostInvite
+    }
+    
+    func friendInviteForCreatedEvent(friend: PFUser, createdEvent: PokerEvent) -> Invite {
+        let invite = Invite()
+        invite.invitee = friend
+        invite.event = createdEvent
+        invite.inviteStatus = "Pending"
+        invite.numberOfGuests = 0
+        
+        return invite
     }
 }
