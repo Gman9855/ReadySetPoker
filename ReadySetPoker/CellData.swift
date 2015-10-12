@@ -1,5 +1,5 @@
 //
-//  CellData.swift
+//  EventDetailCellData.swift
 //  ReadySetPoker
 //
 //  Created by Gershy Lev on 9/14/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CellData: NSObject {
+class EventDetailCellData: NSObject {
     
     var type: UITableViewCell.Type!
     var height: CGFloat?

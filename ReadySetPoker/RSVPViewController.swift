@@ -25,7 +25,7 @@ class RSVPViewController: UITableViewController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        if invite.event.host.objectId! == PFUser.currentUser()!.objectId {
+        if invite.event.host.objectId! == PFUser.currentUser()!.objectId { // If we're the host we can't choose 'Not Going'
             segmentedControl.enabled = false
         }
     }
@@ -57,8 +57,8 @@ class RSVPViewController: UITableViewController {
         var updatedPartiesCount = 0
         var shouldSave = true
         if isGoing {
-            if invite.inviteStatus == "Going" {
-                if invite.numberOfGuests != guestsJoining {
+            if invite.inviteStatus == "Going" {   //If previous status was "Going"
+                if invite.numberOfGuests != guestsJoining {   //If the number of guests was changed from the previous status
                     changedNumberOfGuests = true
                     
                     if guestsJoining > invite.numberOfGuests {

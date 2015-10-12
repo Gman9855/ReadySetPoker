@@ -20,8 +20,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     var delegate: EventDetailViewControllerDelegate?
     private var tableViewData = [AnyObject]()
     private let defaultHeight: CGFloat = UITableViewAutomaticDimension
-    private let cellData: [(CGFloat?, UITableViewCell.Type)] = [(54, EventTitleCell.self), (nil, EventDateCell.self), (64, EventLocationCell.self), (nil, EventCommentsCell.self), (nil, EventMoreDetailsCell.self), (64, EventRSVPCell.self)]
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "Event Details"
@@ -79,13 +78,13 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         }
     }
     
-    func arrayWithCellData() -> [CellData] {
-        let titleCell = CellData(type: EventTitleCell.self, height: 54)
-        let dateCell = CellData(type: EventDateCell.self, height: nil)
-        let locationCell = CellData(type: EventLocationCell.self, height: 64)
-        let commentsCell = CellData(type: EventCommentsCell.self, height: nil)
-        let moreDetailsCell = CellData(type: EventMoreDetailsCell.self, height: nil)
-        let rsvpCell = CellData(type: EventRSVPCell.self, height: 64)
+    func arrayWithCellData() -> [EventDetailCellData] {
+        let titleCell = EventDetailCellData(type: EventTitleCell.self, height: 54)
+        let dateCell = EventDetailCellData(type: EventDateCell.self, height: nil)
+        let locationCell = EventDetailCellData(type: EventLocationCell.self, height: 64)
+        let commentsCell = EventDetailCellData(type: EventCommentsCell.self, height: nil)
+        let moreDetailsCell = EventDetailCellData(type: EventMoreDetailsCell.self, height: nil)
+        let rsvpCell = EventDetailCellData(type: EventRSVPCell.self, height: 64)
         return [titleCell, dateCell, locationCell, commentsCell, moreDetailsCell, rsvpCell]
     }
     
@@ -102,7 +101,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 {
-            let cellArray = self.tableViewData[indexPath.section] as! [CellData]
+            let cellArray = self.tableViewData[indexPath.section] as! [EventDetailCellData]
             let cellData = cellArray[indexPath.row]
             return cellData.height != nil ? cellData.height! : defaultHeight
         }
@@ -127,10 +126,8 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
-            let (_, cellType) = cellData[indexPath.row]
-//            let cellReuseIdentifier = reflect(cellType).summary
-            
-            let cellReuseIdentifier = cellTypeToIdentifierString(cellType)
+            let cellData = self.arrayWithCellData()[indexPath.row]
+            let cellReuseIdentifier = cellTypeToIdentifierString(cellData.type)
             let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as! EventDetailsCell
             cell.configureWithInvite(self.invite)
             return cell

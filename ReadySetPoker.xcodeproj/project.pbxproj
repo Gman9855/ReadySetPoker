@@ -277,11 +277,9 @@
 		8B8423FF1B61602D00B69539 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8BD2D0DE1BCB63570007A210 /* Parse Model Objects */,
 				8BF06E161B7BDD5600E5E9E4 /* Event Detail Prototype Cells */,
-				8B8423FD1B61601F00B69539 /* Event.swift */,
 				8BDBFDCC1BA73A8900241847 /* CellData.swift */,
-				8B8424001B61658100B69539 /* PokerEvent.swift */,
-				8B9651BE1B8A796700E08CD6 /* Invite.swift */,
 				8BEDA2E11B69A44400BCA918 /* FacebookFriend.swift */,
 				8BEDA2E31B69A84700BCA918 /* InviteFriendsTableViewCell.swift */,
 				8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */,
@@ -302,6 +300,16 @@
 				8BF06E231B7D568E00E5E9E4 /* RSVPViewController.swift */,
 			);
 			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8BD2D0DE1BCB63570007A210 /* Parse Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423FD1B61601F00B69539 /* Event.swift */,
+				8B8424001B61658100B69539 /* PokerEvent.swift */,
+				8B9651BE1B8A796700E08CD6 /* Invite.swift */,
+			);
+			name = "Parse Model Objects";
 			sourceTree = "<group>";
 		};
 		8BF06E161B7BDD5600E5E9E4 /* Event Detail Prototype Cells */ = {

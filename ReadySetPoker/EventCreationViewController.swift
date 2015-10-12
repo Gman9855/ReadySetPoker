@@ -70,12 +70,14 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                         self.dismissViewControllerAnimated(true, completion: { () -> Void in
                             self.delegate?.eventCreationViewControllerDidCreateEventInvite(hostInvite)
                         })
+                        
                         let relation = PFUser.currentUser()!.relationForKey("invites")
                         relation.addObject(hostInvite)
-                        PFUser.currentUser()!.saveInBackground()
+                        
                         let eventInvitesRelation = newPokerEvent.relationForKey("invites")
                         eventInvitesRelation.addObject(hostInvite)
-                        newPokerEvent.saveInBackground()
+                        
+                        PFObject.saveAllInBackground([PFUser.currentUser()!, newPokerEvent])
                     })
                     
                     let invitedFriends = result as! [PFUser]
