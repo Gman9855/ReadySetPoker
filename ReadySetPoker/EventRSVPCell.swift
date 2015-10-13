@@ -11,35 +11,46 @@ import Parse
 
 class EventRSVPCell: EventDetailsCell {
     @IBOutlet weak var rsvpButton: UIButton!
+    var invite: Invite!
+    var seats: String {
+        return invite.event.numberOfSpotsLeft == 1 ? "seat" : "seats"
+    }
+    var buttonTitle: String!
+    var buttonColor = UIColor()
 
     override func configureWithInvite(invite: Invite) {
-        updateButtonTitleWithInvite(invite)
-    }
-    
-    func updateButtonTitleWithInvite(invite: Invite) {
-        var buttonTitle: String
-        var buttonColor = UIColor()
-        let seats = invite.event.numberOfSpotsLeft == 1 ? "seat" : "seats"
-
+        self.invite = invite
         switch invite.inviteStatus {
-        case "Going":
-            buttonTitle = "Going - \(invite.event.numberOfSpotsLeft) \(seats) left"
-            buttonColor = UIColor(red: 0.305, green: 0.713, blue: 0.417, alpha: 1.000)
-        case "Not Going":
-            buttonTitle = "Not Going"
-            buttonColor = UIColor.grayColor()
+        case Status.Going.rawValue:
+            configureButtonForGoingStatus()
+        case Status.NotGoing.rawValue:
+            configureButtonForNotGoingStatus()
         default:
-            if invite.event.numberOfSpotsLeft == 0 {
-                buttonTitle = "No seats left"
-                buttonColor = UIColor.grayColor()
-                self.rsvpButton.enabled = false
-            } else {
-                self.rsvpButton.enabled = true
-                buttonTitle = "RSVP - \(invite.event.numberOfSpotsLeft) \(seats) left"
-                buttonColor = UIColor(red: 1.000, green: 0.299, blue: 0.295, alpha: 1.000)
-            }
+            configureButtonForPendingStatus()
         }
         self.rsvpButton.backgroundColor = buttonColor
-        self.rsvpButton.setTitle(buttonTitle, forState: UIControlState.Normal)
+        self.rsvpButton.setTitle(buttonTitle, forState: .Normal)
+    }
+    
+    func configureButtonForGoingStatus() {
+        buttonTitle = "\(Status.Going.rawValue) - \(invite.event.numberOfSpotsLeft) \(seats) left"
+        buttonColor = UIColor(red: 0.305, green: 0.713, blue: 0.417, alpha: 1.000)
+    }
+    
+    func configureButtonForNotGoingStatus() {
+        buttonTitle = Status.NotGoing.rawValue
+        buttonColor = UIColor.grayColor()
+    }
+    
+    func configureButtonForPendingStatus() {
+        if invite.event.numberOfSpotsLeft == 0 {
+            buttonTitle = "No seats left"
+            buttonColor = UIColor.grayColor()
+            self.rsvpButton.enabled = false
+        } else {
+            self.rsvpButton.enabled = true
+            buttonTitle = "RSVP - \(invite.event.numberOfSpotsLeft) \(seats) left"
+            buttonColor = UIColor(red: 1.000, green: 0.299, blue: 0.295, alpha: 1.000)
+        }
     }
 }

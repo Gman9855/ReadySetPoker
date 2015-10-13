@@ -254,7 +254,7 @@
             </objects>
             <point key="canvasLocation" x="3651" y="1694.25"/>
         </scene>
-        <!--Upcoming Games-->
+        <!--Event List View Controller-->
         <scene sceneID="jxh-hw-hj6">
             <objects>
                 <tableViewController id="Sbt-6K-EK8" customClass="EventListViewController" customModule="ReadySetPoker" customModuleProvider="target" sceneMemberID="viewController">
@@ -613,7 +613,7 @@
                             <outlet property="delegate" destination="Sbt-6K-EK8" id="nlv-DF-PGl"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Upcoming Games" id="fTP-eZ-SCQ">
+                    <navigationItem key="navigationItem" id="fTP-eZ-SCQ">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="VqX-TE-O4z">
                             <connections>
                                 <action selector="plusButtonTapped:" destination="Sbt-6K-EK8" id="EeG-zI-Zf1"/>
@@ -1238,7 +1238,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="SWJ-d0-nER">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="5N6-bJ-4ui"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="GJB-K8-Poe"/>
                     </navigationItem>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="odo-wB-8oC">
                         <autoresizingMask key="autoresizingMask"/>
@@ -1250,7 +1250,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyV-BW-kuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3616.5" y="819"/>
+            <point key="canvasLocation" x="3523.5" y="447.75"/>
         </scene>
         <!--Invite Friends-->
         <scene sceneID="vWx-Jl-CZp">
@@ -1556,7 +1556,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rWB-fi-wwn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4438.5" y="-570"/>
+            <point key="canvasLocation" x="4447.5" y="-1036.5"/>
         </scene>
         <!--Create New Game-->
         <scene sceneID="FMY-oY-6os">
@@ -1672,7 +1672,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HE3-cR-k5K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4426.5" y="102"/>
+            <point key="canvasLocation" x="4435.5" y="-364.5"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Yv5-VL-qnz">
@@ -1710,7 +1710,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ecl-7r-x7i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3616.5" y="102"/>
+            <point key="canvasLocation" x="3625.5" y="-364.5"/>
         </scene>
     </scenes>
     <resources>

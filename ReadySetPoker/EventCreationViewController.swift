@@ -170,7 +170,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         let hostInvite = Invite()
         hostInvite.invitee = PFUser.currentUser()!
         hostInvite.event = createdEvent
-        hostInvite.inviteStatus = "Going"
+        hostInvite.inviteStatus = Status.Going.rawValue
         hostInvite.numberOfGuests = 0
         
         return hostInvite
@@ -180,7 +180,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         let invite = Invite()
         invite.invitee = friend
         invite.event = createdEvent
-        invite.inviteStatus = "Pending"
+        invite.inviteStatus = Status.Pending.rawValue
         invite.numberOfGuests = 0
         
         return invite

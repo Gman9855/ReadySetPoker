@@ -24,14 +24,14 @@ class EventTableViewCell: PFTableViewCell {
     func configureWithInvite(invite: Invite) {
         var inviteStatus = invite.inviteStatus
         if PFUser.currentUser()!.objectId! == invite.event.host.objectId! {
-            inviteStatus = "Hosting"
+            inviteStatus = Status.Hosting.rawValue
         }
         UIView.setAnimationsEnabled(false)
         self.inviteStatus.setTitle(inviteStatus, forState: UIControlState.Normal)
         switch invite.inviteStatus {
-        case "Going":
+        case Status.Going.rawValue:
             self.inviteStatus.backgroundColor = UIColor(red: 0.305, green: 0.713, blue: 0.417, alpha: 1.000)
-        case "Not Going":
+        case Status.NotGoing.rawValue:
             self.inviteStatus.backgroundColor = UIColor.grayColor()
         default:
             self.inviteStatus.backgroundColor = UIColor(red: 1.000, green: 0.299, blue: 0.295, alpha: 1.000)

@@ -9,10 +9,11 @@
 import Foundation
 import Parse
 
-struct Status {
-    var PendingInvite = "Pending Invite"
-    var Going = "Going"
-    var NotGoing = "Not Going"
+enum Status: String {
+    case Pending = "Pending"
+    case Going = "Going"
+    case NotGoing = "Not Going"
+    case Hosting = "Hosting"
 }
 
 class Invite: PFObject, PFSubclassing {

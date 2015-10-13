@@ -42,7 +42,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
             }
         })
     }
-    
+        
     func updatePlayerStatusesInBackgroundWithBlock(block: (succeeded: Bool, error: NSError?) -> ()) {
         while self.tableViewData.count > 1 {    // if we have player status sections, remove all
             self.tableViewData.removeLast()     // of them except our static section
@@ -59,11 +59,11 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
                 var playersNotGoing = [Invite]()
                 var playersPending = [Invite]()
                 for invite: Invite in invites {
-                    if invite.inviteStatus == "Going" {
+                    if invite.inviteStatus == Status.Going.rawValue {
                         playersGoing.append(invite)
-                    } else if invite.inviteStatus == "Not Going" {
+                    } else if invite.inviteStatus == Status.NotGoing.rawValue {
                         playersNotGoing.append(invite)
-                    } else if invite.inviteStatus == "Pending" {
+                    } else if invite.inviteStatus == Status.Pending.rawValue {
                         playersPending.append(invite)
                     }
                 }
@@ -160,7 +160,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         if let updatedInvite = invite {
             let indexPath = NSIndexPath(forRow: 5, inSection: 0)
             let cell = self.tableView.cellForRowAtIndexPath(indexPath) as! EventRSVPCell
-            cell.updateButtonTitleWithInvite(updatedInvite)
+            cell.configureWithInvite(updatedInvite)
             self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
                 if succeeded {
                     self.tableView.reloadData()

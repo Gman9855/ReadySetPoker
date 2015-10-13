@@ -57,7 +57,7 @@ class RSVPViewController: UITableViewController {
         var updatedPartiesCount = 0
         var shouldSave = true
         if isGoing {
-            if invite.inviteStatus == "Going" {   //If previous status was "Going"
+            if invite.inviteStatus == Status.Going.rawValue {   //If previous status was "Going"
                 if invite.numberOfGuests != guestsJoining {   //If the number of guests was changed from the previous status
                     changedNumberOfGuests = true
                     
@@ -71,10 +71,10 @@ class RSVPViewController: UITableViewController {
                     self.delegate?.RSVPViewControllerDidUpdateInvite(nil)
                     self.dismissViewControllerAnimated(true, completion: nil)
                 }
-            } else if invite.inviteStatus == "Not Going" || invite.inviteStatus == "Pending" {
+            } else if invite.inviteStatus == Status.NotGoing.rawValue || invite.inviteStatus == Status.Pending.rawValue {
                 updatedPartiesCount += guestsJoining + 1
             }
-        } else if invite.inviteStatus == "Going" {
+        } else if invite.inviteStatus == Status.Going.rawValue {
             updatedPartiesCount -= invite.numberOfGuests + 1
         }
         
@@ -86,7 +86,7 @@ class RSVPViewController: UITableViewController {
         if shouldSave {
             invite.event.incrementKey("numberOfAttendees", byAmount: updatedPartiesCount)
             invite.event.incrementKey("numberOfSpotsLeft", byAmount: -updatedPartiesCount)
-            invite.inviteStatus = isGoing ? "Going" : "Not Going"
+            invite.inviteStatus = isGoing ? Status.Going.rawValue : Status.NotGoing.rawValue
             invite.numberOfGuests = guestsJoining
             
             MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
@@ -95,10 +95,11 @@ class RSVPViewController: UITableViewController {
                     print("Successfully updated invite status")
                     print("Invite now has a \(self.invite.inviteStatus) invite status with \(self.invite.numberOfGuests) guests, and \(self.invite.event.numberOfAttendees) people going with \(self.invite.event.numberOfSpotsLeft) spots left")
                     
+                    // Get the people going to the event so we can notify them of the RSVP update
                     let invites = self.invite.event.relationForKey("invites")
                     let invitesQuery = invites.query()
-                    invitesQuery?.whereKey("inviteStatus", notEqualTo: "Not Going")
-                    invitesQuery?.whereKey("invitee", notEqualTo: PFUser.currentUser()!)
+                    invitesQuery?.whereKey("inviteStatus", notEqualTo: Status.NotGoing.rawValue)  // Avoid sending a push to people not going
+                    invitesQuery?.whereKey("invitee", notEqualTo: PFUser.currentUser()!) // Avoid sending a push to the current user
                     invitesQuery?.includeKey("invitee")
                     invitesQuery?.findObjectsInBackgroundWithBlock({ (invites: [AnyObject]?, error: NSError?) -> Void in
                         print(invites)
