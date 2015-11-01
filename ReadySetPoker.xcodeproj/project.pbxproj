@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8B41EC441BD1ABD000E6D6D2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */; };
+		8B41EC451BD1ABD000E6D6D2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */; };
+		8B41EC461BD1ABD000E6D6D2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */; };
 		8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279C1BB60599004CFE64 /* Comments-50.png */; };
 		8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279E1BB605A0004CFE64 /* Map-50.png */; };
 		8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4227A01BB605A9004CFE64 /* Calendar-50.png */; };
@@ -26,9 +29,6 @@
 		8B8423D41B6069F100B69539 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D31B6069F100B69539 /* SystemConfiguration.framework */; };
 		8B8423D61B606A0100B69539 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D51B606A0100B69539 /* libz.dylib */; };
 		8B8423D81B606A0B00B69539 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D71B606A0B00B69539 /* libsqlite3.dylib */; };
-		8B8423DD1B60918E00B69539 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423DA1B60918E00B69539 /* FBSDKCoreKit.framework */; };
-		8B8423DE1B60918E00B69539 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423DB1B60918E00B69539 /* FBSDKLoginKit.framework */; };
-		8B8423DF1B60918E00B69539 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423DC1B60918E00B69539 /* FBSDKShareKit.framework */; };
 		8B8423EC1B60966700B69539 /* ReadySetPokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */; };
 		8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */; };
 		8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423F71B6142EC00B69539 /* Default-568h@2x.png */; };
@@ -80,6 +80,9 @@
 		1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.adhoc.xcconfig"; sourceTree = "<group>"; };
 		61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.debug.xcconfig"; sourceTree = "<group>"; };
 		70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadySetPoker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		8B42279C1BB60599004CFE64 /* Comments-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-50.png"; sourceTree = "<group>"; };
 		8B42279E1BB605A0004CFE64 /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
 		8B4227A01BB605A9004CFE64 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
@@ -102,9 +105,6 @@
 		8B8423D31B6069F100B69539 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		8B8423D51B606A0100B69539 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		8B8423D71B606A0B00B69539 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		8B8423DA1B60918E00B69539 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
-		8B8423DB1B60918E00B69539 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
-		8B8423DC1B60918E00B69539 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = ../../../FacebookSDK/FBSDKShareKit.framework; sourceTree = "<group>"; };
 		8B8423E81B60960A00B69539 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadySetPokerTests.swift; sourceTree = "<group>"; };
 		8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
@@ -153,17 +153,17 @@
 				8BEDA2F31B6A8D0500BCA918 /* ImageIO.framework in Frameworks */,
 				8B8423D81B606A0B00B69539 /* libsqlite3.dylib in Frameworks */,
 				8B8423D61B606A0100B69539 /* libz.dylib in Frameworks */,
-				8B8423DF1B60918E00B69539 /* FBSDKShareKit.framework in Frameworks */,
 				8B8423D41B6069F100B69539 /* SystemConfiguration.framework in Frameworks */,
+				8B41EC441BD1ABD000E6D6D2 /* FBSDKCoreKit.framework in Frameworks */,
+				8B41EC461BD1ABD000E6D6D2 /* FBSDKShareKit.framework in Frameworks */,
 				8B8423D21B6069BE00B69539 /* StoreKit.framework in Frameworks */,
-				8B8423DE1B60918E00B69539 /* FBSDKLoginKit.framework in Frameworks */,
 				8B8423D01B6069B100B69539 /* Security.framework in Frameworks */,
 				8B8423CE1B6069A200B69539 /* QuartzCore.framework in Frameworks */,
 				8B8423CC1B60699400B69539 /* CoreLocation.framework in Frameworks */,
+				8B41EC451BD1ABD000E6D6D2 /* FBSDKLoginKit.framework in Frameworks */,
 				8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */,
 				8B8423CA1B60698C00B69539 /* CoreGraphics.framework in Frameworks */,
 				8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */,
-				8B8423DD1B60918E00B69539 /* FBSDKCoreKit.framework in Frameworks */,
 				8B8423C81B60697800B69539 /* CFNetwork.framework in Frameworks */,
 				8B8423C61B60697100B69539 /* AudioToolbox.framework in Frameworks */,
 				8B8423C41B60690A00B69539 /* Parse.framework in Frameworks */,
@@ -253,9 +253,9 @@
 				8BEDA2F21B6A8D0500BCA918 /* ImageIO.framework */,
 				8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */,
 				8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */,
-				8B8423DA1B60918E00B69539 /* FBSDKCoreKit.framework */,
-				8B8423DB1B60918E00B69539 /* FBSDKLoginKit.framework */,
-				8B8423DC1B60918E00B69539 /* FBSDKShareKit.framework */,
+				8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */,
+				8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */,
+				8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */,
 				8B8423D71B606A0B00B69539 /* libsqlite3.dylib */,
 				8B8423D51B606A0100B69539 /* libz.dylib */,
 				8B8423D31B6069F100B69539 /* SystemConfiguration.framework */,
