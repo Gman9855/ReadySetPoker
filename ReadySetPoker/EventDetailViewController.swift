@@ -82,10 +82,10 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         let titleCell = EventDetailCellData(type: EventTitleCell.self, height: 54)
         let dateCell = EventDetailCellData(type: EventDateCell.self, height: nil)
         let locationCell = EventDetailCellData(type: EventLocationCell.self, height: 64)
-        let commentsCell = EventDetailCellData(type: EventCommentsCell.self, height: nil)
+//        let commentsCell = EventDetailCellData(type: EventCommentsCell.self, height: nil)
         let moreDetailsCell = EventDetailCellData(type: EventMoreDetailsCell.self, height: nil)
         let rsvpCell = EventDetailCellData(type: EventRSVPCell.self, height: 64)
-        return [titleCell, dateCell, locationCell, commentsCell, moreDetailsCell, rsvpCell]
+        return [titleCell, dateCell, locationCell, moreDetailsCell, rsvpCell]
     }
     
     // MARK: UITableViewDataSource
@@ -144,13 +144,22 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         }
         return cell
     }
-    
+
     @IBAction func rsvpButtonTapped(sender: UIButton) {
         let rsvpNavigationVC = storyboard?.instantiateViewControllerWithIdentifier("rsvpVC") as! UINavigationController
         let rsvpVC = rsvpNavigationVC.topViewController as! RSVPViewController
         rsvpVC.delegate = self
         rsvpVC.invite = self.invite
         presentViewController(rsvpNavigationVC, animated: true, completion: nil)
+    }
+    
+    //MARK: Segue
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "MoreDetailsSegue" {
+            let eventDescriptionVC = segue.destinationViewController as! EventDescriptionViewController
+            eventDescriptionVC.eventDescription = invite.event.eventDescription
+        }
     }
     
     //MARK: RSVP View Controller Delegate

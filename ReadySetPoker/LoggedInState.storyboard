@@ -800,7 +800,7 @@
                                     <outlet property="dateLabel" destination="wqc-PK-atb" id="c5T-df-GEv"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventLocationCell" rowHeight="64" id="5Qr-Oc-k2i" customClass="EventLocationCell" customModule="ReadySetPoker" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventLocationCell" rowHeight="64" id="5Qr-Oc-k2i" customClass="EventLocationCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="184" width="600" height="64"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5Qr-Oc-k2i" id="Aic-vT-hnq">
@@ -1103,6 +1103,9 @@
                                     </variation>
                                 </tableViewCellContentView>
                                 <animations/>
+                                <connections>
+                                    <segue destination="Jis-x9-APR" kind="show" identifier="MoreDetailsSegue" id="Xih-y3-Dvb"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ReadySetPoker.EventRSVPCell" rowHeight="64" id="h74-Yv-CCe" customClass="EventRSVPCell" customModule="ReadySetPoker" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="336" width="600" height="64"/>
@@ -1251,6 +1254,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MyV-BW-kuY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3523.5" y="447.75"/>
+        </scene>
+        <!--Event Description View Controller-->
+        <scene sceneID="Xu0-9K-Agf">
+            <objects>
+                <viewController id="Jis-x9-APR" customClass="EventDescriptionViewController" customModule="ReadySetPoker" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aB8-QL-iT3"/>
+                        <viewControllerLayoutGuide type="bottom" id="HTB-20-Y2i"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LEN-q9-t29">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5Yz-Eg-sWe">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <animations/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="5Yz-Eg-sWe" secondAttribute="leading" id="6xP-Kn-b0Z"/>
+                            <constraint firstItem="5Yz-Eg-sWe" firstAttribute="top" secondItem="aB8-QL-iT3" secondAttribute="bottom" id="Jmf-Vk-4YX"/>
+                            <constraint firstItem="HTB-20-Y2i" firstAttribute="top" secondItem="5Yz-Eg-sWe" secondAttribute="bottom" id="kJh-vb-JYm"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Yz-Eg-sWe" secondAttribute="trailing" id="u0X-8w-wUP"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="5Yz-Eg-sWe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="6xP-Kn-b0Z"/>
+                                <exclude reference="Jmf-Vk-4YX"/>
+                                <exclude reference="u0X-8w-wUP"/>
+                                <exclude reference="kJh-vb-JYm"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="5Yz-Eg-sWe"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="6xP-Kn-b0Z"/>
+                                <include reference="Jmf-Vk-4YX"/>
+                                <include reference="u0X-8w-wUP"/>
+                                <include reference="kJh-vb-JYm"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="textView" destination="5Yz-Eg-sWe" id="Jad-EH-Rtr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Xr-9T-mRJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4293" y="447.75"/>
         </scene>
         <!--Invite Friends-->
         <scene sceneID="vWx-Jl-CZp">
