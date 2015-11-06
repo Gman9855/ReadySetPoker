@@ -26,6 +26,7 @@ class EventTableViewCell: PFTableViewCell {
         if PFUser.currentUser()!.objectId! == invite.event.host.objectId! {
             inviteStatus = Status.Hosting.rawValue
         }
+
         UIView.setAnimationsEnabled(false)
         self.inviteStatus.setTitle(inviteStatus, forState: UIControlState.Normal)
         switch invite.inviteStatus {
@@ -43,5 +44,11 @@ class EventTableViewCell: PFTableViewCell {
         self.eventImage.sd_setImageWithURL(NSURL(string: invite.event.hostProfilePictureURL), placeholderImage: UIImage(named: "placeholder.jpg"))
         self.gameType.setTitle(invite.event.gameType, forState: UIControlState.Normal)
         self.gameFormat.setTitle(invite.event.gameFormat, forState: UIControlState.Normal)
+    }
+    
+    //MARK: Helper methods
+    
+    func isGameCompleted(invite: Invite) -> Bool {
+        return invite.event.startDate.compare(NSDate()) == NSComparisonResult.OrderedAscending
     }
 }

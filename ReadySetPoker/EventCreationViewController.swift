@@ -150,7 +150,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         if let profilePic = PFUser.currentUser()!.objectForKey("fbProfilePictureURL") as? String {
             newPokerEvent.hostProfilePictureURL = profilePic
         }
-        newPokerEvent.date = NSDate()
+        newPokerEvent.startDate = NSDate()
         newPokerEvent.gameType = "PLO"
         newPokerEvent.gameFormat = "Cash Game"
         newPokerEvent.streetAddress = "1560 Southwest Expy"

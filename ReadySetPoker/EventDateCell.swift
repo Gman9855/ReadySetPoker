@@ -21,10 +21,10 @@ class EventDateCell: EventDetailsCell {
         
         DateFormatter.formatter.dateStyle = NSDateFormatterStyle.MediumStyle
         DateFormatter.formatter.timeStyle = NSDateFormatterStyle.NoStyle
-        let dateString = DateFormatter.formatter.stringFromDate(invite.event.date)
+        let dateString = DateFormatter.formatter.stringFromDate(invite.event.startDate)
         DateFormatter.formatter.dateStyle = NSDateFormatterStyle.NoStyle
         DateFormatter.formatter.timeStyle = NSDateFormatterStyle.ShortStyle
-        let timeString = DateFormatter.formatter.stringFromDate(invite.event.date)
+        let timeString = DateFormatter.formatter.stringFromDate(invite.event.startDate)
         dateLabel.text = dateString + " at " + timeString
     }
 }

@@ -83,9 +83,10 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         let dateCell = EventDetailCellData(type: EventDateCell.self, height: nil)
         let locationCell = EventDetailCellData(type: EventLocationCell.self, height: 64)
 //        let commentsCell = EventDetailCellData(type: EventCommentsCell.self, height: nil)
+        let pokerDetailsCell = EventDetailCellData(type: EventPokerDetailsCell.self, height: 64)
         let moreDetailsCell = EventDetailCellData(type: EventMoreDetailsCell.self, height: nil)
         let rsvpCell = EventDetailCellData(type: EventRSVPCell.self, height: 64)
-        return [titleCell, dateCell, locationCell, moreDetailsCell, rsvpCell]
+        return [titleCell, dateCell, locationCell, pokerDetailsCell, moreDetailsCell, rsvpCell]
     }
     
     // MARK: UITableViewDataSource

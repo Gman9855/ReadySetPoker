@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */; };
+		8B05E6471BEAF76400E78058 /* Chip-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6461BEAF76400E78058 /* Chip-50.png */; };
+		8B05E6491BEAF8E400E78058 /* Info-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6481BEAF8E400E78058 /* Info-50.png */; };
+		8B05E64B1BEAF9D000E78058 /* Spades-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E64A1BEAF9D000E78058 /* Spades-50.png */; };
+		8B05E64D1BEAFA4100E78058 /* EventPokerDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */; };
 		8B41EC441BD1ABD000E6D6D2 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */; };
 		8B41EC451BD1ABD000E6D6D2 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */; };
 		8B41EC461BD1ABD000E6D6D2 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */; };
@@ -82,6 +86,10 @@
 		61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.debug.xcconfig"; sourceTree = "<group>"; };
 		70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadySetPoker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionViewController.swift; sourceTree = "<group>"; };
+		8B05E6461BEAF76400E78058 /* Chip-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chip-50.png"; sourceTree = "<group>"; };
+		8B05E6481BEAF8E400E78058 /* Info-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-50.png"; sourceTree = "<group>"; };
+		8B05E64A1BEAF9D000E78058 /* Spades-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spades-50.png"; sourceTree = "<group>"; };
+		8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPokerDetailsCell.swift; sourceTree = "<group>"; };
 		8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKShareKit.framework"; sourceTree = "<group>"; };
@@ -244,6 +252,9 @@
 				8B42279C1BB60599004CFE64 /* Comments-50.png */,
 				8B42279E1BB605A0004CFE64 /* Map-50.png */,
 				8B4227A01BB605A9004CFE64 /* Calendar-50.png */,
+				8B05E6461BEAF76400E78058 /* Chip-50.png */,
+				8B05E6481BEAF8E400E78058 /* Info-50.png */,
+				8B05E64A1BEAF9D000E78058 /* Spades-50.png */,
 			);
 			name = "Supporting Files";
 			path = ReadySetPokerTests;
@@ -323,6 +334,7 @@
 				8BF06E191B7BDDBC00E5E9E4 /* EventDateCell.swift */,
 				8BF06E1B1B7BDDE300E5E9E4 /* EventLocationCell.swift */,
 				8BF06E1D1B7BDE0200E5E9E4 /* EventCommentsCell.swift */,
+				8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */,
 				8BF06E1F1B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift */,
 				8BF06E211B7BDE3B00E5E9E4 /* EventRSVPCell.swift */,
 			);
@@ -426,6 +438,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */,
+				8B05E6471BEAF76400E78058 /* Chip-50.png in Resources */,
 				8B9651871B82867800E08CD6 /* ic_menu_mapmode.png in Resources */,
 				8B9651831B82866900E08CD6 /* facebook-login-2.png in Resources */,
 				8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */,
@@ -436,9 +449,11 @@
 				8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */,
 				8B96518A1B82868200E08CD6 /* sym_action_chat.png in Resources */,
 				8B9651841B82866900E08CD6 /* rsplogo.jpg in Resources */,
+				8B05E6491BEAF8E400E78058 /* Info-50.png in Resources */,
 				8B9651881B82867800E08CD6 /* ic_menu_my_calendar.png in Resources */,
 				8B9651801B82865600E08CD6 /* placeholder.jpg in Resources */,
 				8B96517E1B82863700E08CD6 /* me.jpg in Resources */,
+				8B05E64B1BEAF9D000E78058 /* Spades-50.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +530,7 @@
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
 				8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */,
 				8BF06E1C1B7BDDE300E5E9E4 /* EventLocationCell.swift in Sources */,
+				8B05E64D1BEAFA4100E78058 /* EventPokerDetailsCell.swift in Sources */,
 				8BF06E151B7AEE8400E5E9E4 /* EventDetailViewController.swift in Sources */,
 				8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */,
 				8BEDA2E41B69A84700BCA918 /* InviteFriendsTableViewCell.swift in Sources */,

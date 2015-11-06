@@ -12,7 +12,8 @@ import Parse
 class Event : PFObject {
     @NSManaged var title: String
     @NSManaged var eventDescription: String
-    @NSManaged var date: NSDate
+    @NSManaged var startDate: NSDate
+    @NSManaged var endDate: NSDate
     @NSManaged var location: CLLocationCoordinate2D
     @NSManaged var address: String
     @NSManaged var streetAddress: String
