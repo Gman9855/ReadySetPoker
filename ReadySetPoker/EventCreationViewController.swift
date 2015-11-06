@@ -151,6 +151,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
             newPokerEvent.hostProfilePictureURL = profilePic
         }
         newPokerEvent.startDate = NSDate()
+        newPokerEvent.endDate = NSDate(timeIntervalSinceNow: 60)
         newPokerEvent.gameType = "PLO"
         newPokerEvent.gameFormat = "Cash Game"
         newPokerEvent.streetAddress = "1560 Southwest Expy"
