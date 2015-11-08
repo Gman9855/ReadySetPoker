@@ -77,7 +77,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     override func objectsDidLoad(error: NSError?) {
         super.objectsDidLoad(error)
-        
+
         MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
         
         if self.objects?.count == 0 {
@@ -95,7 +95,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
         
         if let invite = object as? Invite {
-            cell.configureWithInvite(invite)
+            cell.configureWithInvite(invite)            
         }
     
         return cell
