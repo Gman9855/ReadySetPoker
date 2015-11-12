@@ -11,6 +11,7 @@ import Parse
 import ParseUI
 import Bolts
 import MBProgressHUD
+import CoreData
 
 class EventListViewController: PFQueryTableViewController, EventCreationViewControllerDelegate, EventDetailViewControllerDelegate {
 
@@ -18,8 +19,15 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     var tableQuery: PFQuery!
     var noGamesLabel: UILabel!
     
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext!
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        let fetchRequest = NSFetchRequest(entityName: "CDInvite")
+        let savedPins = (try! sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
+
         setUpNoGamesLabel()
         noGamesLabel.hidden = true
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
@@ -53,15 +61,35 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     // Define the query that will provide the data for the table view
     override func queryForTable() -> PFQuery {
-//        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-//        let inviteQuery = inviteRelation.query()!
+        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+        let inviteQuery = inviteRelation.query()!
+        
+        // 
 //        inviteQuery.includeKey("event")
 //        inviteQuery.orderByDescending("createdAt")
+//        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+//        let inviteQuery = inviteRelation.query()!
+//        inviteQuery.findObjects()
+//        inviteQuery.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
+//            for invite: Invite in results as! [Invite] {
+//                let fetchRequest = NSFetchRequest(entityName: "CDInvite")
+//                fetchRequest.predicate = NSPredicate(format: "parseObjectID == %@", invite.objectId!)
+//                let result = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
+//                if let savedInvite = result.first {
+//                    print("updated")
+//                    savedInvite.parseObjectID = invite.objectId!
+//                } else {
+//                    print("created new")
+//                    CDInvite(parseObjectID: invite.objectId!, context: self.sharedContext)
+//                }
+//            }
+//            CoreDataStackManager.sharedInstance().saveContext()
+//        }
         
         let eventQuery = PokerEvent.query()!
         
-        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-        let inviteQuery = inviteRelation.query()!
+//        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
+//        let inviteQuery = inviteRelation.query()!
         inviteQuery.whereKey("event", matchesQuery: eventQuery)
         inviteQuery.includeKey("event")
         inviteQuery.orderByDescending("createdAt")
@@ -77,7 +105,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     override func objectsDidLoad(error: NSError?) {
         super.objectsDidLoad(error)
-
+        
         MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
         
         if self.objects?.count == 0 {
@@ -86,6 +114,20 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
             }
         } else {
             noGamesLabel.hidden = true
+            for invite: Invite in self.objects as! [Invite] {
+                let fetchRequest = NSFetchRequest(entityName: "CDInvite")
+                let predicate = NSPredicate(format: "parseObjectID == %@", invite.objectId!)
+                fetchRequest.predicate = predicate
+                let result = (try! sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
+                if let savedInvite = result.first {
+                    print("updated")
+                    savedInvite.parseObjectID = invite.objectId!
+                } else {
+                    print("created new")
+                    CDInvite(parseObjectID: invite.objectId!, context: sharedContext)
+                }
+            }
+            CoreDataStackManager.sharedInstance().saveContext()
         }
         
     }

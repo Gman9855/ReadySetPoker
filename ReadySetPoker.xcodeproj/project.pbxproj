@@ -19,6 +19,9 @@
 		8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279C1BB60599004CFE64 /* Comments-50.png */; };
 		8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279E1BB605A0004CFE64 /* Map-50.png */; };
 		8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4227A01BB605A9004CFE64 /* Calendar-50.png */; };
+		8B7FBC511BF44BF400FEBF7C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */; };
+		8B7FBC531BF44C2900FEBF7C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */; };
+		8B7FBC551BF44CDE00FEBF7C /* CDInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */; };
 		8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A11B60682500B69539 /* AppDelegate.swift */; };
 		8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* LoginViewController.swift */; };
 		8B8423A91B60682500B69539 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A81B60682500B69539 /* Images.xcassets */; };
@@ -97,6 +100,9 @@
 		8B42279E1BB605A0004CFE64 /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
 		8B4227A01BB605A9004CFE64 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
 		8B6F31D81B6A9D6D00CD9C8B /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
+		8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDInvite.swift; sourceTree = "<group>"; };
 		8B84239C1B60682500B69539 /* ReadySetPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadySetPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B8423A11B60682500B69539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B8423A31B60682500B69539 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +198,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B7FBC4E1BF44BD600FEBF7C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */,
+				8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */,
+				8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
 		8B8423931B60682500B69539 = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +306,7 @@
 		8B8423FF1B61602D00B69539 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				8B7FBC4E1BF44BD600FEBF7C /* Core Data */,
 				8BD2D0DE1BCB63570007A210 /* Parse Model Objects */,
 				8BF06E161B7BDD5600E5E9E4 /* Event Detail Prototype Cells */,
 				8BDBFDCC1BA73A8900241847 /* CellData.swift */,
@@ -521,6 +538,7 @@
 			files = (
 				8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */,
 				8BEDA2E21B69A44400BCA918 /* FacebookFriend.swift in Sources */,
+				8B7FBC531BF44C2900FEBF7C /* CoreDataStackManager.swift in Sources */,
 				8BF06E1A1B7BDDBC00E5E9E4 /* EventDateCell.swift in Sources */,
 				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
 				8B96516E1B801AC700E08CD6 /* InviteFriendsCell.swift in Sources */,
@@ -529,7 +547,9 @@
 				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
 				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
 				8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */,
+				8B7FBC551BF44CDE00FEBF7C /* CDInvite.swift in Sources */,
 				8BF06E1C1B7BDDE300E5E9E4 /* EventLocationCell.swift in Sources */,
+				8B7FBC511BF44BF400FEBF7C /* Model.xcdatamodeld in Sources */,
 				8B05E64D1BEAFA4100E78058 /* EventPokerDetailsCell.swift in Sources */,
 				8BF06E151B7AEE8400E5E9E4 /* EventDetailViewController.swift in Sources */,
 				8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */,
@@ -858,6 +878,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */,
+			);
+			currentVersion = 8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8B8423941B60682500B69539 /* Project object */;
 }
