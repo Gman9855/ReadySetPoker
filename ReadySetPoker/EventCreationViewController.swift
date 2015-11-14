@@ -9,6 +9,7 @@
 import UIKit
 import Parse
 import MBProgressHUD
+import CoreData
 
 protocol EventCreationViewControllerDelegate {
     func eventCreationViewControllerDidCreateEventInvite(invite: Invite)
@@ -19,7 +20,9 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
     var invitedFriends = [FacebookFriend]()
     var delegate: EventCreationViewControllerDelegate?
     
-    
+    lazy var sharedContext: NSManagedObjectContext = {
+        return CoreDataStackManager.sharedInstance().managedObjectContext!
+    }()
     
     //MARK: InviteFriendsViewControllerDelegate
     
@@ -62,8 +65,10 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
             let newPokerEvent = self.pokerEventFromUserInput()
             
             newPokerEvent.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
+                newPokerEvent.pinInBackground()
+                
                 if succeeded {
-                    print(" Saved event ")
+                    print("Saved event")
                     
                     let hostInvite = self.hostInviteForCreatedEvent(newPokerEvent)
                     hostInvite.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
@@ -78,6 +83,8 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                         eventInvitesRelation.addObject(hostInvite)
                         
                         PFObject.saveAllInBackground([PFUser.currentUser()!, newPokerEvent])
+                        CDInvite(parseObjectID: hostInvite.objectId!, context: self.sharedContext)
+                        CoreDataStackManager.sharedInstance().saveContext()
                     })
                     
                     let invitedFriends = result as! [PFUser]
@@ -151,7 +158,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
             newPokerEvent.hostProfilePictureURL = profilePic
         }
         newPokerEvent.startDate = NSDate()
-        newPokerEvent.endDate = NSDate(timeIntervalSinceNow: 60)
+        newPokerEvent.endDate = NSDate(timeIntervalSinceNow: 3000)
         newPokerEvent.gameType = "PLO"
         newPokerEvent.gameFormat = "Cash Game"
         newPokerEvent.streetAddress = "1560 Southwest Expy"

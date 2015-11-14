@@ -9,6 +9,7 @@
 import UIKit
 import MBProgressHUD
 import Parse
+import SystemConfiguration
 
 protocol EventDetailViewControllerDelegate {
     func eventDetailViewControllerDidUpdateEvent()
@@ -28,54 +29,66 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         tableView.tableFooterView = UIView()
         let inviteQuery = Invite.query()
         inviteQuery?.includeKey("event")
-        // Grab the invite from parse.  This way we always have the most updated version of the event
-        inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
-            self.tableViewData.append(self.arrayWithCellData())
-            MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
-            self.tableView.reloadData()
-            self.updatePlayerStatusesInBackgroundWithBlock { (succeeded, error) -> () in
-                if succeeded {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.tableView.reloadData()
-                    })
+        self.tableViewData.append(self.arrayWithCellData())
+        MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+        if isConnectedToNetwork() {
+//            inviteQuery?.fromLocalDatastore()
+            inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
+                
+                self.tableView.reloadData()
+                self.updatePlayerStatusesInBackgroundWithBlock { (succeeded, error) -> () in
+                    if succeeded {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            self.tableView.reloadData()
+                        })
+                    }
                 }
-            }
-        })
+            })
+
+        }
+        // Grab the invite from parse.  This way we always have the most updated version of the event
     }
         
     func updatePlayerStatusesInBackgroundWithBlock(block: (succeeded: Bool, error: NSError?) -> ()) {
+        
         while self.tableViewData.count > 1 {    // if we have player status sections, remove all
             self.tableViewData.removeLast()     // of them except our static section
         }
+        
         let inviteRelation = invite.event.relationForKey("invites")    // the invites for the event
         let query = inviteRelation.query()!
         query.includeKey("invitee")
-        query.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
-            if error != nil {
-                block(succeeded: false, error: error)
-            }
-            if let invites = results as? [Invite] {
-                var playersGoing = [Invite]()
-                var playersNotGoing = [Invite]()
-                var playersPending = [Invite]()
-                for invite: Invite in invites {
-                    if invite.inviteStatus == Status.Going.rawValue {
-                        playersGoing.append(invite)
-                    } else if invite.inviteStatus == Status.NotGoing.rawValue {
-                        playersNotGoing.append(invite)
-                    } else if invite.inviteStatus == Status.Pending.rawValue {
-                        playersPending.append(invite)
-                    }
+        if isConnectedToNetwork() {
+//            query.fromLocalDatastore()
+            query.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
+                if error != nil {
+                    block(succeeded: false, error: error)
                 }
-                let playerStatuses = [playersGoing, playersNotGoing, playersPending]
-                for playerStatus in playerStatuses {
-                    if playerStatus.count > 0 {
-                        self.tableViewData.append(playerStatus)
+                if let invites = results as? [Invite] {
+                    var playersGoing = [Invite]()
+                    var playersNotGoing = [Invite]()
+                    var playersPending = [Invite]()
+                    for invite: Invite in invites {
+                        if invite.inviteStatus == Status.Going.rawValue {
+                            playersGoing.append(invite)
+                        } else if invite.inviteStatus == Status.NotGoing.rawValue {
+                            playersNotGoing.append(invite)
+                        } else if invite.inviteStatus == Status.Pending.rawValue {
+                            playersPending.append(invite)
+                        }
                     }
+                    let playerStatuses = [playersGoing, playersNotGoing, playersPending]
+                    
+                    for playerStatus in playerStatuses {
+                        if playerStatus.count > 0 {
+                            self.tableViewData.append(playerStatus)
+                        }
+                    }
+                    block(succeeded: true, error: nil)
                 }
-                block(succeeded: true, error: nil)
             }
         }
+        
     }
     
     func arrayWithCellData() -> [EventDetailCellData] {
@@ -181,27 +194,32 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
     }
     
     @IBAction func didPullToRefresh(sender: UIRefreshControl) {
-        print("Before fetch: \(self.invite.event.numberOfSpotsLeft)")
+        print("Before fetch: \(self.invite.event.numberOfSpotsLeft) spots left")
         
         let inviteQuery = Invite.query()
         inviteQuery?.includeKey("event")
-        inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
-            if let refreshedInvite = refreshedInvite as? Invite {
-                print("After fetch: \(refreshedInvite.event.numberOfSpotsLeft)")
-                self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
-                    if succeeded {
-                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                            self.tableView.reloadData()
-                            sender.endRefreshing()
-                        })
-                    }
-                })
-            } else {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    sender.endRefreshing()
-                })
-            }
-        })
+        if isConnectedToNetwork() {
+            inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
+                if let refreshedInvite = refreshedInvite as? Invite {
+                    print("After fetch: \(refreshedInvite.event.numberOfSpotsLeft) spots left")
+                    self.updatePlayerStatusesInBackgroundWithBlock({ (succeeded, error) -> () in
+                        if succeeded {
+                            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                self.tableView.reloadData()
+                            })
+                        }
+                        sender.endRefreshing()
+                    })
+                } else {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        sender.endRefreshing()
+                    })
+                }
+            })
+        } else {
+            sender.endRefreshing()
+        }
+        
     }
     
     //MARK: Helper Methods
@@ -211,5 +229,21 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         let stringComponents = cellTypeDescription.componentsSeparatedByString(" ")
         let lastComponent = stringComponents.last!
         return "ReadySetPoker." + lastComponent.componentsSeparatedByString(".").first!
+    }
+    
+    private func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(sizeofValue(zeroAddress))
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+        let defaultRouteReachability = withUnsafePointer(&zeroAddress) {
+            SCNetworkReachabilityCreateWithAddress(nil, UnsafePointer($0))
+        }
+        var flags = SCNetworkReachabilityFlags()
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability!, &flags) {
+            return false
+        }
+        let isReachable = (flags.rawValue & UInt32(kSCNetworkFlagsReachable)) != 0
+        let needsConnection = (flags.rawValue & UInt32(kSCNetworkFlagsConnectionRequired)) != 0
+        return (isReachable && !needsConnection)
     }
 }
