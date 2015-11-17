@@ -14,59 +14,36 @@ import MBProgressHUD
 import CoreData
 import SystemConfiguration
 
-class EventListViewController: PFQueryTableViewController, EventCreationViewControllerDelegate, EventDetailViewControllerDelegate {
+class EventListViewController: UITableViewController, EventCreationViewControllerDelegate, EventDetailViewControllerDelegate {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    var tableQuery: PFQuery!
     var noGamesLabel: UILabel!
     
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext!
     }()
     
-    var hasUpcomingGames = false
-    var hasCompletedGames = false
+    var upcomingInvites: [Invite]!
+    var pastInvites: [Invite]!
+    var invitesForSelectedSegment = [Invite]() {
+        didSet {
+            if invitesForSelectedSegment.count == 0 {
+                self.noGamesLabel.hidden = false
+                let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
+                self.noGamesLabel.text = "No \(statusString) games yet."
+                self.noGamesLabel.sizeToFit()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-        let inviteQuery = inviteRelation.query()!
-        
-//        inviteQuery.fromLocalDatastore()
-        let fetchRequest = NSFetchRequest(entityName: "CDInvite")
-        if let result = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as? [CDInvite] {
-            let objectIDs = result.map { (invite: CDInvite) -> String in
-                return invite.parseObjectID
-            }
-            inviteQuery.whereKey("objectId", containedIn: objectIDs)
-        }
-        
-        let eventQuery = PokerEvent.query()!
-        if segmentedControl.selectedSegmentIndex == 0 {         // if we're on the completed game segment,
-            eventQuery.whereKey("endDate", lessThan: NSDate())  // we get events that ended before the current time
-        } else {
-            eventQuery.whereKey("endDate", greaterThan: NSDate()) // otherwise we get events ending after current time
-        }
-        
-        inviteQuery.whereKey("event", matchesQuery: eventQuery)
-        inviteQuery.includeKey("event")
-        inviteQuery.orderByDescending("createdAt")
-        inviteQuery.findObjectsInBackgroundWithBlock { (obj: [AnyObject]?, error: NSError?) -> Void in
-            print(error)
-            print(obj)
-        }
-
+        fetchInvites()
         setUpNoGamesLabel()
         noGamesLabel.hidden = true
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         hud.labelText = "Loading"
         tableView.tableFooterView = UIView()     // hack to remove extraneous tableview separators
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-
     }
     
     func setUpNoGamesLabel() {
@@ -79,22 +56,8 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         self.navigationController!.view.addSubview(noGamesLabel)
     }
     
-    override init(style: UITableViewStyle, className: String!) {
-        super.init(style: style, className: className)
-    }
-    
-    required init(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)!
-        
-        // Configure the PFQueryTableView
-        self.parseClassName = "Invite"
-        self.pullToRefreshEnabled = true
-        self.paginationEnabled = false
-        self.loadingViewEnabled = false
-    }
-    
     // Define the query that will provide the data for the table view
-    override func queryForTable() -> PFQuery {
+    func queryForTable() -> PFQuery {
         
         // check if we're connected to the internet.
         // if we are, construct a query to the cloud.
@@ -113,10 +76,7 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         inviteQuery.includeKey("event")
         inviteQuery.orderByDescending("createdAt")
         
-        if !isConnectedToNetwork() || segmentedControl.selectedSegmentIndex == 1 {
-            if (segmentedControl.selectedSegmentIndex == 1 && hasCompletedGames) || (segmentedControl.selectedSegmentIndex == 1 && hasUpcomingGames) {
-                return inviteQuery
-            }
+        if !isConnectedToNetwork() {
             inviteQuery.fromLocalDatastore()
             let fetchRequest = NSFetchRequest(entityName: "CDInvite")
             if let result = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as? [CDInvite] {
@@ -130,53 +90,84 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
         return inviteQuery
     }
     
-    override func objectsDidLoad(error: NSError?) {
-        super.objectsDidLoad(error)
-        
-        MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
-        if self.objects?.count == 0 {
-            noGamesLabel.hidden = false
-            let statusString = segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
-            noGamesLabel.text = "No \(statusString) games yet."
-            noGamesLabel.sizeToFit()
-        } else {
-            hasUpcomingGames = segmentedControl.selectedSegmentIndex == 0 && self.objects?.count > 0
-            hasCompletedGames = segmentedControl.selectedSegmentIndex == 1 && self.objects?.count > 0
-            
-            PFObject.pinAllInBackground(self.objects)
-            noGamesLabel.hidden = true
-            for invite: Invite in self.objects as! [Invite] {
-                let fetchRequest = NSFetchRequest(entityName: "CDInvite")
-                let predicate = NSPredicate(format: "parseObjectID == %@", invite.objectId!)
-                fetchRequest.predicate = predicate
-                let result = (try! sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
-                if let savedInvite = result.first {
-                    print("updated")
-                    savedInvite.parseObjectID = invite.objectId!
+    func fetchInvites() {
+        if !isConnectedToNetwork() { // if we're offline don't bother trying to refresh, our datastore objects are never more
+            if invitesForSelectedSegment.count != 0 {  // current than the objects currently displayed
+                self.refreshControl?.endRefreshing()
+                return
+            }
+        }
+        let query = self.queryForTable()
+        query.findObjectsInBackgroundWithBlock { (invites: [AnyObject]?, error: NSError?) -> Void in
+            print("Found \(invites?.count) objects with error: \(error)")
+            MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+            self.refreshControl?.endRefreshing()
+            if error != nil {
+                self.invitesForSelectedSegment.removeAll()
+                self.tableView.reloadData()
+                self.noGamesLabel.hidden = false
+                self.noGamesLabel.text = "Something went wrong.  Please check your connection."
+                self.noGamesLabel.sizeToFit()
+            } else {
+                if self.segmentedControl.selectedSegmentIndex == 0 {
+                    self.upcomingInvites = invites as! [Invite]
                 } else {
-                    print("created new")
-                    CDInvite(parseObjectID: invite.objectId!, context: sharedContext)
+                    self.pastInvites = invites as! [Invite]
+                }
+                self.invitesForSelectedSegment = invites as! [Invite]
+                PFObject.pinAllInBackground(invites as! [Invite])
+                self.noGamesLabel.hidden = true
+                self.tableView.reloadData()
+                
+                if invites?.count == 0 {
+                    self.noGamesLabel.hidden = false
+                    let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
+                    self.noGamesLabel.text = "No \(statusString) games yet."
+                    self.noGamesLabel.sizeToFit()
+                }
+                if self.isConnectedToNetwork() {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        for invite in invites as! [Invite] {
+                            let fetchRequest = NSFetchRequest(entityName: "CDInvite")
+                            let predicate = NSPredicate(format: "parseObjectID == %@", invite.objectId!)
+                            fetchRequest.predicate = predicate
+                            let result = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
+                            if let savedInvite = result.first {
+                                savedInvite.parseObjectID = invite.objectId!
+                                print("Updated CDInvite")
+                            } else {
+                                CDInvite(parseObjectID: invite.objectId!, context: self.sharedContext)
+                                print("Created new CDInvite")
+                            }
+                        }
+                        CoreDataStackManager.sharedInstance().saveContext()
+                    })
+                    
                 }
             }
-            CoreDataStackManager.sharedInstance().saveContext()
         }
+        
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath, object: PFObject?) -> PFTableViewCell? {
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
-        
-        if let invite = object as? Invite {
-            cell.configureWithInvite(invite)            
-        }
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
     
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.invitesForSelectedSegment.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("Cell") as! EventTableViewCell!
+        let invite = self.invitesForSelectedSegment[indexPath.row]
+        cell.configureWithInvite(invite)
         return cell
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let indexPath = self.tableView.indexPathForSelectedRow {
             let eventDetailVC = segue.destinationViewController as! EventDetailViewController
-            let invite = objectAtIndexPath(indexPath) as! Invite
+            let invite = self.invitesForSelectedSegment[indexPath.row]
             eventDetailVC.invite = invite
             eventDetailVC.delegate = self
         }
@@ -193,27 +184,43 @@ class EventListViewController: PFQueryTableViewController, EventCreationViewCont
     
     @IBAction func segmentedControlIndexChanged(sender: UISegmentedControl) {
         noGamesLabel.hidden = true
-        // if we're going to completed games index
-        self.loadObjects()
-        if self.objects?.count > 0 {
+        if sender.selectedSegmentIndex == 0 {
+            if self.upcomingInvites != nil {
+                self.invitesForSelectedSegment = self.upcomingInvites
+            } else {
+                fetchInvites()
+            }
+        } else {
+            if self.pastInvites != nil {
+                self.invitesForSelectedSegment = self.pastInvites
+            } else {
+                fetchInvites()
+            }
+        }
+        self.tableView.reloadData()
+        if self.invitesForSelectedSegment.count > 0 {
             let topIndex = NSIndexPath(forRow: 0, inSection: 0)
             self.tableView.scrollToRowAtIndexPath(topIndex, atScrollPosition: .Top, animated: true)
         }
     }
     
+    @IBAction func didPullToRefresh(sender: UIRefreshControl) {
+        fetchInvites()
+    }
     //MARK: EventCreationViewControllerDelegate
     
     func eventCreationViewControllerDidCreateEventInvite(invite: Invite) {
         let eventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
         eventDetailVC.invite = invite
         navigationController?.pushViewController(eventDetailVC, animated: true)
-        self.loadObjects()
+        segmentedControl.selectedSegmentIndex = 0
+        fetchInvites()
     }
     
     //MARK: EventDetailViewControllerDelegate
     
     func eventDetailViewControllerDidUpdateEvent() {
-        self.loadObjects()
+        fetchInvites()
     }
     
     //MARK: Helper Methods

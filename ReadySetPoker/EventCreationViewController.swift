@@ -63,19 +63,13 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
             }
             
             let newPokerEvent = self.pokerEventFromUserInput()
-            
             newPokerEvent.saveInBackgroundWithBlock { (succeeded: Bool, error: NSError?) -> Void in
-                newPokerEvent.pinInBackground()
                 
                 if succeeded {
                     print("Saved event")
                     
                     let hostInvite = self.hostInviteForCreatedEvent(newPokerEvent)
                     hostInvite.saveInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
-                        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                            self.delegate?.eventCreationViewControllerDidCreateEventInvite(hostInvite)
-                        })
-                        
                         let relation = PFUser.currentUser()!.relationForKey("invites")
                         relation.addObject(hostInvite)
                         
@@ -83,8 +77,27 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                         eventInvitesRelation.addObject(hostInvite)
                         
                         PFObject.saveAllInBackground([PFUser.currentUser()!, newPokerEvent])
-                        CDInvite(parseObjectID: hostInvite.objectId!, context: self.sharedContext)
-                        CoreDataStackManager.sharedInstance().saveContext()
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            CDInvite(parseObjectID: hostInvite.objectId!, context: self.sharedContext)
+                            CoreDataStackManager.sharedInstance().saveContext()
+                        })
+                        
+                        hostInvite.pinInBackgroundWithBlock({ (succeeded: Bool, error: NSError?) -> Void in
+                            if succeeded {
+                                print("Pinned host invite")
+                                self.dismissViewControllerAnimated(true, completion: { () -> Void in
+                                    self.delegate?.eventCreationViewControllerDidCreateEventInvite(hostInvite)
+                                })
+                            } else {
+                                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                                    let alertView = UIAlertView(title: "Error", message: "Could not create a new home game.  Please check your connection and try again.", delegate: self, cancelButtonTitle: "Okay")
+                                    alertView.show()
+                                })
+                                return
+                            }
+                        })
+                        
+                        
                     })
                     
                     let invitedFriends = result as! [PFUser]

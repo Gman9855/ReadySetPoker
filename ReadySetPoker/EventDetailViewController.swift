@@ -32,9 +32,7 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         self.tableViewData.append(self.arrayWithCellData())
         MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
         if isConnectedToNetwork() {
-//            inviteQuery?.fromLocalDatastore()
             inviteQuery?.getObjectInBackgroundWithId(self.invite.objectId!, block: { (refreshedInvite: PFObject?, error: NSError?) -> Void in
-                
                 self.tableView.reloadData()
                 self.updatePlayerStatusesInBackgroundWithBlock { (succeeded, error) -> () in
                     if succeeded {
@@ -59,7 +57,6 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         let query = inviteRelation.query()!
         query.includeKey("invitee")
         if isConnectedToNetwork() {
-//            query.fromLocalDatastore()
             query.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
                 if error != nil {
                     block(succeeded: false, error: error)

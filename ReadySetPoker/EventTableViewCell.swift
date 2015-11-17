@@ -10,7 +10,7 @@ import Foundation
 import Parse
 import ParseUI
 
-class EventTableViewCell: PFTableViewCell {
+class EventTableViewCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var eventImage: UIImageView!
