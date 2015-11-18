@@ -9,6 +9,11 @@
 import Foundation
 import Parse
 
+enum GameFormat: String {
+    case CashGame = "Cash Game"
+    case Tournament = "Tournament"
+}
+
 class PokerEvent: Event, PFSubclassing {
     override class func initialize() {
         struct Static {
@@ -31,11 +36,4 @@ class PokerEvent: Event, PFSubclassing {
     @NSManaged var cashGameBuyInMaximum: NSInteger
     @NSManaged var tournamentBuyIn: NSInteger
     @NSManaged var maximumSeats: NSInteger
-    
-    @objc enum GameFormat: Int {
-        case Cash
-        case Tournament
-    }
-    
-    
 }

@@ -173,13 +173,15 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
         newPokerEvent.startDate = NSDate()
         newPokerEvent.endDate = NSDate(timeIntervalSinceNow: 3000)
         newPokerEvent.gameType = "PLO"
-        newPokerEvent.gameFormat = "Cash Game"
+        newPokerEvent.gameFormat = GameFormat.CashGame.rawValue
         newPokerEvent.streetAddress = "1560 Southwest Expy"
         newPokerEvent.cityName = "San Jose"
         newPokerEvent.stateName = "CA"
         newPokerEvent.zipCode = "95126"
         newPokerEvent.cashGameBuyInMinimum = 40
         newPokerEvent.cashGameBuyInMaximum = 200
+        newPokerEvent.cashGameSmallBlind = 5
+        newPokerEvent.cashGameBigBlind = 10
         newPokerEvent.maximumSeats = 9
         newPokerEvent.numberOfAttendees = 1
         newPokerEvent.numberOfSpotsLeft = 8
