@@ -19,15 +19,22 @@ class EventRSVPCell: EventDetailsCell {
     var buttonColor = UIColor()
 
     override func configureWithInvite(invite: Invite) {
-        self.invite = invite
-        switch invite.inviteStatus {
-        case Status.Going.rawValue:
-            configureButtonForGoingStatus()
-        case Status.NotGoing.rawValue:
-            configureButtonForNotGoingStatus()
-        default:
-            configureButtonForPendingStatus()
+        if invite.event.endDate.compare(NSDate()) == NSComparisonResult.OrderedAscending {
+            buttonTitle = "Game completed"
+            buttonColor = UIColor.grayColor()
+            self.rsvpButton.enabled = false
+        } else {
+            self.invite = invite
+            switch invite.inviteStatus {
+            case Status.Going.rawValue:
+                configureButtonForGoingStatus()
+            case Status.NotGoing.rawValue:
+                configureButtonForNotGoingStatus()
+            default:
+                configureButtonForPendingStatus()
+            }
         }
+        
         self.rsvpButton.backgroundColor = buttonColor
         self.rsvpButton.setTitle(buttonTitle, forState: .Normal)
     }
