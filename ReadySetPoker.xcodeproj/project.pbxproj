@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; };
 		8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */; };
 		8B05E6471BEAF76400E78058 /* Chip-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6461BEAF76400E78058 /* Chip-50.png */; };
 		8B05E6491BEAF8E400E78058 /* Info-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6481BEAF8E400E78058 /* Info-50.png */; };
@@ -44,6 +44,7 @@
 		8B8423FE1B61601F00B69539 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423FD1B61601F00B69539 /* Event.swift */; };
 		8B8424011B61658100B69539 /* PokerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424001B61658100B69539 /* PokerEvent.swift */; };
 		8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* EventListViewController.swift */; };
+		8B92FA511BE7EFE400B6DB4B /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */; };
 		8B96516C1B7FEBF500E08CD6 /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */; };
 		8B96516E1B801AC700E08CD6 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */; };
 		8B9651701B80232000E08CD6 /* CreatePokerGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */; };
@@ -129,6 +130,7 @@
 		8B8423FD1B61601F00B69539 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		8B8424001B61658100B69539 /* PokerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerEvent.swift; sourceTree = "<group>"; };
 		8B8424021B616CF800B69539 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
 		8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationViewController.swift; sourceTree = "<group>"; };
 		8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
 		8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePokerGameCell.swift; sourceTree = "<group>"; };
@@ -325,6 +327,7 @@
 				8B8423A31B60682500B69539 /* LoginViewController.swift */,
 				8B8424021B616CF800B69539 /* EventListViewController.swift */,
 				8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */,
+				8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */,
 				8BF06E141B7AEE8400E5E9E4 /* EventDetailViewController.swift */,
 				8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */,
 				8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */,
@@ -560,6 +563,7 @@
 				8B9651BF1B8A796700E08CD6 /* Invite.swift in Sources */,
 				8BDBFDCD1BA73A8900241847 /* CellData.swift in Sources */,
 				8BF06E261B7D857A00E5E9E4 /* EventDetailsCell.swift in Sources */,
+				8B92FA511BE7EFE400B6DB4B /* EventCreationController.swift in Sources */,
 				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
 				8BF06E181B7BDD9D00E5E9E4 /* EventTitleCell.swift in Sources */,
 				8BF06E201B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift in Sources */,

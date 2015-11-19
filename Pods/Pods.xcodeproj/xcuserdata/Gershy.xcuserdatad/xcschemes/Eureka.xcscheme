@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '51F450E3CC8ED75483F4CF36'
-               BlueprintName = 'SDWebImage'
+               BlueprintIdentifier = '0CF5F7C4C01687563247E753'
+               BlueprintName = 'Eureka'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'SDWebImage.framework'>
+               BuildableName = 'Eureka.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

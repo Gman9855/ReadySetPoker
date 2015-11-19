@@ -176,10 +176,12 @@ class EventListViewController: UITableViewController, EventCreationViewControlle
     //MARK: Action Methods
     
     @IBAction func plusButtonTapped(sender: UIBarButtonItem) {
-        let eventCreationNavController = storyboard?.instantiateViewControllerWithIdentifier("eventCreationNavController") as! UINavigationController
-        let eventCreationVC = eventCreationNavController.topViewController as! EventCreationViewController
-        eventCreationVC.delegate = self
-        presentViewController(eventCreationNavController, animated: true, completion: nil)
+//        let eventCreationNavController = storyboard?.instantiateViewControllerWithIdentifier("eventCreationNavController") as! UINavigationController
+//        let eventCreationVC = eventCreationNavController.topViewController as! EventCreationViewController
+//        eventCreationVC.delegate = self
+        let eventCreationController = EventCreationController()
+        self.navigationController?.pushViewController(eventCreationController, animated: true);
+//        presentViewController(eventCreationController, animated: true, completion: nil)
     }
     
     @IBAction func segmentedControlIndexChanged(sender: UISegmentedControl) {
