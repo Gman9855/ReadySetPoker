@@ -25,12 +25,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
         return CoreDataStackManager.sharedInstance().managedObjectContext!
     }()
     
-    var formFields: [AnyObject?] {
-        get {
-            return [gameTitle, streetAddress, city, state, zipCode, startTime, endTime, gameDescription, gameFormat, cashMinBuyIn, cashMaxBuyIn, cashSmallBlind, cashBigBlind, gameType, maximumSeats]
-        }
-    }
-    
     var nextBarButton: UIBarButtonItem!
     var gameTitle: String?
     var streetAddress: String?
@@ -49,6 +43,17 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
     var gameType: String?
     var maximumSeats: NSInteger?
     
+    var formFields: [AnyObject?] {
+        get {
+            let formFields: [AnyObject?] = [gameTitle, streetAddress, city, state, zipCode, startTime, endTime, gameDescription, tournamentBuyIn, gameType, maximumSeats]
+            
+            if gameFormat == GameFormat.Tournament.rawValue {
+                return formFields + [tournamentBuyIn]
+            }
+            
+            return formFields + [cashMinBuyIn, cashMaxBuyIn, cashSmallBlind, cashBigBlind]
+        }
+    }
     
     lazy var inviteFriendsVC: InviteFriendsViewController = {
         let storyboard = UIStoryboard(name: "LoggedInState", bundle: nil)
@@ -77,7 +82,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
         form +++ Section("Game Title")
             <<< TextRow() {
                 $0.placeholder = "Write a title..."
-                $0.value = "Gersh's Poker Game"
                 }.onChange({ (TextRow) -> () in
                     if let title = TextRow.value {
                         self.gameTitle = title
@@ -87,7 +91,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             +++ Section("Location")
             <<< TextRow() {
                 $0.placeholder = "Street address"
-                $0.value = "123 Fake St"
                 }.onChange({ (TextRow) -> () in
                     if let streetAddress = TextRow.value {
                         self.streetAddress = streetAddress
@@ -96,7 +99,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< TextRow() {
                 $0.placeholder = "City"
-                $0.value = "Somewhere"
                 }.onChange({ (TextRow) -> () in
                     if let city = TextRow.value {
                         self.city = city
@@ -105,7 +107,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< TextRow() {
                 $0.placeholder = "State"
-                $0.value = "CA"
                 }.onChange({ (TextRow) -> () in
                     if let state = TextRow.value {
                         self.state = state
@@ -114,7 +115,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< TextRow() {
                 $0.placeholder = "Zip Code"
-                $0.value = "09586"
             }.onChange({ (TextRow) -> () in
                 if let zipCode = TextRow.value {
                     self.zipCode = zipCode
@@ -141,7 +141,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             +++ Section("Game Description")
             <<< TextAreaRow() {
                 $0.placeholder = "Write a brief description..."
-                $0.value = "Going to be a good one!"
                 }.onChange({ (TextAreaRow) -> () in
                     if let gameDescription = TextAreaRow.value {
                         self.gameDescription = gameDescription
@@ -175,7 +174,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< DecimalRow() {
                 $0.title = "Minimum Buy-In"
-                $0.value = 100
                 $0.hidden = Condition.Function(["GameFormat"], { (form) -> Bool in
                     if let segmentedIndex: SegmentedRow<String> = form.rowByTag("GameFormat") {
                         return segmentedIndex.value == "Tournament"
@@ -190,7 +188,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< DecimalRow() {
                 $0.title = "Maximum Buy-In"
-                $0.value = 200
                 $0.hidden = Condition.Function(["GameFormat"], { (form) -> Bool in
                     if let segmentedIndex: SegmentedRow<String> = form.rowByTag("GameFormat") {
                         return segmentedIndex.value == "Tournament"
@@ -205,7 +202,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< DecimalRow() {
                 $0.title = "Small Blind"
-                $0.value = 1
                 $0.hidden = Condition.Function(["GameFormat"], { (form) -> Bool in
                     if let segmentedIndex: SegmentedRow<String> = form.rowByTag("GameFormat") {
                         return segmentedIndex.value == "Tournament"
@@ -220,7 +216,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< DecimalRow() {
                 $0.title = "Big Blind"
-                $0.value = 2
                 $0.hidden = Condition.Function(["GameFormat"], { (form) -> Bool in
                     if let segmentedIndex: SegmentedRow<String> = form.rowByTag("GameFormat") {
                         return segmentedIndex.value == "Tournament"
@@ -236,7 +231,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             +++ Section()
             <<< TextRow() {
                 $0.title = "Game Type"
-                $0.value = "PLO"
                 $0.placeholder = "NLHE, PLO, Stud, etc."
                 }.onChange({ (TextRow) -> () in
                     if let gameType = TextRow.value {
@@ -246,7 +240,6 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< IntRow() {
                 $0.title = "Number of seats"
-                $0.value = 9
                 }.onChange({ (IntRow) -> () in
                     if let numberOfSeats = IntRow.value {
                         self.maximumSeats = numberOfSeats
@@ -398,10 +391,14 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
         newPokerEvent.cityName = self.city!
         newPokerEvent.stateName = self.state!
         newPokerEvent.zipCode = self.zipCode!
-        newPokerEvent.cashGameBuyInMinimum = self.cashMinBuyIn!
-        newPokerEvent.cashGameBuyInMaximum = self.cashMaxBuyIn!
-        newPokerEvent.cashGameSmallBlind = self.cashSmallBlind!
-        newPokerEvent.cashGameBigBlind = self.cashBigBlind!
+        if self.gameFormat == GameFormat.CashGame.rawValue {
+            newPokerEvent.cashGameBuyInMinimum = self.cashMinBuyIn!
+            newPokerEvent.cashGameBuyInMaximum = self.cashMaxBuyIn!
+            newPokerEvent.cashGameSmallBlind = self.cashSmallBlind!
+            newPokerEvent.cashGameBigBlind = self.cashBigBlind!
+        } else {
+            newPokerEvent.tournamentBuyIn = self.tournamentBuyIn!
+        }
         newPokerEvent.maximumSeats = self.maximumSeats!
         newPokerEvent.numberOfAttendees = 1
         newPokerEvent.numberOfSpotsLeft = self.maximumSeats! - 1

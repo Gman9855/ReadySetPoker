@@ -53,9 +53,9 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     }
     
     override func viewDidAppear(animated: Bool) {
-        if invitesForSelectedSegment.count == 0 {
-            noGamesLabel.hidden = false
-        }
+//        if invitesForSelectedSegment.count == 0 {
+//            noGamesLabel.hidden = false
+//        }
     }
     
     override func viewWillDisappear(animated: Bool) {
