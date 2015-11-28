@@ -18,13 +18,13 @@ protocol InviteFriendsViewControllerDelegate {
 class InviteFriendsViewController: UITableViewController {
     
     var friends = [FacebookFriend]()
-    @IBOutlet weak var inviteButton: UIBarButtonItem!
     var delegate: InviteFriendsViewControllerDelegate?
+    
+    // View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        inviteButton.enabled = false
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields":"id,name,picture.width(200).height(200)"])
         request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
@@ -55,6 +55,20 @@ class InviteFriendsViewController: UITableViewController {
         })
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]! {
+            var selectedFriendsToInvite = [FacebookFriend]()
+            for indexPath in indexPaths {
+                selectedFriendsToInvite.append(friends[indexPath.row])
+            }
+            
+            delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
+        }
+        
+//        navigationController?.popViewControllerAnimated(true)
+    }
+    
     @IBAction func dismissButtonTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -80,9 +94,9 @@ class InviteFriendsViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedCell = tableView.cellForRowAtIndexPath(indexPath)!
         selectedCell.accessoryType = UITableViewCellAccessoryType.Checkmark
-        if !inviteButton.enabled {
-            inviteButton.enabled = true
-        }
+//        if !inviteButton.enabled {
+//            inviteButton.enabled = true
+//        }
     }
     
     override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -90,18 +104,7 @@ class InviteFriendsViewController: UITableViewController {
         selectedCell.accessoryType = UITableViewCellAccessoryType.None
         let indexPaths = self.tableView.indexPathsForSelectedRows
         if indexPaths == nil {
-            inviteButton.enabled = false
+//            inviteButton.enabled = false
         }
-    }
-    
-    @IBAction func inviteButtonTapped(sender: UIBarButtonItem) {
-        let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]!
-        var selectedFriendsToInvite = [FacebookFriend]()
-        for indexPath in indexPaths {
-            selectedFriendsToInvite.append(friends[indexPath.row])
-        }
-        
-        delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
-        dismissViewControllerAnimated(true, completion: nil)
     }
 }

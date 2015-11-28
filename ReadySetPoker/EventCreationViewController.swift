@@ -11,14 +11,14 @@ import Parse
 import MBProgressHUD
 import CoreData
 
-protocol EventCreationViewControllerDelegate {
-    func eventCreationViewControllerDidCreateEventInvite(invite: Invite)
-}
+//protocol EventCreationViewControllerDelegate {
+//    func eventCreationViewControllerDidCreateEventInvite(invite: Invite)
+//}
 
 class EventCreationViewController: UITableViewController, InviteFriendsViewControllerDelegate {
     
     var invitedFriends = [FacebookFriend]()
-    var delegate: EventCreationViewControllerDelegate?
+//    var delegate: EventCreationViewControllerDelegate?
     
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext!
@@ -86,7 +86,7 @@ class EventCreationViewController: UITableViewController, InviteFriendsViewContr
                             if succeeded {
                                 print("Pinned host invite")
                                 self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                                    self.delegate?.eventCreationViewControllerDidCreateEventInvite(hostInvite)
+//                                    self.delegate?.eventCreationControllerDidCreateEventInvite(hostInvite)
                                 })
                             } else {
                                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

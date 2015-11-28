@@ -30,10 +30,10 @@ class PokerEvent: Event, PFSubclassing {
     
     @NSManaged var gameType: String
     @NSManaged var gameFormat: String
-    @NSManaged var cashGameSmallBlind: NSInteger
-    @NSManaged var cashGameBigBlind: NSInteger
-    @NSManaged var cashGameBuyInMinimum: NSInteger
-    @NSManaged var cashGameBuyInMaximum: NSInteger
-    @NSManaged var tournamentBuyIn: NSInteger
+    @NSManaged var cashGameSmallBlind: Float
+    @NSManaged var cashGameBigBlind: Float
+    @NSManaged var cashGameBuyInMinimum: Float
+    @NSManaged var cashGameBuyInMaximum: Float
+    @NSManaged var tournamentBuyIn: Float
     @NSManaged var maximumSeats: NSInteger
 }

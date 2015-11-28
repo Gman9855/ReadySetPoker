@@ -14,7 +14,7 @@ import MBProgressHUD
 import CoreData
 import SystemConfiguration
 
-class EventListViewController: UITableViewController, EventCreationViewControllerDelegate, EventDetailViewControllerDelegate {
+class EventListViewController: UITableViewController, EventCreationControllerDelegate, EventDetailViewControllerDelegate {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var noGamesLabel: UILabel!
@@ -44,6 +44,16 @@ class EventListViewController: UITableViewController, EventCreationViewControlle
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         hud.labelText = "Loading"
         tableView.tableFooterView = UIView()     // hack to remove extraneous tableview separators
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        if invitesForSelectedSegment.count == 0 {
+            noGamesLabel.hidden = false
+        }
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        noGamesLabel.hidden = true
     }
     
     func setUpNoGamesLabel() {
@@ -180,6 +190,7 @@ class EventListViewController: UITableViewController, EventCreationViewControlle
 //        let eventCreationVC = eventCreationNavController.topViewController as! EventCreationViewController
 //        eventCreationVC.delegate = self
         let eventCreationController = EventCreationController()
+        eventCreationController.delegate = self
         self.navigationController?.pushViewController(eventCreationController, animated: true);
 //        presentViewController(eventCreationController, animated: true, completion: nil)
     }
@@ -211,7 +222,7 @@ class EventListViewController: UITableViewController, EventCreationViewControlle
     }
     //MARK: EventCreationViewControllerDelegate
     
-    func eventCreationViewControllerDidCreateEventInvite(invite: Invite) {
+    func eventCreationControllerDidCreateEventInvite(invite: Invite) {
         let eventDetailVC = storyboard?.instantiateViewControllerWithIdentifier("eventDetailVC") as! EventDetailViewController
         eventDetailVC.invite = invite
         navigationController?.pushViewController(eventDetailVC, animated: true)
