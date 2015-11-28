@@ -17,7 +17,16 @@ import SystemConfiguration
 class EventListViewController: UITableViewController, EventCreationControllerDelegate, EventDetailViewControllerDelegate {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
-    var noGamesLabel: UILabel!
+    lazy var noGamesLabel: UILabel = {
+        let frame = CGRectMake(0, 0, 300, 50)
+        var noGamesLabel = UILabel(frame: frame)
+        let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
+        noGamesLabel.text = "No \(statusString) games yet."
+        noGamesLabel.sizeToFit()
+        noGamesLabel.center = self.navigationController!.view.center
+        self.navigationController!.view.addSubview(noGamesLabel)
+        return noGamesLabel
+    }()
     
     lazy var sharedContext: NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext!
@@ -25,13 +34,11 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     var upcomingInvites: [Invite]!
     var pastInvites: [Invite]!
+    
     var invitesForSelectedSegment = [Invite]() {
         didSet {
             if invitesForSelectedSegment.count == 0 {
                 self.noGamesLabel.hidden = false
-                let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
-                self.noGamesLabel.text = "No \(statusString) games yet."
-                self.noGamesLabel.sizeToFit()
             }
         }
     }
@@ -39,7 +46,6 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchInvites()
-        setUpNoGamesLabel()
         noGamesLabel.hidden = true
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         hud.labelText = "Loading"
@@ -131,9 +137,6 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
                 
                 if invites?.count == 0 {
                     self.noGamesLabel.hidden = false
-                    let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
-                    self.noGamesLabel.text = "No \(statusString) games yet."
-                    self.noGamesLabel.sizeToFit()
                 }
                 if self.isConnectedToNetwork() {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
