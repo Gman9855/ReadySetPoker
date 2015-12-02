@@ -108,9 +108,25 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     func fetchInvites() {
         if !isConnectedToNetwork() { // if we're offline don't bother trying to refresh, our datastore objects are never more
-            if invitesForSelectedSegment.count != 0 {  // current than the objects currently displayed
-                self.refreshControl?.endRefreshing()
-                return
+//            if !invitesForSelectedSegment.isEmpty {  // current than the objects currently displayed
+//                self.refreshControl?.endRefreshing()
+//                return
+//            }
+            
+            if segmentedControl.selectedSegmentIndex == 0 {
+                if self.upcomingInvites != nil {
+                    if !self.upcomingInvites.isEmpty {
+                        self.refreshControl?.endRefreshing()
+                        return
+                    }
+                }
+            } else {
+                if self.pastInvites != nil {
+                    if !self.pastInvites.isEmpty {
+                        self.refreshControl?.endRefreshing()
+                        return
+                    }
+                }
             }
         }
         let query = self.queryForTable()
@@ -141,14 +157,12 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
                 if self.isConnectedToNetwork() {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         for invite in invites as! [Invite] {
+                            
                             let fetchRequest = NSFetchRequest(entityName: "CDInvite")
                             let predicate = NSPredicate(format: "parseObjectID == %@", invite.objectId!)
                             fetchRequest.predicate = predicate
                             let result = (try! self.sharedContext.executeFetchRequest(fetchRequest)) as! [CDInvite]
-                            if let savedInvite = result.first {
-                                savedInvite.parseObjectID = invite.objectId!
-                                print("Updated CDInvite")
-                            } else {
+                            if result.first == nil {
                                 CDInvite(parseObjectID: invite.objectId!, context: self.sharedContext)
                                 print("Created new CDInvite")
                             }
