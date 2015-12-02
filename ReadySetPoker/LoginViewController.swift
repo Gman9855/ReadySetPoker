@@ -27,7 +27,7 @@ class LoginViewController: UIViewController {
         PFFacebookUtils.logInInBackgroundWithReadPermissions(["public_profile", "user_friends"]) {
             (user: PFUser?, error: NSError?) -> Void in
             if let user = user {
-                if user.isNew {
+//                if user.isNew {
                     print("User signed up and logged in through Facebook!")
 
                     let request = FBSDKGraphRequest(graphPath: "\(FBSDKAccessToken.currentAccessToken().userID)", parameters: ["fields":"id,name,picture.width(200).height(200)"], HTTPMethod: "GET")
@@ -43,7 +43,7 @@ class LoginViewController: UIViewController {
                             print(error, terminator: "")
                         }
                     })
-                }
+//                }
                 FBSDKProfile.enableUpdatesOnAccessTokenChange(true)
                 
                 let installation = PFInstallation.currentInstallation()

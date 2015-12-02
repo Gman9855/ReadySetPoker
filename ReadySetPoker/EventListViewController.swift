@@ -45,6 +45,7 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         fetchInvites()
         noGamesLabel.hidden = true
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)

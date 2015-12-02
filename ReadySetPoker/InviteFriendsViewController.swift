@@ -71,13 +71,6 @@ class InviteFriendsViewController: UITableViewController {
         })
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        if self.friends.count == 0 {
-            self.noFriendsLabel.hidden = false
-        }
-    }
-    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
         self.noFriendsLabel.hidden = true
@@ -89,8 +82,6 @@ class InviteFriendsViewController: UITableViewController {
             
             delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
         }
-        
-//        navigationController?.popViewControllerAnimated(true)
     }
     
     @IBAction func dismissButtonTapped(sender: UIBarButtonItem) {
