@@ -20,10 +20,21 @@ class InviteFriendsViewController: UITableViewController {
     var friends = [FacebookFriend]()
     var delegate: InviteFriendsViewControllerDelegate?
     
+    lazy var noFriendsLabel: UILabel = {
+        let frame = CGRectMake(0, 0, 300, 50)
+        var noFriendsLabel = UILabel(frame: frame)
+        noFriendsLabel.text = "Oops!  No friends yet."
+        noFriendsLabel.sizeToFit()
+        noFriendsLabel.center = self.navigationController!.view.center
+        self.navigationController!.view.addSubview(noFriendsLabel)
+        return noFriendsLabel
+    }()
+    
     // View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        noFriendsLabel.hidden = true
         tableView.tableFooterView = UIView()
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields":"id,name,picture.width(200).height(200)"])
@@ -37,6 +48,9 @@ class InviteFriendsViewController: UITableViewController {
                 return
             }
             if let friendArray = result.valueForKey("data") as? NSArray {
+                if friendArray.count == 0 {
+                    self.noFriendsLabel.hidden = false
+                }
                 for friend in friendArray {
                     if let name = friend["name"] as? String, let id = friend["id"] as? String {
                         var profilePicURL: NSURL?
@@ -51,12 +65,22 @@ class InviteFriendsViewController: UITableViewController {
                     self.tableView.reloadData()
                     MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
                 })
+            } else {
+                self.noFriendsLabel.hidden = false
             }
         })
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if self.friends.count == 0 {
+            self.noFriendsLabel.hidden = false
+        }
+    }
+    
     override func viewWillDisappear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.noFriendsLabel.hidden = true
         if let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]! {
             var selectedFriendsToInvite = [FacebookFriend]()
             for indexPath in indexPaths {
