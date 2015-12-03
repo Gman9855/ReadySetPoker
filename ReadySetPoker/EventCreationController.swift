@@ -115,16 +115,19 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< TextRow() {
                 $0.placeholder = "Zip Code"
-            }.onChange({ (TextRow) -> () in
-                if let zipCode = TextRow.value {
-                    self.zipCode = zipCode
-                }
-            })
+                }.onChange({ (TextRow) -> () in
+                    if let zipCode = TextRow.value {
+                        self.zipCode = zipCode
+                    }
+                })
             
             +++ Section()
             <<< DateTimeInlineRow() {
                 $0.title = "Start Time"
-                }.onChange({ (DateTimeInlineRow) -> () in
+                $0.minimumDate = NSDate()
+                }.onExpandInlineRow({ (cell: DateInlineCell, inlineRow: DateTimeInlineRow, pickerRow: DateTimePickerRow) -> () in
+                    pickerRow.minimumDate = NSDate()
+                }).onChange({ (DateTimeInlineRow) -> () in
                     if let startTime = DateTimeInlineRow.value {
                         self.startTime = startTime
                     }
@@ -132,7 +135,9 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
             
             <<< DateTimeInlineRow() {
                 $0.title = "End Time"
-                }.onChange({ (DateTimeInlineRow) -> () in
+                }.onExpandInlineRow({ (cell: DateInlineCell, inlineRow: DateTimeInlineRow, pickerRow: DateTimePickerRow) -> () in
+                    pickerRow.minimumDate = NSDate()
+                }).onChange({ (DateTimeInlineRow) -> () in
                     if let endTime = DateTimeInlineRow.value {
                         self.endTime = endTime
                     }
