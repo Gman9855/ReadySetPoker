@@ -10,7 +10,8 @@ import UIKit
 import Parse
 import Bolts
 import FBSDKLoginKit
-
+import ParseFacebookUtilsV4
+ 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -94,11 +95,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UIApplication.sharedApplication().applicationState != UIApplicationState.Active {
             if let eventId = userInfo["eventObjectId"] as? String {
                 let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-                let inviteQuery = inviteRelation.query()!
+                let inviteQuery = inviteRelation.query()
                 let event = PFObject(withoutDataWithClassName: "PokerEvent", objectId: eventId)
                 inviteQuery.whereKey("event", equalTo: event)
                 inviteQuery.includeKey("event")
-                inviteQuery.findObjectsInBackgroundWithBlock({ (result: [AnyObject]?, error: NSError?) -> Void in
+                inviteQuery.findObjectsInBackgroundWithBlock({ (result: [PFObject]?, error: NSError?) -> Void in
                     if let result = result {
                         let invite = result.first as! Invite
                         let storyboard = UIStoryboard(name: "LoggedInState", bundle: nil)

@@ -87,6 +87,7 @@
 
 /* Begin PBXFileReference section */
 		1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.adhoc.xcconfig"; sourceTree = "<group>"; };
+		52E6BF9E1C0FC23400951261 /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
 		61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.debug.xcconfig"; sourceTree = "<group>"; };
 		70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadySetPoker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		8B42279C1BB60599004CFE64 /* Comments-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-50.png"; sourceTree = "<group>"; };
 		8B42279E1BB605A0004CFE64 /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
 		8B4227A01BB605A9004CFE64 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
-		8B6F31D81B6A9D6D00CD9C8B /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
 		8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDInvite.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 		8B8423B51B60682500B69539 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8B6F31D81B6A9D6D00CD9C8B /* ReadySetPoker-Bridging-Header.h */,
+				52E6BF9E1C0FC23400951261 /* ReadySetPoker-Bridging-Header.h */,
 				8B96517F1B82865600E08CD6 /* placeholder.jpg */,
 				8B9651811B82866900E08CD6 /* facebook-login-2.png */,
 				8B9651821B82866900E08CD6 /* rsplogo.jpg */,
@@ -692,20 +692,22 @@
 			baseConfigurationReference = 61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
-					/Users/Gershy/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/ReadySetPoker.xcodeproj",
+					"$(PODS_ROOT)/Headers/Private/SDWebImage",
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -714,20 +716,22 @@
 			baseConfigurationReference = DBA2E726BFF895BADE4BAB20 /* Pods-ReadySetPoker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
-					/Users/Gershy/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/ReadySetPoker.xcodeproj",
+					"$(PODS_ROOT)/Headers/Private/SDWebImage",
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
 			};
 			name = Release;
 		};
@@ -816,20 +820,22 @@
 			baseConfigurationReference = 1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
 				ENABLE_BITCODE = NO;
-				FRAMEWORK_SEARCH_PATHS = (
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)",
-					/Users/Gershy/Documents/FacebookSDK,
-					"$(PROJECT_DIR)/ReadySetPoker.xcodeproj",
+					"$(PODS_ROOT)/Headers/Private/SDWebImage",
 				);
 				INFOPLIST_FILE = ReadySetPoker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
-				SWIFT_OBJC_BRIDGING_HEADER = "ReadySetPoker/ReadySetPoker-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
 			};
 			name = AdHoc;
 		};

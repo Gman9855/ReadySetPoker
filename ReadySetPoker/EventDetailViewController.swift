@@ -54,10 +54,10 @@ class EventDetailViewController: UITableViewController, RSVPViewControllerDelega
         }
         
         let inviteRelation = invite.event.relationForKey("invites")    // the invites for the event
-        let query = inviteRelation.query()!
+        let query = inviteRelation.query()
         query.includeKey("invitee")
         if isConnectedToNetwork() {
-            query.findObjectsInBackgroundWithBlock { (results: [AnyObject]?, error: NSError?) -> Void in
+            query.findObjectsInBackgroundWithBlock { (results: [PFObject]?, error: NSError?) -> Void in
                 if error != nil {
                     block(succeeded: false, error: error)
                 }

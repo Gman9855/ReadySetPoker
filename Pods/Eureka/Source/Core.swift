@@ -43,7 +43,7 @@ public protocol FormDelegate : class {
     func rowsHaveBeenAdded(rows: [BaseRow], atIndexPaths:[NSIndexPath])
     func rowsHaveBeenRemoved(rows: [BaseRow], atIndexPaths:[NSIndexPath])
     func rowsHaveBeenReplaced(oldRows oldRows:[BaseRow], newRows: [BaseRow], atIndexPaths: [NSIndexPath])
-    func rowValueHasBeenChanged(row: BaseRow, oldValue: Any, newValue: Any)
+    func rowValueHasBeenChanged(row: BaseRow, oldValue: Any?, newValue: Any?)
 }
 
 //MARK: Header Footer Protocols
@@ -80,7 +80,7 @@ public protocol TypedRowType : BaseRowType {
 }
 
 public protocol RowType : TypedRowType {
-    init(_ tag: String?, _ initializer: (Self -> ()))
+    init(_ tag: String?, @noescape _ initializer: (Self -> ()))
 }
 
 public protocol BaseInlineRowType {
@@ -91,6 +91,8 @@ public protocol BaseInlineRowType {
 
 public protocol InlineRowType: TypedRowType, BaseInlineRowType {
     typealias InlineRow: RowType
+    
+    var onPresentInlineRow : (InlineRow -> Void)? { get set }   
 }
 
 extension InlineRowType where Self: BaseRow, Self.InlineRow : BaseRow, Self.Cell : TypedCellType, Self.Cell.Value == Self.Value, Self.InlineRow.Cell.Value == Self.InlineRow.Value, Self.InlineRow.Value == Self.Value {
@@ -106,6 +108,7 @@ extension InlineRowType where Self: BaseRow, Self.InlineRow : BaseRow, Self.Cell
                 self?.value = $0.value
                 self?.updateCell()
             }
+            onPresentInlineRow?(inline)
             if (form.inlineRowHideOptions ?? Form.defaultInlineRowHideOptions).contains(.AnotherInlineRowIsShown) {
                 for row in form.allRows {
                     if let inlineRow = row as? BaseInlineRowType {
@@ -243,7 +246,7 @@ public final class Form {
                     }
     }
     
-    public func setValues(values: [String: Any]){
+    public func setValues(values: [String: Any?]){
         for (key, value) in values{
             let row: BaseRow? = rowByTag(key)
             row?.baseValue = value
@@ -308,6 +311,8 @@ extension Form : RangeReplaceableCollectionType {
             }
         }
         kvoWrapper.sections.replaceObjectsInRange(NSMakeRange(subRange.startIndex, subRange.endIndex - subRange.startIndex), withObjectsFromArray: newElements.map { $0 })
+        kvoWrapper._allSections.insertContentsOf(newElements, at: indexForInsertionAtIndex(subRange.startIndex))
+        
         for section in newElements{
             section.wasAddedToForm(self)
         }
@@ -320,6 +325,16 @@ extension Form : RangeReplaceableCollectionType {
         }
         kvoWrapper.sections.removeAllObjects()
         kvoWrapper._allSections.removeAll()
+    }
+    
+    private func indexForInsertionAtIndex(index: Int) -> Int {
+        guard index != 0 else { return 0 }
+        
+        let row = kvoWrapper.sections[index-1]
+        if let i = kvoWrapper._allSections.indexOf(row as! Section){
+            return i + 1
+        }
+        return kvoWrapper._allSections.count
     }
 }
 
@@ -454,35 +469,35 @@ public class Section {
     
     public required init(){}
     
-    public init(_ initializer: Section -> ()){
+    public init(@noescape _ initializer: Section -> ()){
         initializer(self)
     }
 
-    public init(_ header: HeaderFooterView<UIView>, _ initializer: Section -> () = { _ in }){
+    public init(_ header: HeaderFooterView<UIView>, @noescape _ initializer: Section -> () = { _ in }){
         self.header = header
         initializer(self)
     }
     
-    public init(header: HeaderFooterView<UIView>, footer: HeaderFooterView<UIView>, _ initializer: Section -> () = { _ in }){
+    public init(header: HeaderFooterView<UIView>, footer: HeaderFooterView<UIView>, @noescape _ initializer: Section -> () = { _ in }){
         self.header = header
         self.footer = footer
         initializer(self)
     }
     
-    public init(footer: HeaderFooterView<UIView>, _ initializer: Section -> () = { _ in }){
+    public init(footer: HeaderFooterView<UIView>, @noescape _ initializer: Section -> () = { _ in }){
         self.footer = footer
         initializer(self)
     }
     
-    public convenience init(_ header: String, _ initializer: Section -> () = { _ in }){
+    public convenience init(_ header: String, @noescape _ initializer: Section -> () = { _ in }){
         self.init(HeaderFooterView(stringLiteral: header), initializer)
     }
     
-    public convenience init(header: String, footer: String, _ initializer: Section -> () = { _ in }){
+    public convenience init(header: String, footer: String, @noescape _ initializer: Section -> () = { _ in }){
         self.init(header: HeaderFooterView(stringLiteral: header), footer: HeaderFooterView(stringLiteral: footer), initializer)
     }
     
-    public convenience init(footer: String, _ initializer: Section -> () = { _ in }){
+    public convenience init(footer: String, @noescape _ initializer: Section -> () = { _ in }){
         self.init(footer: HeaderFooterView(stringLiteral: footer), initializer)
     }
     
@@ -539,7 +554,8 @@ extension Section : RangeReplaceableCollectionType {
             }
         }
         kvoWrapper.rows.replaceObjectsInRange(NSMakeRange(subRange.startIndex, subRange.endIndex - subRange.startIndex), withObjectsFromArray: newElements.map { $0 })
-        kvoWrapper._allRows.appendContentsOf(newElements)
+        
+        kvoWrapper._allRows.insertContentsOf(newElements, at: indexForInsertionAtIndex(subRange.startIndex))
         for row in newElements{
             row.wasAddedToFormInSection(self)
         }
@@ -552,6 +568,16 @@ extension Section : RangeReplaceableCollectionType {
         }
         kvoWrapper.rows.removeAllObjects()
         kvoWrapper._allRows.removeAll()
+    }
+    
+    private func indexForInsertionAtIndex(index: Int) -> Int {
+        guard index != 0 else { return 0 }
+        
+        let row = kvoWrapper.rows[index-1]
+        if let i = kvoWrapper._allRows.indexOf(row as! BaseRow){
+            return i + 1
+        }
+        return kvoWrapper._allRows.count
     }
 }
 
@@ -670,13 +696,19 @@ extension Section {
                     delegateValue.rowsHaveBeenAdded(newRows, atIndexPaths:[NSIndexPath(index: 0)])
                 case NSKeyValueChange.Insertion.rawValue:
                     let indexSet = change![NSKeyValueChangeIndexesKey] as! NSIndexSet
-                    delegateValue.rowsHaveBeenAdded(newRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: section!.index! ) } )
+                    if let _index = section?.index {
+                      delegateValue.rowsHaveBeenAdded(newRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: _index ) } )
+                    }
                 case NSKeyValueChange.Removal.rawValue:
                     let indexSet = change![NSKeyValueChangeIndexesKey] as! NSIndexSet
-                    delegateValue.rowsHaveBeenRemoved(oldRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: section!.index! ) } )
+                    if let _index = section?.index {
+                      delegateValue.rowsHaveBeenRemoved(oldRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: _index ) } )
+                    }
                 case NSKeyValueChange.Replacement.rawValue:
                     let indexSet = change![NSKeyValueChangeIndexesKey] as! NSIndexSet
-                    delegateValue.rowsHaveBeenReplaced(oldRows: oldRows, newRows: newRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: section!.index!)})
+                    if let _index = section?.index {
+                      delegateValue.rowsHaveBeenReplaced(oldRows: oldRows, newRows: newRows, atIndexPaths: indexSet.map { NSIndexPath(forRow: $0, inSection: _index)})
+                    }
                 default:
                     assertionFailure()
             }
@@ -788,7 +820,7 @@ extension PresenterRowType {
 
 extension RowType where Self: BaseRow, Cell : TypedCellType, Cell.Value == Value {
     
-    public init(_ tag: String? = nil, _ initializer: (Self -> ()) = { _ in }) {
+    public init(_ tag: String? = nil, @noescape _ initializer: (Self -> ()) = { _ in }) {
         self.init(tag: tag)
         RowDefaults.rowInitialization["\(self.dynamicType)"]?(self)
         initializer(self)
@@ -1135,7 +1167,6 @@ public class RowOf<T: Equatable>: BaseRow {
     public required init(tag: String?){
         super.init(tag: tag)
     }
-    
 }
 
 public class Row<T: Equatable, Cell: CellType where Cell: BaseCell, Cell.Value == T>: RowOf<T>,  TypedRowType {
@@ -1215,7 +1246,7 @@ public class SelectorRow<T: Equatable, VCType: TypedRowControllerType where VCTy
         super.init(tag: tag)
     }
     
-    public required convenience init(_ tag: String, _ initializer: (SelectorRow<T, VCType> -> ()) = { _ in }) {
+    public required convenience init(_ tag: String, @noescape _ initializer: (SelectorRow<T, VCType> -> ()) = { _ in }) {
         self.init(tag:tag)
         RowDefaults.rowInitialization["\(self.dynamicType)"]?(self)
         initializer(self)
@@ -1273,7 +1304,7 @@ public class GenericMultipleSelectorRow<T: Hashable, VCType: TypedRowControllerT
         presentationMode = .Show(controllerProvider: ControllerProvider.Callback { return VCType() }, completionCallback: { vc in vc.navigationController?.popViewControllerAnimated(true) })
     }
     
-    public required convenience init(_ tag: String, _ initializer: (GenericMultipleSelectorRow<T, VCType> -> ()) = { _ in }) {
+    public required convenience init(_ tag: String, @noescape _ initializer: (GenericMultipleSelectorRow<T, VCType> -> ()) = { _ in }) {
         self.init(tag:tag)
         RowDefaults.rowInitialization["\(self.dynamicType)"]?(self)
         initializer(self)
@@ -1769,7 +1800,7 @@ public class FormViewController : UIViewController, FormViewControllerProtocol {
     
     //MARK: FormDelegate
     
-    public func rowValueHasBeenChanged(row: BaseRow, oldValue: Any, newValue: Any) {}
+    public func rowValueHasBeenChanged(row: BaseRow, oldValue: Any?, newValue: Any?) {}
     
     //MARK: FormViewControllerProtocol
     
@@ -1815,7 +1846,7 @@ public class FormViewController : UIViewController, FormViewControllerProtocol {
     
     //MARK: Private
     
-    private var oldBottomInset : CGFloat = 0.0
+    private var oldBottomInset : CGFloat?
 }
 
 extension FormViewController : UITableViewDelegate {
@@ -1972,7 +2003,7 @@ extension FormViewController {
         let newBottomInset = table.frame.origin.y + table.frame.size.height - keyBoardFrame.origin.y
         var tableInsets = table.contentInset
         var scrollIndicatorInsets = table.scrollIndicatorInsets
-        oldBottomInset = oldBottomInset != 0.0 ? oldBottomInset : tableInsets.bottom
+        oldBottomInset = oldBottomInset ?? tableInsets.bottom
         if newBottomInset > oldBottomInset {
             tableInsets.bottom = newBottomInset
             scrollIndicatorInsets.bottom = tableInsets.bottom
@@ -1993,9 +2024,11 @@ extension FormViewController {
         let keyBoardInfo = notification.userInfo!
         var tableInsets = table.contentInset
         var scrollIndicatorInsets = table.scrollIndicatorInsets
-        tableInsets.bottom = oldBottomInset
-        scrollIndicatorInsets.bottom = oldBottomInset
-        oldBottomInset = 0.0
+        if let oldBottomInset = oldBottomInset {
+            tableInsets.bottom = oldBottomInset
+            scrollIndicatorInsets.bottom = tableInsets.bottom
+        }
+        oldBottomInset = nil
         UIView.beginAnimations(nil, context: nil)
         UIView.setAnimationDuration(keyBoardInfo[UIKeyboardAnimationDurationUserInfoKey]!.doubleValue)
         UIView.setAnimationCurve(UIViewAnimationCurve(rawValue: keyBoardInfo[UIKeyboardAnimationCurveUserInfoKey]!.integerValue)!)
@@ -2064,7 +2097,7 @@ public class NavigationAccessoryView : UIToolbar {
     private var fixedSpace = UIBarButtonItem(barButtonSystemItem: .FixedSpace, target: nil, action: nil)
     private var flexibleSpace = UIBarButtonItem(barButtonSystemItem: .FlexibleSpace, target: nil, action: nil)
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: CGRectMake(0, 0, frame.size.width, 44.0))
         autoresizingMask = .FlexibleWidth
         fixedSpace.width = 22.0

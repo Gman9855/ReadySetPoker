@@ -85,19 +85,40 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-ReadySetPoker/ActionSheetPicker_3_0.framework"
+  install_framework "Pods-ReadySetPoker/Bolts.framework"
   install_framework "Pods-ReadySetPoker/Eureka.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKCoreKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKLoginKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKShareKit.framework"
   install_framework "Pods-ReadySetPoker/MBProgressHUD.framework"
+  install_framework "Pods-ReadySetPoker/Parse.framework"
+  install_framework "Pods-ReadySetPoker/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-ReadySetPoker/ParseUI.framework"
   install_framework "Pods-ReadySetPoker/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-ReadySetPoker/ActionSheetPicker_3_0.framework"
+  install_framework "Pods-ReadySetPoker/Bolts.framework"
   install_framework "Pods-ReadySetPoker/Eureka.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKCoreKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKLoginKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKShareKit.framework"
   install_framework "Pods-ReadySetPoker/MBProgressHUD.framework"
+  install_framework "Pods-ReadySetPoker/Parse.framework"
+  install_framework "Pods-ReadySetPoker/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-ReadySetPoker/ParseUI.framework"
   install_framework "Pods-ReadySetPoker/SDWebImage.framework"
 fi
 if [[ "$CONFIGURATION" == "AdHoc" ]]; then
   install_framework "Pods-ReadySetPoker/ActionSheetPicker_3_0.framework"
+  install_framework "Pods-ReadySetPoker/Bolts.framework"
   install_framework "Pods-ReadySetPoker/Eureka.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKCoreKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKLoginKit.framework"
+  install_framework "Pods-ReadySetPoker/FBSDKShareKit.framework"
   install_framework "Pods-ReadySetPoker/MBProgressHUD.framework"
+  install_framework "Pods-ReadySetPoker/Parse.framework"
+  install_framework "Pods-ReadySetPoker/ParseFacebookUtilsV4.framework"
+  install_framework "Pods-ReadySetPoker/ParseUI.framework"
   install_framework "Pods-ReadySetPoker/SDWebImage.framework"
 fi

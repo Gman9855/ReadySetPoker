@@ -81,7 +81,7 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
         // if not, query the local datastore and use objectID's stored in core data
         
         let inviteRelation = PFUser.currentUser()!.relationForKey("invites")
-        let inviteQuery = inviteRelation.query()!
+        let inviteQuery = inviteRelation.query()
         let eventQuery = PokerEvent.query()!
         if segmentedControl.selectedSegmentIndex == 1 {         // if we're on the completed game segment,
             eventQuery.whereKey("endDate", lessThan: NSDate())  // we get events that ended before the current time
@@ -131,7 +131,7 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
             }
         }
         let query = self.queryForTable()
-        query.findObjectsInBackgroundWithBlock { (invites: [AnyObject]?, error: NSError?) -> Void in
+        query.findObjectsInBackgroundWithBlock { (invites: [PFObject]?, error: NSError?) -> Void in
             print("Found \(invites?.count) objects with error: \(error)")
             MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
             self.refreshControl?.endRefreshing()
