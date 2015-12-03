@@ -290,7 +290,7 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
         }
         let userQuery = PFUser.query()
         userQuery?.whereKey("facebookID", containedIn: facebookIDs)
-        userQuery?.findObjectsInBackgroundWithBlock({ (result: [AnyObject]?, error: NSError?) -> Void in
+        userQuery?.findObjectsInBackgroundWithBlock({ (result: [PFObject]?, error: NSError?) -> Void in
             if error != nil {
                 print(error, terminator: "")
                 //display error message to user

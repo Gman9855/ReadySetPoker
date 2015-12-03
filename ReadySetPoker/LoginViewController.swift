@@ -11,6 +11,7 @@ import Parse
 import Bolts
 import FBSDKLoginKit
 import FBSDKCoreKit
+import ParseFacebookUtilsV4
 
 class LoginViewController: UIViewController {
 

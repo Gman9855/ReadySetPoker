@@ -1,0 +1,898 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */; };
+		8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */; };
+		8B05E6471BEAF76400E78058 /* Chip-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6461BEAF76400E78058 /* Chip-50.png */; };
+		8B05E6491BEAF8E400E78058 /* Info-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E6481BEAF8E400E78058 /* Info-50.png */; };
+		8B05E64B1BEAF9D000E78058 /* Spades-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B05E64A1BEAF9D000E78058 /* Spades-50.png */; };
+		8B05E64D1BEAFA4100E78058 /* EventPokerDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */; };
+		8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279C1BB60599004CFE64 /* Comments-50.png */; };
+		8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B42279E1BB605A0004CFE64 /* Map-50.png */; };
+		8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B4227A01BB605A9004CFE64 /* Calendar-50.png */; };
+		8B7FBC511BF44BF400FEBF7C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */; };
+		8B7FBC531BF44C2900FEBF7C /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */; };
+		8B7FBC551BF44CDE00FEBF7C /* CDInvite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */; };
+		8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A11B60682500B69539 /* AppDelegate.swift */; };
+		8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423A31B60682500B69539 /* LoginViewController.swift */; };
+		8B8423A91B60682500B69539 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423A81B60682500B69539 /* Images.xcassets */; };
+		8B8423C31B60690A00B69539 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423C11B60690A00B69539 /* Bolts.framework */; };
+		8B8423C61B60697100B69539 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423C51B60697100B69539 /* AudioToolbox.framework */; };
+		8B8423C81B60697800B69539 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423C71B60697800B69539 /* CFNetwork.framework */; };
+		8B8423CA1B60698C00B69539 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423C91B60698C00B69539 /* CoreGraphics.framework */; };
+		8B8423CC1B60699400B69539 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423CB1B60699400B69539 /* CoreLocation.framework */; };
+		8B8423CE1B6069A200B69539 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423CD1B6069A200B69539 /* QuartzCore.framework */; };
+		8B8423D01B6069B100B69539 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423CF1B6069B100B69539 /* Security.framework */; };
+		8B8423D21B6069BE00B69539 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D11B6069BE00B69539 /* StoreKit.framework */; };
+		8B8423D41B6069F100B69539 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D31B6069F100B69539 /* SystemConfiguration.framework */; };
+		8B8423D61B606A0100B69539 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D51B606A0100B69539 /* libz.dylib */; };
+		8B8423D81B606A0B00B69539 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423D71B606A0B00B69539 /* libsqlite3.dylib */; };
+		8B8423EC1B60966700B69539 /* ReadySetPokerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */; };
+		8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */; };
+		8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423F71B6142EC00B69539 /* Default-568h@2x.png */; };
+		8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */; };
+		8B8423FE1B61601F00B69539 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8423FD1B61601F00B69539 /* Event.swift */; };
+		8B8424011B61658100B69539 /* PokerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424001B61658100B69539 /* PokerEvent.swift */; };
+		8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8424021B616CF800B69539 /* EventListViewController.swift */; };
+		8B92FA511BE7EFE400B6DB4B /* EventCreationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */; };
+		8B96516C1B7FEBF500E08CD6 /* EventCreationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */; };
+		8B96516E1B801AC700E08CD6 /* InviteFriendsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */; };
+		8B9651701B80232000E08CD6 /* CreatePokerGameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */; };
+		8B96517E1B82863700E08CD6 /* me.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96517D1B82863700E08CD6 /* me.jpg */; };
+		8B9651801B82865600E08CD6 /* placeholder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B96517F1B82865600E08CD6 /* placeholder.jpg */; };
+		8B9651831B82866900E08CD6 /* facebook-login-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651811B82866900E08CD6 /* facebook-login-2.png */; };
+		8B9651841B82866900E08CD6 /* rsplogo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651821B82866900E08CD6 /* rsplogo.jpg */; };
+		8B9651871B82867800E08CD6 /* ic_menu_mapmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651851B82867800E08CD6 /* ic_menu_mapmode.png */; };
+		8B9651881B82867800E08CD6 /* ic_menu_my_calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651861B82867800E08CD6 /* ic_menu_my_calendar.png */; };
+		8B96518A1B82868200E08CD6 /* sym_action_chat.png in Resources */ = {isa = PBXBuildFile; fileRef = 8B9651891B82868200E08CD6 /* sym_action_chat.png */; };
+		8B96518D1B82A78700E08CD6 /* LoggedOutState.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B96518C1B82A78700E08CD6 /* LoggedOutState.storyboard */; };
+		8B9651BF1B8A796700E08CD6 /* Invite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B9651BE1B8A796700E08CD6 /* Invite.swift */; };
+		8BDBFDCD1BA73A8900241847 /* CellData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BDBFDCC1BA73A8900241847 /* CellData.swift */; };
+		8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */; };
+		8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */; };
+		8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */; };
+		8BEDA2E21B69A44400BCA918 /* FacebookFriend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2E11B69A44400BCA918 /* FacebookFriend.swift */; };
+		8BEDA2E41B69A84700BCA918 /* InviteFriendsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BEDA2E31B69A84700BCA918 /* InviteFriendsTableViewCell.swift */; };
+		8BEDA2F31B6A8D0500BCA918 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BEDA2F21B6A8D0500BCA918 /* ImageIO.framework */; };
+		8BF06E151B7AEE8400E5E9E4 /* EventDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E141B7AEE8400E5E9E4 /* EventDetailViewController.swift */; };
+		8BF06E181B7BDD9D00E5E9E4 /* EventTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E171B7BDD9D00E5E9E4 /* EventTitleCell.swift */; };
+		8BF06E1A1B7BDDBC00E5E9E4 /* EventDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E191B7BDDBC00E5E9E4 /* EventDateCell.swift */; };
+		8BF06E1C1B7BDDE300E5E9E4 /* EventLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E1B1B7BDDE300E5E9E4 /* EventLocationCell.swift */; };
+		8BF06E1E1B7BDE0200E5E9E4 /* EventCommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E1D1B7BDE0200E5E9E4 /* EventCommentsCell.swift */; };
+		8BF06E201B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E1F1B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift */; };
+		8BF06E221B7BDE3B00E5E9E4 /* EventRSVPCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E211B7BDE3B00E5E9E4 /* EventRSVPCell.swift */; };
+		8BF06E241B7D568E00E5E9E4 /* RSVPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E231B7D568E00E5E9E4 /* RSVPViewController.swift */; };
+		8BF06E261B7D857A00E5E9E4 /* EventDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF06E251B7D857A00E5E9E4 /* EventDetailsCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8B8423B21B60682500B69539 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8B8423941B60682500B69539 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8B84239B1B60682500B69539;
+			remoteInfo = ReadySetPoker;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.adhoc.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.adhoc.xcconfig"; sourceTree = "<group>"; };
+		52E6BF9D1C0FB90C00951261 /* ReadySetPoker-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ReadySetPoker-Bridging-Header.h"; path = "../ReadySetPoker/ReadySetPoker-Bridging-Header.h"; sourceTree = "<group>"; };
+		61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.debug.xcconfig"; sourceTree = "<group>"; };
+		70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReadySetPoker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDescriptionViewController.swift; sourceTree = "<group>"; };
+		8B05E6461BEAF76400E78058 /* Chip-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Chip-50.png"; sourceTree = "<group>"; };
+		8B05E6481BEAF8E400E78058 /* Info-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Info-50.png"; sourceTree = "<group>"; };
+		8B05E64A1BEAF9D000E78058 /* Spades-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Spades-50.png"; sourceTree = "<group>"; };
+		8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventPokerDetailsCell.swift; sourceTree = "<group>"; };
+		8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../FacebookSDKs-iOS-20151007/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		8B42279C1BB60599004CFE64 /* Comments-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Comments-50.png"; sourceTree = "<group>"; };
+		8B42279E1BB605A0004CFE64 /* Map-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Map-50.png"; sourceTree = "<group>"; };
+		8B4227A01BB605A9004CFE64 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Calendar-50.png"; sourceTree = "<group>"; };
+		8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CDInvite.swift; sourceTree = "<group>"; };
+		8B84239C1B60682500B69539 /* ReadySetPoker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReadySetPoker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B8423A11B60682500B69539 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		8B8423A31B60682500B69539 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		8B8423A81B60682500B69539 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		8B8423AB1B60682500B69539 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		8B8423B11B60682500B69539 /* ReadySetPokerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReadySetPokerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8B8423C11B60690A00B69539 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = ../Bolts.framework; sourceTree = "<group>"; };
+		8B8423C21B60690A00B69539 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = ../Parse.framework; sourceTree = "<group>"; };
+		8B8423C51B60697100B69539 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8B8423C71B60697800B69539 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		8B8423C91B60698C00B69539 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		8B8423CB1B60699400B69539 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		8B8423CD1B6069A200B69539 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8B8423CF1B6069B100B69539 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		8B8423D11B6069BE00B69539 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		8B8423D31B6069F100B69539 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		8B8423D51B606A0100B69539 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		8B8423D71B606A0B00B69539 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		8B8423E81B60960A00B69539 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadySetPokerTests.swift; sourceTree = "<group>"; };
+		8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseFacebookUtilsV4.framework; sourceTree = "<group>"; };
+		8B8423F71B6142EC00B69539 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoggedInState.storyboard; sourceTree = "<group>"; };
+		8B8423FD1B61601F00B69539 /* Event.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		8B8424001B61658100B69539 /* PokerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PokerEvent.swift; sourceTree = "<group>"; };
+		8B8424021B616CF800B69539 /* EventListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventListViewController.swift; sourceTree = "<group>"; };
+		8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationController.swift; sourceTree = "<group>"; };
+		8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCreationViewController.swift; sourceTree = "<group>"; };
+		8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsCell.swift; sourceTree = "<group>"; };
+		8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreatePokerGameCell.swift; sourceTree = "<group>"; };
+		8B96517B1B80495800E08CD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = ReadySetPoker/Info.plist; sourceTree = "<group>"; };
+		8B96517D1B82863700E08CD6 /* me.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = me.jpg; sourceTree = "<group>"; };
+		8B96517F1B82865600E08CD6 /* placeholder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = placeholder.jpg; sourceTree = "<group>"; };
+		8B9651811B82866900E08CD6 /* facebook-login-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facebook-login-2.png"; sourceTree = "<group>"; };
+		8B9651821B82866900E08CD6 /* rsplogo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = rsplogo.jpg; sourceTree = "<group>"; };
+		8B9651851B82867800E08CD6 /* ic_menu_mapmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_mapmode.png; sourceTree = "<group>"; };
+		8B9651861B82867800E08CD6 /* ic_menu_my_calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_menu_my_calendar.png; sourceTree = "<group>"; };
+		8B9651891B82868200E08CD6 /* sym_action_chat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sym_action_chat.png; sourceTree = "<group>"; };
+		8B96518C1B82A78700E08CD6 /* LoggedOutState.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoggedOutState.storyboard; sourceTree = "<group>"; };
+		8B9651BE1B8A796700E08CD6 /* Invite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Invite.swift; sourceTree = "<group>"; };
+		8BDBFDCC1BA73A8900241847 /* CellData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellData.swift; sourceTree = "<group>"; };
+		8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ParseUI.framework; sourceTree = "<group>"; };
+		8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTableViewCell.swift; sourceTree = "<group>"; };
+		8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsViewController.swift; sourceTree = "<group>"; };
+		8BEDA2E11B69A44400BCA918 /* FacebookFriend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FacebookFriend.swift; sourceTree = "<group>"; };
+		8BEDA2E31B69A84700BCA918 /* InviteFriendsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InviteFriendsTableViewCell.swift; sourceTree = "<group>"; };
+		8BEDA2F21B6A8D0500BCA918 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		8BF06E141B7AEE8400E5E9E4 /* EventDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailViewController.swift; sourceTree = "<group>"; };
+		8BF06E171B7BDD9D00E5E9E4 /* EventTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventTitleCell.swift; sourceTree = "<group>"; };
+		8BF06E191B7BDDBC00E5E9E4 /* EventDateCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDateCell.swift; sourceTree = "<group>"; };
+		8BF06E1B1B7BDDE300E5E9E4 /* EventLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventLocationCell.swift; sourceTree = "<group>"; };
+		8BF06E1D1B7BDE0200E5E9E4 /* EventCommentsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventCommentsCell.swift; sourceTree = "<group>"; };
+		8BF06E1F1B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventMoreDetailsCell.swift; sourceTree = "<group>"; };
+		8BF06E211B7BDE3B00E5E9E4 /* EventRSVPCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventRSVPCell.swift; sourceTree = "<group>"; };
+		8BF06E231B7D568E00E5E9E4 /* RSVPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RSVPViewController.swift; sourceTree = "<group>"; };
+		8BF06E251B7D857A00E5E9E4 /* EventDetailsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventDetailsCell.swift; sourceTree = "<group>"; };
+		DBA2E726BFF895BADE4BAB20 /* Pods-ReadySetPoker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReadySetPoker.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8B8423991B60682500B69539 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEDA2F31B6A8D0500BCA918 /* ImageIO.framework in Frameworks */,
+				8B8423D81B606A0B00B69539 /* libsqlite3.dylib in Frameworks */,
+				8B8423D61B606A0100B69539 /* libz.dylib in Frameworks */,
+				8B8423D41B6069F100B69539 /* SystemConfiguration.framework in Frameworks */,
+				8B8423D21B6069BE00B69539 /* StoreKit.framework in Frameworks */,
+				8B8423D01B6069B100B69539 /* Security.framework in Frameworks */,
+				8B8423CE1B6069A200B69539 /* QuartzCore.framework in Frameworks */,
+				8B8423CC1B60699400B69539 /* CoreLocation.framework in Frameworks */,
+				8BEDA2DC1B62BC5400BCA918 /* ParseUI.framework in Frameworks */,
+				8B8423CA1B60698C00B69539 /* CoreGraphics.framework in Frameworks */,
+				8B8423F41B60A37100B69539 /* ParseFacebookUtilsV4.framework in Frameworks */,
+				8B8423C81B60697800B69539 /* CFNetwork.framework in Frameworks */,
+				8B8423C61B60697100B69539 /* AudioToolbox.framework in Frameworks */,
+				8B8423C31B60690A00B69539 /* Bolts.framework in Frameworks */,
+				17270233FD4DC545B42A9125 /* Pods_ReadySetPoker.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B8423AE1B60682500B69539 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8B7FBC4E1BF44BD600FEBF7C /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */,
+				8B7FBC541BF44CDE00FEBF7C /* CDInvite.swift */,
+				8B7FBC521BF44C2900FEBF7C /* CoreDataStackManager.swift */,
+			);
+			name = "Core Data";
+			sourceTree = "<group>";
+		};
+		8B8423931B60682500B69539 = {
+			isa = PBXGroup;
+			children = (
+				8B96517B1B80495800E08CD6 /* Info.plist */,
+				8B8423F71B6142EC00B69539 /* Default-568h@2x.png */,
+				8B84239E1B60682500B69539 /* ReadySetPoker */,
+				8B8423B41B60682500B69539 /* ReadySetPokerTests */,
+				8B84239D1B60682500B69539 /* Products */,
+				8B8423D91B60914C00B69539 /* Frameworks */,
+				998C79F45FF27ED86D24CD39 /* Pods */,
+			);
+			sourceTree = "<group>";
+		};
+		8B84239D1B60682500B69539 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8B84239C1B60682500B69539 /* ReadySetPoker.app */,
+				8B8423B11B60682500B69539 /* ReadySetPokerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8B84239E1B60682500B69539 /* ReadySetPoker */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423A11B60682500B69539 /* AppDelegate.swift */,
+				8B8423FF1B61602D00B69539 /* Model */,
+				8B96518B1B8286C400E08CD6 /* View Controllers */,
+				8B96518C1B82A78700E08CD6 /* LoggedOutState.storyboard */,
+				8B8423FB1B615B1D00B69539 /* LoggedInState.storyboard */,
+				8B8423A81B60682500B69539 /* Images.xcassets */,
+				8B8423AA1B60682500B69539 /* LaunchScreen.xib */,
+				8B8423B51B60682500B69539 /* Supporting Files */,
+			);
+			path = ReadySetPoker;
+			sourceTree = "<group>";
+		};
+		8B8423B41B60682500B69539 /* ReadySetPokerTests */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423E81B60960A00B69539 /* Info.plist */,
+				8B8423EB1B60966700B69539 /* ReadySetPokerTests.swift */,
+			);
+			path = ReadySetPokerTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		8B8423B51B60682500B69539 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				52E6BF9D1C0FB90C00951261 /* ReadySetPoker-Bridging-Header.h */,
+				8B96517F1B82865600E08CD6 /* placeholder.jpg */,
+				8B9651811B82866900E08CD6 /* facebook-login-2.png */,
+				8B9651821B82866900E08CD6 /* rsplogo.jpg */,
+				8B96517D1B82863700E08CD6 /* me.jpg */,
+				8B9651851B82867800E08CD6 /* ic_menu_mapmode.png */,
+				8B9651861B82867800E08CD6 /* ic_menu_my_calendar.png */,
+				8B9651891B82868200E08CD6 /* sym_action_chat.png */,
+				8B42279C1BB60599004CFE64 /* Comments-50.png */,
+				8B42279E1BB605A0004CFE64 /* Map-50.png */,
+				8B4227A01BB605A9004CFE64 /* Calendar-50.png */,
+				8B05E6461BEAF76400E78058 /* Chip-50.png */,
+				8B05E6481BEAF8E400E78058 /* Info-50.png */,
+				8B05E64A1BEAF9D000E78058 /* Spades-50.png */,
+			);
+			name = "Supporting Files";
+			path = ReadySetPokerTests;
+			sourceTree = SOURCE_ROOT;
+		};
+		8B8423D91B60914C00B69539 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8BEDA2F21B6A8D0500BCA918 /* ImageIO.framework */,
+				8BEDA2DB1B62BC5400BCA918 /* ParseUI.framework */,
+				8B8423F31B60A37100B69539 /* ParseFacebookUtilsV4.framework */,
+				8B41EC411BD1ABD000E6D6D2 /* FBSDKCoreKit.framework */,
+				8B41EC421BD1ABD000E6D6D2 /* FBSDKLoginKit.framework */,
+				8B41EC431BD1ABD000E6D6D2 /* FBSDKShareKit.framework */,
+				8B8423D71B606A0B00B69539 /* libsqlite3.dylib */,
+				8B8423D51B606A0100B69539 /* libz.dylib */,
+				8B8423D31B6069F100B69539 /* SystemConfiguration.framework */,
+				8B8423D11B6069BE00B69539 /* StoreKit.framework */,
+				8B8423CF1B6069B100B69539 /* Security.framework */,
+				8B8423CD1B6069A200B69539 /* QuartzCore.framework */,
+				8B8423CB1B60699400B69539 /* CoreLocation.framework */,
+				8B8423C91B60698C00B69539 /* CoreGraphics.framework */,
+				8B8423C71B60697800B69539 /* CFNetwork.framework */,
+				8B8423C51B60697100B69539 /* AudioToolbox.framework */,
+				8B8423C11B60690A00B69539 /* Bolts.framework */,
+				8B8423C21B60690A00B69539 /* Parse.framework */,
+				70135D4E5E89728EB857F849 /* Pods_ReadySetPoker.framework */,
+			);
+			name = Frameworks;
+			path = ReadySetPoker.xcodeproj;
+			sourceTree = "<group>";
+		};
+		8B8423FF1B61602D00B69539 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8B7FBC4E1BF44BD600FEBF7C /* Core Data */,
+				8BD2D0DE1BCB63570007A210 /* Parse Model Objects */,
+				8BF06E161B7BDD5600E5E9E4 /* Event Detail Prototype Cells */,
+				8BDBFDCC1BA73A8900241847 /* CellData.swift */,
+				8BEDA2E11B69A44400BCA918 /* FacebookFriend.swift */,
+				8BEDA2E31B69A84700BCA918 /* InviteFriendsTableViewCell.swift */,
+				8BEDA2DD1B62BD6A00BCA918 /* EventTableViewCell.swift */,
+				8B96516D1B801AC700E08CD6 /* InviteFriendsCell.swift */,
+				8B96516F1B80232000E08CD6 /* CreatePokerGameCell.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		8B96518B1B8286C400E08CD6 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423A31B60682500B69539 /* LoginViewController.swift */,
+				8B8424021B616CF800B69539 /* EventListViewController.swift */,
+				8B96516B1B7FEBF500E08CD6 /* EventCreationViewController.swift */,
+				8B92FA501BE7EFE400B6DB4B /* EventCreationController.swift */,
+				8BF06E141B7AEE8400E5E9E4 /* EventDetailViewController.swift */,
+				8B05E6441BEA9A2B00E78058 /* EventDescriptionViewController.swift */,
+				8BEDA2DF1B686B9400BCA918 /* InviteFriendsViewController.swift */,
+				8BF06E231B7D568E00E5E9E4 /* RSVPViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		8BD2D0DE1BCB63570007A210 /* Parse Model Objects */ = {
+			isa = PBXGroup;
+			children = (
+				8B8423FD1B61601F00B69539 /* Event.swift */,
+				8B8424001B61658100B69539 /* PokerEvent.swift */,
+				8B9651BE1B8A796700E08CD6 /* Invite.swift */,
+			);
+			name = "Parse Model Objects";
+			sourceTree = "<group>";
+		};
+		8BF06E161B7BDD5600E5E9E4 /* Event Detail Prototype Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8BF06E251B7D857A00E5E9E4 /* EventDetailsCell.swift */,
+				8BF06E171B7BDD9D00E5E9E4 /* EventTitleCell.swift */,
+				8BF06E191B7BDDBC00E5E9E4 /* EventDateCell.swift */,
+				8BF06E1B1B7BDDE300E5E9E4 /* EventLocationCell.swift */,
+				8BF06E1D1B7BDE0200E5E9E4 /* EventCommentsCell.swift */,
+				8B05E64C1BEAFA4100E78058 /* EventPokerDetailsCell.swift */,
+				8BF06E1F1B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift */,
+				8BF06E211B7BDE3B00E5E9E4 /* EventRSVPCell.swift */,
+			);
+			name = "Event Detail Prototype Cells";
+			sourceTree = "<group>";
+		};
+		998C79F45FF27ED86D24CD39 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */,
+				DBA2E726BFF895BADE4BAB20 /* Pods-ReadySetPoker.release.xcconfig */,
+				1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8B84239B1B60682500B69539 /* ReadySetPoker */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B8423BB1B60682500B69539 /* Build configuration list for PBXNativeTarget "ReadySetPoker" */;
+			buildPhases = (
+				230DD36B65AB269F5DE8AF27 /* Check Pods Manifest.lock */,
+				8B8423981B60682500B69539 /* Sources */,
+				8B8423991B60682500B69539 /* Frameworks */,
+				8B84239A1B60682500B69539 /* Resources */,
+				75FB0CC7AC9E1296E3B6F4C4 /* Embed Pods Frameworks */,
+				976BBFB4B6F959D07C17F8A2 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReadySetPoker;
+			productName = ReadySetPoker;
+			productReference = 8B84239C1B60682500B69539 /* ReadySetPoker.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8B8423B01B60682500B69539 /* ReadySetPokerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8B8423BE1B60682500B69539 /* Build configuration list for PBXNativeTarget "ReadySetPokerTests" */;
+			buildPhases = (
+				8B8423AD1B60682500B69539 /* Sources */,
+				8B8423AE1B60682500B69539 /* Frameworks */,
+				8B8423AF1B60682500B69539 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8B8423B31B60682500B69539 /* PBXTargetDependency */,
+			);
+			name = ReadySetPokerTests;
+			productName = ReadySetPokerTests;
+			productReference = 8B8423B11B60682500B69539 /* ReadySetPokerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8B8423941B60682500B69539 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = ReadySetPoker;
+				TargetAttributes = {
+					8B84239B1B60682500B69539 = {
+						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = D6X654H249;
+					};
+					8B8423B01B60682500B69539 = {
+						CreatedOnToolsVersion = 6.4;
+						TestTargetID = 8B84239B1B60682500B69539;
+					};
+				};
+			};
+			buildConfigurationList = 8B8423971B60682500B69539 /* Build configuration list for PBXProject "ReadySetPoker" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8B8423931B60682500B69539;
+			productRefGroup = 8B84239D1B60682500B69539 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8B84239B1B60682500B69539 /* ReadySetPoker */,
+				8B8423B01B60682500B69539 /* ReadySetPokerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8B84239A1B60682500B69539 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B42279F1BB605A0004CFE64 /* Map-50.png in Resources */,
+				8B05E6471BEAF76400E78058 /* Chip-50.png in Resources */,
+				8B9651871B82867800E08CD6 /* ic_menu_mapmode.png in Resources */,
+				8B9651831B82866900E08CD6 /* facebook-login-2.png in Resources */,
+				8B8423FC1B615B1D00B69539 /* LoggedInState.storyboard in Resources */,
+				8B8423A91B60682500B69539 /* Images.xcassets in Resources */,
+				8B96518D1B82A78700E08CD6 /* LoggedOutState.storyboard in Resources */,
+				8B8423F81B6142EC00B69539 /* Default-568h@2x.png in Resources */,
+				8B42279D1BB60599004CFE64 /* Comments-50.png in Resources */,
+				8B4227A11BB605A9004CFE64 /* Calendar-50.png in Resources */,
+				8B96518A1B82868200E08CD6 /* sym_action_chat.png in Resources */,
+				8B9651841B82866900E08CD6 /* rsplogo.jpg in Resources */,
+				8B05E6491BEAF8E400E78058 /* Info-50.png in Resources */,
+				8B9651881B82867800E08CD6 /* ic_menu_my_calendar.png in Resources */,
+				8B9651801B82865600E08CD6 /* placeholder.jpg in Resources */,
+				8B96517E1B82863700E08CD6 /* me.jpg in Resources */,
+				8B05E64B1BEAF9D000E78058 /* Spades-50.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B8423AF1B60682500B69539 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		230DD36B65AB269F5DE8AF27 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		75FB0CC7AC9E1296E3B6F4C4 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		976BBFB4B6F959D07C17F8A2 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReadySetPoker/Pods-ReadySetPoker-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8B8423981B60682500B69539 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8BEDA2DE1B62BD6A00BCA918 /* EventTableViewCell.swift in Sources */,
+				8BEDA2E21B69A44400BCA918 /* FacebookFriend.swift in Sources */,
+				8B7FBC531BF44C2900FEBF7C /* CoreDataStackManager.swift in Sources */,
+				8BF06E1A1B7BDDBC00E5E9E4 /* EventDateCell.swift in Sources */,
+				8B8424031B616CF800B69539 /* EventListViewController.swift in Sources */,
+				8B96516E1B801AC700E08CD6 /* InviteFriendsCell.swift in Sources */,
+				8BF06E1E1B7BDE0200E5E9E4 /* EventCommentsCell.swift in Sources */,
+				8B9651701B80232000E08CD6 /* CreatePokerGameCell.swift in Sources */,
+				8B8423A41B60682500B69539 /* LoginViewController.swift in Sources */,
+				8B8423FE1B61601F00B69539 /* Event.swift in Sources */,
+				8BEDA2E01B686B9400BCA918 /* InviteFriendsViewController.swift in Sources */,
+				8B7FBC551BF44CDE00FEBF7C /* CDInvite.swift in Sources */,
+				8BF06E1C1B7BDDE300E5E9E4 /* EventLocationCell.swift in Sources */,
+				8B7FBC511BF44BF400FEBF7C /* Model.xcdatamodeld in Sources */,
+				8B05E64D1BEAFA4100E78058 /* EventPokerDetailsCell.swift in Sources */,
+				8BF06E151B7AEE8400E5E9E4 /* EventDetailViewController.swift in Sources */,
+				8B05E6451BEA9A2B00E78058 /* EventDescriptionViewController.swift in Sources */,
+				8BEDA2E41B69A84700BCA918 /* InviteFriendsTableViewCell.swift in Sources */,
+				8BF06E221B7BDE3B00E5E9E4 /* EventRSVPCell.swift in Sources */,
+				8B96516C1B7FEBF500E08CD6 /* EventCreationViewController.swift in Sources */,
+				8BF06E241B7D568E00E5E9E4 /* RSVPViewController.swift in Sources */,
+				8B9651BF1B8A796700E08CD6 /* Invite.swift in Sources */,
+				8BDBFDCD1BA73A8900241847 /* CellData.swift in Sources */,
+				8BF06E261B7D857A00E5E9E4 /* EventDetailsCell.swift in Sources */,
+				8B92FA511BE7EFE400B6DB4B /* EventCreationController.swift in Sources */,
+				8B8424011B61658100B69539 /* PokerEvent.swift in Sources */,
+				8BF06E181B7BDD9D00E5E9E4 /* EventTitleCell.swift in Sources */,
+				8BF06E201B7BDE2700E5E9E4 /* EventMoreDetailsCell.swift in Sources */,
+				8B8423A21B60682500B69539 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8B8423AD1B60682500B69539 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B8423EC1B60966700B69539 /* ReadySetPokerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8B8423B31B60682500B69539 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8B84239B1B60682500B69539 /* ReadySetPoker */;
+			targetProxy = 8B8423B21B60682500B69539 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		8B8423AA1B60682500B69539 /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8B8423AB1B60682500B69539 /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8B8423B91B60682500B69539 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Yuval Wirzberger (454NRLJYNL)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8B8423BA1B60682500B69539 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8B8423BC1B60682500B69539 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61B1D2FCD098815EA27A0971 /* Pods-ReadySetPoker.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PODS_ROOT)/Headers/Private/**",
+				);
+				INFOPLIST_FILE = ReadySetPoker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
+			};
+			name = Debug;
+		};
+		8B8423BD1B60682500B69539 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBA2E726BFF895BADE4BAB20 /* Pods-ReadySetPoker.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PODS_ROOT)/Headers/Private/**",
+				);
+				INFOPLIST_FILE = ReadySetPoker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		8B8423BF1B60682500B69539 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadySetPoker.app/ReadySetPoker";
+			};
+			name = Debug;
+		};
+		8B8423C01B60682500B69539 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadySetPoker.app/ReadySetPoker";
+			};
+			name = Release;
+		};
+		8B9651741B803AAC00E08CD6 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AdHoc;
+		};
+		8B9651751B803AAC00E08CD6 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1F70FB63C6E51B99DD797F86 /* Pods-ReadySetPoker.adhoc.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Yuval Wirzberger (D6X654H249)";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PODS_ROOT)/Headers/Private/**",
+				);
+				INFOPLIST_FILE = ReadySetPoker/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPoker;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "001ca835-a911-410d-a663-a34bf8bcb725";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(SRCROOT)/$(PRODUCT_NAME)/$(PRODUCT_NAME)-Bridging-Header.h";
+			};
+			name = AdHoc;
+		};
+		8B9651761B803AAC00E08CD6 /* AdHoc */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = ReadySetPokerTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.readysetpoker.ReadySetPokerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReadySetPoker.app/ReadySetPoker";
+			};
+			name = AdHoc;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8B8423971B60682500B69539 /* Build configuration list for PBXProject "ReadySetPoker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B8423B91B60682500B69539 /* Debug */,
+				8B8423BA1B60682500B69539 /* Release */,
+				8B9651741B803AAC00E08CD6 /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B8423BB1B60682500B69539 /* Build configuration list for PBXNativeTarget "ReadySetPoker" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B8423BC1B60682500B69539 /* Debug */,
+				8B8423BD1B60682500B69539 /* Release */,
+				8B9651751B803AAC00E08CD6 /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8B8423BE1B60682500B69539 /* Build configuration list for PBXNativeTarget "ReadySetPokerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8B8423BF1B60682500B69539 /* Debug */,
+				8B8423C01B60682500B69539 /* Release */,
+				8B9651761B803AAC00E08CD6 /* AdHoc */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		8B7FBC4F1BF44BF400FEBF7C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */,
+			);
+			currentVersion = 8B7FBC501BF44BF400FEBF7C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 8B8423941B60682500B69539 /* Project object */;
+}

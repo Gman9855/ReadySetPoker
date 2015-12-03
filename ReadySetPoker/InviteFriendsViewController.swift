@@ -34,6 +34,7 @@ class InviteFriendsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         noFriendsLabel.hidden = true
         tableView.tableFooterView = UIView()
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)

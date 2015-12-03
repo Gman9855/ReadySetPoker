@@ -98,10 +98,10 @@ class RSVPViewController: UITableViewController {
                     // Get the people going to the event so we can notify them of the RSVP update
                     let invites = self.invite.event.relationForKey("invites")
                     let invitesQuery = invites.query()
-                    invitesQuery?.whereKey("inviteStatus", notEqualTo: Status.NotGoing.rawValue)  // Avoid sending a push to people not going
-                    invitesQuery?.whereKey("invitee", notEqualTo: PFUser.currentUser()!) // Avoid sending a push to the current user
-                    invitesQuery?.includeKey("invitee")
-                    invitesQuery?.findObjectsInBackgroundWithBlock({ (invites: [AnyObject]?, error: NSError?) -> Void in
+                    invitesQuery.whereKey("inviteStatus", notEqualTo: Status.NotGoing.rawValue)  // Avoid sending a push to people not going
+                    invitesQuery.whereKey("invitee", notEqualTo: PFUser.currentUser()!) // Avoid sending a push to the current user
+                    invitesQuery.includeKey("invitee")
+                    invitesQuery.findObjectsInBackgroundWithBlock({ (invites: [PFObject]?, error: NSError?) -> Void in
                         print(invites)
                         if invites?.count > 0 {
                             let inviteResults = invites as! [Invite]

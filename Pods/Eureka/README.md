@@ -5,7 +5,7 @@
 <img src="https://img.shields.io/badge/platform-iOS-blue.svg?style=flat" alt="Platform iOS" />
 <a href="https://developer.apple.com/swift"><img src="https://img.shields.io/badge/swift2-compatible-4BC51D.svg?style=flat" alt="Swift 2 compatible" /></a>
 <a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" /></a>
-<a href="https://cocoapods.org/pods/Eureka"><img src="https://img.shields.io/badge/pod-1.1.0-blue.svg" alt="CocoaPods compatible" /></a>
+<a href="https://cocoapods.org/pods/Eureka"><img src="https://img.shields.io/badge/pod-1.2.0-blue.svg" alt="CocoaPods compatible" /></a>
 <a href="https://raw.githubusercontent.com/xmartlabs/Eureka/master/LICENSE"><img src="http://img.shields.io/badge/license-MIT-blue.svg?style=flat" alt="License: MIT" /></a>
 </p>
 
@@ -75,16 +75,22 @@ class CustomCellsController : FormViewController {
 	            	<<< WeekDayRow(){
 	            		$0.value = [.Monday, .Wednesday, .Friday]
 	            	}
-	            	<<< FloatLabelRow() {
+	            	<<< TextFloatLabelRow() {
 	            		$0.title = "Float Label Row, type something to see.."
 	            	}
     }
 }
 ```
 
-In this example we create a [CustomCellsController] and then simply add a section with two custom rows to the `form` variable inherited from [FormViewController]. And this is the product:
+In this example we create a [CustomCellsController] and then simply add a section with two custom rows to the `form` variable.
+
+And this is the product:
 
 <img src="Example/Media/EurekaCustomCells.gif" width="300" alt="Screenshot of Custom Cells"/>
+
+As you may have noticed `CustomCellsController` extends from `FormViewController` which has a `form` property that can be used to declare the form as the example shows.
+`WeekDayRow` and `TextFloatLabelRow` are non-standard rows included in the example project, but the standard rows usage is analog. You can create a form by just setting up the `form` property without extending from `FormViewController` but typically it is more convenient to create a custom view controller that extends from it.
+
 
 ### Operators
 
@@ -152,6 +158,7 @@ This is a list of the rows that are provided by default:
 	+ **DecimalRow**
 	+ **TwitterRow**
 	+ **AccountRow**
+	+ **ZipCodeRow**
 
 
 * **Date Rows**
@@ -196,9 +203,18 @@ This is a list of the rows that are provided by default:
 
 		This row allows the selection of multiple options
 
-  + **LocationRow** (Included as custom row in the the example project)
+	+ **PickerRow**
+
+		This row allows you to present options of a generic type through a picker view
+
+	+ **PickerInlineRow**
+
+		This row uses the **PickerRow** row as its inline row
+
+	+ **LocationRow** (Included as custom row in the example project)
 
     <img src="Example/Media/EurekaLocationRow.gif" width="300" alt="Screenshot of Location Row"/>
+
 
 * **Other Rows**
 	These are other rows that might be useful
@@ -412,7 +428,7 @@ A inline row is a specific type of row that shows dynamically a row below it, no
 
 So to create a inline row we need 2 rows, the row that are "always" visible and the row that will expand/collapse.
 
-Another requirement is that the the value type of these 2 rows must be the same.
+Another requirement is that the value type of these 2 rows must be the same.
 
 Once we have these 2 rows, we should make the top row type conforms to `InlineRowType` which will add some methods to the top row class type such as:
 
@@ -448,7 +464,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
 
-pod 'Eureka', '~> 1.0'
+pod 'Eureka', '~> 1.2'
 ```
 
 Then run the following command:
@@ -542,6 +558,22 @@ Passing `true` as `includeHidden` parameter value will also include the hidden r
 
 As you may have noticed the result dictionary key is the row tag value and the value is the row value. Only rows with a tag value will be added to the dictionary.
 
+#### How to set the form values using a dictionary
+
+Invoking `setValues(values: [String: Any?])` which is exposed by `Form` class.
+
+For example:
+
+```swift
+form.setValues(["IntRowTag": 8, "TextRowTag": "Hello world!", "PushRowTag": Company(name:"Xmartlabs")])
+```
+
+Where `"IntRowTag"`, `"TextRowTag"`, `"PushRowTag"` are row tags (each one uniquely identifies a row) and `8`, `"Hello world!"`, `Company(name:"Xmartlabs")` are the corresponding row value to assign.
+
+The value type of a row must match with the value type of the corresponding dictionary value otherwise nil will be assigned.
+
+If the form was already displayed we have to reload the visible rows either by reloading the table view `tableView.reloadData()` or invoking `updateCell()` to each visible row.
+
 <!--- In file -->
 [Introduction]: #introduction
 [Requirements]: #requirements
@@ -572,3 +604,17 @@ As you may have noticed the result dictionary key is the row tag value and the v
 [StackOverflow]: http://stackoverflow.com/questions/tagged/eureka
 [our blog post]: http://blog.xmartlabs.com/2015/09/29/Introducing-Eureka-iOS-form-library-written-in-pure-Swift/
 [twitter]: https://twitter.com/xmartlabs
+
+# Change Log
+
+### 1.2.0
+
+ * Added PickerRow.
+ * Added PickerInlineRow.
+ * Added ZipCodeRow.
+ * Fix bug when inserting hidden row in midst of a section.
+ * Example project: Added ability to set up a formatter to FloatLabelRow.
+ * `rowValueHasBeenChanged` signature has been changed to `override func rowValueHasBeenChanged(row: BaseRow, oldValue: Any?, newValue: Any?)`.
+ * Added `@noescape` attribute to initializer closures.
+ * Fixed issue with tableView's bottom inset when keyboard was dismissed.
+ * Changed NameRow keyboardType to make autocapitalization works.
