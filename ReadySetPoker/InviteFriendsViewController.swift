@@ -21,22 +21,50 @@ class InviteFriendsViewController: UITableViewController {
     var delegate: InviteFriendsViewControllerDelegate?
     
     lazy var noFriendsLabel: UILabel = {
-        let frame = CGRectMake(0, 0, 300, 50)
+        let frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
         var noFriendsLabel = UILabel(frame: frame)
         noFriendsLabel.text = "Oops!  No friends yet."
         noFriendsLabel.sizeToFit()
+        noFriendsLabel.font = UIFont(name: "Arial", size: 12.0)
         noFriendsLabel.center = self.navigationController!.view.center
-        self.navigationController!.view.addSubview(noFriendsLabel)
+        self.tableView.backgroundView = noFriendsLabel
         return noFriendsLabel
+    }()
+    
+    lazy var noConnectionLabel: UILabel = {
+        let frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
+        var noConnectionLabel = UILabel(frame: frame)
+        noConnectionLabel.text = "Connection unavailable.  Please pull to refresh."
+        noConnectionLabel.sizeToFit()
+        noConnectionLabel.textAlignment = .Center
+        noConnectionLabel.font = UIFont(name: "Arial", size: 12.0)
+        self.tableView.backgroundView = noConnectionLabel
+        return noConnectionLabel
     }()
     
     // View Controller Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         noFriendsLabel.hidden = true
+        noConnectionLabel.hidden = true
         tableView.tableFooterView = UIView()
+        fetchFacebookFriends()
+    }
+    
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillAppear(animated)
+        if let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]! {
+            var selectedFriendsToInvite = [FacebookFriend]()
+            for indexPath in indexPaths {
+                selectedFriendsToInvite.append(friends[indexPath.row])
+            }
+            
+            delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
+        }
+    }
+    
+    func fetchFacebookFriends() {
         MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         let request = FBSDKGraphRequest(graphPath: "me/friends", parameters: ["fields":"id,name,picture.width(200).height(200)"])
         request.startWithCompletionHandler({ (connection: FBSDKGraphRequestConnection!, result: AnyObject!, error: NSError!) -> Void in
@@ -45,6 +73,8 @@ class InviteFriendsViewController: UITableViewController {
                 //show error message to user
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in
                     MBProgressHUD.hideHUDForView(self.navigationController?.view, animated: true)
+                    
+                    self.noConnectionLabel.hidden = false
                 })
                 return
             }
@@ -70,23 +100,16 @@ class InviteFriendsViewController: UITableViewController {
                 self.noFriendsLabel.hidden = false
             }
         })
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        super.viewWillAppear(animated)
-        self.noFriendsLabel.hidden = true
-        if let indexPaths = self.tableView.indexPathsForSelectedRows as [NSIndexPath]! {
-            var selectedFriendsToInvite = [FacebookFriend]()
-            for indexPath in indexPaths {
-                selectedFriendsToInvite.append(friends[indexPath.row])
-            }
-            
-            delegate?.inviteFriendsViewControllerDidSelectFriendsToInvite(selectedFriendsToInvite)
-        }
+
     }
     
     @IBAction func dismissButtonTapped(sender: UIBarButtonItem) {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    @IBAction func pulledToRefresh(sender: UIRefreshControl) {
+        fetchFacebookFriends()
+        sender.endRefreshing()
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
