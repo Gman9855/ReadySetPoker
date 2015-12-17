@@ -45,7 +45,7 @@ class EventCreationController: FormViewController, InviteFriendsViewControllerDe
     
     var formFields: [AnyObject?] {
         get {
-            let formFields: [AnyObject?] = [gameTitle, streetAddress, city, state, zipCode, startTime, endTime, gameDescription, tournamentBuyIn, gameType, maximumSeats]
+            let formFields: [AnyObject?] = [gameTitle, streetAddress, city, state, zipCode, startTime, endTime, gameDescription, gameType, maximumSeats]
             
             if gameFormat == GameFormat.Tournament.rawValue {
                 return formFields + [tournamentBuyIn]
