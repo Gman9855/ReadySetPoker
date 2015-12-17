@@ -17,15 +17,27 @@ import SystemConfiguration
 class EventListViewController: UITableViewController, EventCreationControllerDelegate, EventDetailViewControllerDelegate {
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
     lazy var noGamesLabel: UILabel = {
-        let frame = CGRectMake(0, 0, 300, 50)
+        let frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
         var noGamesLabel = UILabel(frame: frame)
         let statusString = self.segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
         noGamesLabel.text = "No \(statusString) games yet."
         noGamesLabel.sizeToFit()
+        noGamesLabel.textAlignment = .Center
         noGamesLabel.center = self.navigationController!.view.center
-        self.navigationController!.view.addSubview(noGamesLabel)
         return noGamesLabel
+    }()
+    
+    lazy var connectionTimeoutLabel: UILabel = {
+        let frame = CGRectMake(0, 0, self.tableView.bounds.size.width, self.tableView.bounds.size.height)
+        var connectionTimeoutLabel = UILabel(frame: frame)
+        connectionTimeoutLabel.text = "Connection timed out."
+        connectionTimeoutLabel.numberOfLines = 2
+        connectionTimeoutLabel.sizeToFit()
+        connectionTimeoutLabel.textAlignment = .Center
+        connectionTimeoutLabel.center = self.navigationController!.view.center
+        return connectionTimeoutLabel
     }()
     
     lazy var sharedContext: NSManagedObjectContext = {
@@ -45,33 +57,18 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        fetchInvites()
-        noGamesLabel.hidden = true
         let hud = MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
         hud.labelText = "Loading"
+        fetchInvites()
+        
         tableView.tableFooterView = UIView()     // hack to remove extraneous tableview separators
     }
-    
-    override func viewDidAppear(animated: Bool) {
-        if invitesForSelectedSegment.count == 0 {
-            noGamesLabel.hidden = false
-        }
-    }
-    
-    override func viewWillDisappear(animated: Bool) {
-        noGamesLabel.hidden = true
-    }
-    
-    func setUpNoGamesLabel() {
-        let frame = CGRectMake(0, 0, 300, 50)
-        noGamesLabel = UILabel(frame: frame)
-        let statusString = segmentedControl.selectedSegmentIndex == 0 ? "upcoming" : "completed"
-        noGamesLabel.text = "No \(statusString) games yet."
-        noGamesLabel.sizeToFit()
-        noGamesLabel.center = self.navigationController!.view.center
-        self.navigationController!.view.addSubview(noGamesLabel)
-    }
+//    
+//    override func viewDidAppear(animated: Bool) {
+//        if invitesForSelectedSegment.count == 0 {
+//            noGamesLabel.hidden = false
+//        }
+//    }
     
     // Define the query that will provide the data for the table view
     func queryForTable() -> PFQuery {
@@ -109,11 +106,6 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     func fetchInvites() {
         if !isConnectedToNetwork() { // if we're offline don't bother trying to refresh, our datastore objects are never more
-//            if !invitesForSelectedSegment.isEmpty {  // current than the objects currently displayed
-//                self.refreshControl?.endRefreshing()
-//                return
-//            }
-            
             if segmentedControl.selectedSegmentIndex == 0 {
                 if self.upcomingInvites != nil {
                     if !self.upcomingInvites.isEmpty {
@@ -138,9 +130,7 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
             if error != nil {
                 self.invitesForSelectedSegment.removeAll()
                 self.tableView.reloadData()
-                self.noGamesLabel.hidden = false
-                self.noGamesLabel.text = "Something went wrong.  Please check your connection."
-                self.noGamesLabel.sizeToFit()
+                self.tableView.backgroundView = self.connectionTimeoutLabel
             } else {
                 if self.segmentedControl.selectedSegmentIndex == 0 {
                     self.upcomingInvites = invites as! [Invite]
@@ -149,11 +139,15 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
                 }
                 self.invitesForSelectedSegment = invites as! [Invite]
                 PFObject.pinAllInBackground(invites as! [Invite])
+                
                 self.noGamesLabel.hidden = true
+                self.connectionTimeoutLabel.hidden = true
+                
                 self.tableView.reloadData()
                 
                 if invites?.count == 0 {
                     self.noGamesLabel.hidden = false
+                    self.tableView.backgroundView = self.noGamesLabel
                 }
                 if self.isConnectedToNetwork() {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -215,16 +209,19 @@ class EventListViewController: UITableViewController, EventCreationControllerDel
     
     @IBAction func segmentedControlIndexChanged(sender: UISegmentedControl) {
         noGamesLabel.hidden = true
+        connectionTimeoutLabel.hidden = true
         if sender.selectedSegmentIndex == 0 {
             if self.upcomingInvites != nil {
                 self.invitesForSelectedSegment = self.upcomingInvites
             } else {
+                MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
                 fetchInvites()
             }
         } else {
             if self.pastInvites != nil {
                 self.invitesForSelectedSegment = self.pastInvites
             } else {
+                MBProgressHUD.showHUDAddedTo(self.navigationController?.view, animated: true)
                 fetchInvites()
             }
         }

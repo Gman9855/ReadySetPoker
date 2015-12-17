@@ -15,9 +15,8 @@ class EventPokerDetailsCell: EventDetailsCell {
     
     override func configureWithInvite(invite: Invite) {
         gameTypeAndGameFormat.text = invite.event.gameType + " " + invite.event.gameFormat
-        
         let cashGameBlindsString = String(invite.event.cashGameSmallBlind) + "/" + String(invite.event.cashGameBigBlind)
-        gameBlindsOrTournamentBuyin.text = invite.event.gameFormat == "Cash Game" ? "Blinds:  $\(cashGameBlindsString)" : "Tournament Buy-In:  $\(invite.event.tournamentBuyIn)"
+        gameBlindsOrTournamentBuyin.text = invite.event.gameFormat == "Cash Game" ? "Blinds:  $\(cashGameBlindsString)" : "Tournament Buy-In:  $\(Int(invite.event.tournamentBuyIn))"
     }
     
 
